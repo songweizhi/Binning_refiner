@@ -1,3 +1,5 @@
+import os
+import shutil
 import argparse
 import matplotlib.pyplot as plt
 from lib.get_array import get_array
@@ -50,8 +52,10 @@ bin_folders = [[args.f, args.fx], [args.s, args.sx], [args.r, args.rx]]
 
 # define folder/file name
 checkm_wd_name = 'checkm_wd'
+contamination_free_refined_bin_folder = 'contamination_free_refined_bins'
 statistics_image_filename = 'plot_stat.png'
 pwd_statistics_image = '%s/%s' % (out, statistics_image_filename)
+pwd_contamination_free_refined_bin_folder = '%s/%s' % (args.r, contamination_free_refined_bin_folder)
 
 #################################################### Get input data ####################################################
 
@@ -63,13 +67,14 @@ list_of_qualified_bin_number = []
 list_of_contamination_free_bin_number = []
 list_of_total_length = []
 list_of_contamination_free_bin_total_length = []
+list_of_contamination_free_bin_list = []
 
 for each_bin_set in bin_folders:
     checkm_wd = each_bin_set[0]
     bin_file_extension = each_bin_set[1]
 
     completeness_list, contamination_list, bin_size_list, qualified_bin_number, contamination_free_bin_number, \
-    total_length, contamination_free_bin_total_length = get_bin_statistics(checkm_wd,
+    total_length, contamination_free_bin_total_length,  contamination_free_bin_list = get_bin_statistics(checkm_wd,
                                                                            checkm_wd_name,
                                                                            bin_file_extension)
     list_of_completeness_list.append(completeness_list)
@@ -79,6 +84,7 @@ for each_bin_set in bin_folders:
     list_of_contamination_free_bin_number.append(contamination_free_bin_number)
     list_of_total_length.append(total_length)
     list_of_contamination_free_bin_total_length.append(contamination_free_bin_total_length)
+    list_of_contamination_free_bin_list.append(contamination_free_bin_list)
 
 # turn number list to array
 list_of_completeness_list_array = list(map(get_array, list_of_completeness_list))
@@ -159,3 +165,20 @@ axes[axes_num].axis([x_min, x_max, y_min, y_max])
 
 fig.subplots_adjust(wspace=0.25)
 plt.savefig(pwd_statistics_image, dpi=300, format='png')
+
+
+# get bins blow defined contamination cutoff
+# create folder to hold contamination free refined bins
+if not os.path.isdir(pwd_contamination_free_refined_bin_folder):
+    os.mkdir(pwd_contamination_free_refined_bin_folder)
+else:
+    shutil.rmtree(pwd_contamination_free_refined_bin_folder)
+    os.mkdir(pwd_contamination_free_refined_bin_folder)
+
+# copy contamination free refined bins to defined bin folder
+contamination_free_refined_bins = list_of_contamination_free_bin_list[2]
+for contamination_free_refined_bin in contamination_free_refined_bins:
+    pwd_contamination_free_refined_bin = '%s/%s' % (args.r, contamination_free_refined_bin)
+    print(pwd_contamination_free_refined_bin)
+    os.system('cp %s %s' % (pwd_contamination_free_refined_bin, pwd_contamination_free_refined_bin_folder))
+

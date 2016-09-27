@@ -84,8 +84,6 @@ pwd_makeblastdb_exe = args.makeblastdb
 
 bin_folder_1_new =                  '%s_new'            % input_bin_folder_1
 bin_folder_2_new =                  '%s_new'            % input_bin_folder_2
-# output_folder =                     'output_%s_vs_%s'   % (input_bin_folder_1, input_bin_folder_2)
-# blast_wd =                          'output_Blastdb_%s_vs_%s'  % (input_bin_folder_1, input_bin_folder_2)
 output_folder =                     'outputs'
 blast_wd =                          'output_blast_wd'
 
@@ -300,8 +298,9 @@ plot_identity_list(bin_size_list_filtered, bin_size_cutoff, 'Bin Size Distributi
 
 # plot googlevis image
 print('Plotting...')
-GoogleVis_Sankey_plotter(pwd_googlevis_input, pwd_plot_html)
-GoogleVis_Sankey_plotter(pwd_googlevis_input_filtered, pwd_plot_html_filtered)
+plot_height = max([len(bin_folder_1_bins), len(bin_folder_2_bins)]) * 40
+GoogleVis_Sankey_plotter(pwd_googlevis_input, pwd_plot_html, plot_height)
+GoogleVis_Sankey_plotter(pwd_googlevis_input_filtered, pwd_plot_html_filtered, plot_height)
 
 
 # get new bins and filter with size

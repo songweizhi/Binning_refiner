@@ -12,6 +12,7 @@ def get_bin_statistics(pwd_checkm_wd, checkm_wd_name, bin_file_extention):
     bin_size_list = []
     bin_number = 0
     con_free_bin_number = 0
+    con_free_bin_list = []
     total_length_bp = 0
     con_free_total_length_bp = 0
     # get statistics
@@ -40,11 +41,12 @@ def get_bin_statistics(pwd_checkm_wd, checkm_wd_name, bin_file_extention):
                     contamination_list.append(contamination)
                     if contamination == 0:
                         con_free_bin_number += 1
+                        con_free_bin_list.append(each_bin)
                         con_free_total_length_bp += bin_size
 
     # transfer length in bp to length in MB
     total_length_mb = total_length_bp/(1024*1024)
     con_free_total_length_mb = con_free_total_length_bp/(1024*1024)
     # return statistics
-    return completeness_list, contamination_list, bin_size_list, bin_number, con_free_bin_number, total_length_mb, con_free_total_length_mb
+    return completeness_list, contamination_list, bin_size_list, bin_number, con_free_bin_number, total_length_mb, con_free_total_length_mb, con_free_bin_list
 

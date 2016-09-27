@@ -1,7 +1,7 @@
 import rpy2.robjects as robjects
 import rpy2.robjects.packages as rpackages
 
-def GoogleVis_Sankey_plotter(input_csv, output_html):
+def GoogleVis_Sankey_plotter(input_csv, output_html, height):
     out = open(output_html, 'w')
     utils = rpackages.importr('googleVis')
     packages_needed = ['googleVis']
@@ -15,7 +15,7 @@ def GoogleVis_Sankey_plotter(input_csv, output_html):
     sankey_plot = robjects.r['gvisSankey'](df,
                                            option = robjects.r['list'](
                                                sankey = "{node : {colorMode: 'unique', labelPadding: 10}, link:{colorMode: 'source'}}",
-                                               height = 250,
+                                               height = height,
                                                width = 600))
     out.write(str(sankey_plot))
     out.close()
