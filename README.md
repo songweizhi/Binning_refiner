@@ -73,6 +73,3 @@ Output files:
 1. Statistics of input and refined bins (from Get_statistics.py)
 
     ![Statistics](doc/images/statistics.png)
-
-
-
