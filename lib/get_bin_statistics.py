@@ -6,6 +6,10 @@ def get_bin_statistics(pwd_checkm_wd, checkm_wd_name, bin_file_extention):
     # get bin name list
     bin_files_re = '%s/*.%s' % (pwd_checkm_wd, bin_file_extention)
     bins = [os.path.basename(file_name) for file_name in glob.glob(bin_files_re)]
+    if len(bins) == 0:
+        print('No input bin detected from %s, please-check' % pwd_checkm_wd)
+        exit()
+
     # initialize output
     completeness_list = []
     contamination_list = []

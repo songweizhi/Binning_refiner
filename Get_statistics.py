@@ -10,7 +10,7 @@ from lib.get_bin_statistics import get_bin_statistics
 parser = argparse.ArgumentParser()
 
 parser.add_argument('-f',
-                    help='first bin folder name',
+                    help='path to first bin folder',
                     required=True,
                     metavar='(req)')
 
@@ -20,7 +20,7 @@ parser.add_argument('-fx',
                     metavar='(req)')
 
 parser.add_argument('-s',
-                    help='second bin folder name',
+                    help='path to second bin folder',
                     required=True,
                     metavar='(req)')
 
@@ -30,7 +30,7 @@ parser.add_argument('-sx',
                     metavar='(req)')
 
 parser.add_argument('-r',
-                    help='refined bin folder name',
+                    help='path to refined bin folder',
                     required=True,
                     metavar='(req)')
 

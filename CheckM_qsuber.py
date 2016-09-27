@@ -111,6 +111,19 @@ pwd_qsub_files_folder = '%s/%s' % (wd, qsub_files_folder)
 # forward to working directory
 os.chdir(wd)
 
+if os.path.isdir(pwd_checkm_wd):
+    choice = str(input(
+        'CheckM working directory detected, Press "S/s" to skip this step, Press any other key to overwrite it.\nYour choice: '))
+    if choice in ['s', 'S']:
+        pass
+    else:
+        pass
+
+########
+# put in def
+# detected results , not only wd
+########
+
 
 if not os.path.isdir(pwd_checkm_wd):
     os.mkdir(pwd_checkm_wd)

@@ -171,8 +171,16 @@ os.chdir(wd)
 # get bin name list
 bin_folder_1_bins_files = '%s/%s/*.%s' % (wd, input_bin_folder_1, bin_folder_1_file_extension)
 bin_folder_2_bins_files = '%s/%s/*.%s' % (wd, input_bin_folder_2, bin_folder_2_file_extension)
+
 bin_folder_1_bins = [os.path.basename(file_name) for file_name in glob.glob(bin_folder_1_bins_files)]
+if len(bin_folder_1_bins) == 0:
+    print('No input bin detected from %s/%s, please-check' % (wd, input_bin_folder_1))
+    exit()
+
 bin_folder_2_bins = [os.path.basename(file_name) for file_name in glob.glob(bin_folder_2_bins_files)]
+if len(bin_folder_2_bins) == 0:
+    print('No input bin detected from %s/%s, please-check' % (wd, input_bin_folder_2))
+    exit()
 
 
 # remove existing output folder, if any

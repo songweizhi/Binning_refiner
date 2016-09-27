@@ -1,7 +1,7 @@
 Binning Refiner
 ---
 
-+ This pipeline was developed to refine metagenomics bins by the combination of multiple binning programs.
++ This pipeline was developed to refine metagenomics bins by the combination of different binning programs.
 
 + Contact: Weizhi Song (songwz03@gmail.com)
 
@@ -21,13 +21,12 @@ Dependencies:
 How to run it:
 ---
 
-1. Binning Refiner is implemented in python3, please use python3 to run it instead of python.
+1. Binning Refiner is implemented in python3, please use python3 instead of python.
 
-1. First, you need to define a working directory to hold all input and output files, full path to this directory need
-to be specified in config.txt.
+1. First, you need to define a working directory to hold all input and output files.
 
 1. Each set of input bins should be placed in separated folder directly under the working directory. Folder names and
-bin file extension within each folder also need to be specified in config.txt.
+bin file extension within each folder also need to be specified in commands.
 
 1. (Optional) All bins in the above folders will be used as inputs for refining. you may want to remove bins which
 are highly contaminated or ultra small before the refining step (not that much necessary, as a quality control step will
@@ -43,17 +42,12 @@ be applied after refining). To do this:
 
         # 1. get refined bins
         $ python3 Binning_refiner.py -wd -f -fx -s -sx -blastn -makeblastdb
-        $ python3 Binning_refiner.py -wd /Users/songweizhi/Desktop/testdata -f MetaBAT -fx fa -s MyCC -sx fasta -blastn /Users/songweizhi/Softwares/ncbi-blast-2.4.0+/bin/blastn -makeblastdb /Users/songweizhi/Softwares/ncbi-blast-2.4.0+/bin/makeblastdb
 
         # 2. quality assessment of refined bin
         $ python3 CheckM_qsuber.py -wd -bx -email
-        $ python3 CheckM_qsuber.py -wd /Users/songweizhi/Desktop/testdata/MetaBAT -bx fa -email weizhi.song@student.unsw.edu.au
-        $ python3 CheckM_qsuber.py -wd /Users/songweizhi/Desktop/testdata/MyCC -bx fasta -email weizhi.song@student.unsw.edu.au
-        $ python3 CheckM_qsuber.py -wd /Users/songweizhi/Desktop/testdata/Refined -bx fasta -email weizhi.song@student.unsw.edu.au
 
         # 3. quality summary of input/output bins (completeness, contamination, bin size, bin number, total length)
         $ python3 Get_statistics.py -f -fx -s -sx -r -rx -o
-        $ python3 Get_statistics.py -f /Users/songweizhi/Desktop/testdata/MetaBAT -fx fa -s /Users/songweizhi/Desktop/testdata/MyCC -sx fasta -r /Users/songweizhi/Desktop/testdata/outputs/refined_bins -rx fasta -o /Users/songweizhi/Desktop/testdata
 
 Output files:
 ---
