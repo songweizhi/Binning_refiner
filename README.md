@@ -42,11 +42,15 @@ be applied after refining). To do this:
 1. Running it!
 
         # 1. get refined bins
-        $ python3 Binning_refiner.py
+        $ python3 Binning_refiner.py -wd /Users/songweizhi/Desktop/testdata -f MetaBAT -fx fa -s MyCC -sx fasta
+        -blastn /Users/songweizhi/Softwares/ncbi-blast-2.4.0+/bin/blastn
+        -makeblastdb /Users/songweizhi/Softwares/ncbi-blast-2.4.0+/bin/makeblastdb
         # 2. quality assessment of refined bin
-        $ python3 CheckM_qsubder.py
+        $ python3 CheckM_qsuber.py -wd /Users/songweizhi/Desktop/testdata/MetaBAT -bx fa -email weizhi.song@student.unsw.edu.au
+        $ python3 CheckM_qsuber.py -wd /Users/songweizhi/Desktop/testdata/MyCC -bx fasta -email weizhi.song@student.unsw.edu.au
+        $ python3 CheckM_qsuber.py -wd /Users/songweizhi/Desktop/testdata/Refined -bx fasta -email weizhi.song@student.unsw.edu.au
         # 3. quality summary of input/output bins (completeness, contamination, bin size, bin number, total length)
-        $ python3 Get_statistics.py
+        $ python3 Get_statistics.py -f /Users/songweizhi/Desktop/testdata/MetaBAT -fx fa -s /Users/songweizhi/Desktop/testdata/MyCC -sx fasta -r /Users/songweizhi/Desktop/testdata/outputs/refined_bins -rx fasta -o /Users/songweizhi/Desktop/testdata
 
 Output files:
 ---
