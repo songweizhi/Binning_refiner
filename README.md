@@ -66,9 +66,9 @@ Output files:
 
     Each band in the above image represents one refined bin, we will get 9 refined bins in this case:
 
-        1. MetaBAT_bin2___MyCC_bin5.fasta   2. MetaBAT_bin1___MyCC_bin5.fasta   3. MetaBAT_bin6___MyCC_bin1.fasta
-        4. MetaBAT_bin6___MyCC_bin4.fasta   5. MetaBAT_bin3___MyCC_bin1.fasta   6. MetaBAT_bin3___MyCC_bin4.fasta
-        7. MetaBAT_bin4___MyCC_bin2.fasta   8. MetaBAT_bin5___MyCC_bin3.fasta   9. MetaBAT_bin5___MyCC_bin6.fasta
+        MetaBAT_bin2___MyCC_bin5.fasta   MetaBAT_bin1___MyCC_bin5.fasta   MetaBAT_bin6___MyCC_bin1.fasta
+        MetaBAT_bin6___MyCC_bin4.fasta   MetaBAT_bin3___MyCC_bin1.fasta   MetaBAT_bin3___MyCC_bin4.fasta
+        MetaBAT_bin4___MyCC_bin2.fasta   MetaBAT_bin5___MyCC_bin3.fasta   MetaBAT_bin5___MyCC_bin6.fasta
 
 1. Statistics of input and refined bins (from Get_statistics.py)
 
