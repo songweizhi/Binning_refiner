@@ -6,13 +6,42 @@ from lib.get_bin_statistics import get_bin_statistics
 #################################################### CONFIGURATION #####################################################
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-f', help='first bin folder name', required=True, metavar='(req)')
-parser.add_argument('-fx', help='bin file extension in first bin folder', required=True, metavar='(req)')
-parser.add_argument('-s', help='second bin folder name', required=True, metavar='(req)')
-parser.add_argument('-sx', help='bin file extension in second bin folder', required=True, metavar='(req)')
-parser.add_argument('-r', help='refined bin folder name', required=True, metavar='(req)')
-parser.add_argument('-rx', help='bin file extension in refined bin folder', required=True, metavar='(req)')
-parser.add_argument('-o', help='output folder', required=True, metavar='(req)')
+
+parser.add_argument('-f',
+                    help='first bin folder name',
+                    required=True,
+                    metavar='(req)')
+
+parser.add_argument('-fx',
+                    help='bin file extension in first bin folder',
+                    required=True,
+                    metavar='(req)')
+
+parser.add_argument('-s',
+                    help='second bin folder name',
+                    required=True,
+                    metavar='(req)')
+
+parser.add_argument('-sx',
+                    help='bin file extension in second bin folder',
+                    required=True,
+                    metavar='(req)')
+
+parser.add_argument('-r',
+                    help='refined bin folder name',
+                    required=True,
+                    metavar='(req)')
+
+parser.add_argument('-rx',
+                    help='bin file extension in refined bin folder',
+                    required=True,
+                    metavar='(req)')
+
+parser.add_argument('-o',
+                    help='output folder',
+                    required=True,
+                    metavar='(req)')
+
 args = parser.parse_args()
 
 out = args.o

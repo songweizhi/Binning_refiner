@@ -48,23 +48,6 @@ be applied after refining). To do this:
         # 3. quality summary of input/output bins (completeness, contamination, bin size, bin number, total length)
         $ python3 Get_statistics.py
 
-1. An example of configuration file (config.txt)
-
-        [FILES_AND_PARAMETERS]
-        working_directory = /Users/weizhisong/Desktop/working_directory
-        binning_program_1 = MetaBAT
-        binning_program_2 = MyCC
-        binning_program_1_bin_file_extension = fa
-        binning_program_2_bin_file_extension = fasta
-        refined_bin_file_extension = fasta
-        refined_bin_size_cutoff = 524288
-        contamination_cutoff = None
-
-        [DEPENDENCIES]
-        path_to_blastn_executable = blastn
-        path_to_makeblastdb_executable = makeblastdb
-
-
 Output files:
 ---
 

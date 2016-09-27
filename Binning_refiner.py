@@ -24,14 +24,48 @@ steps = """"
 ##################################################### CONFIGURATION ####################################################
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-wd', required=True, help='path to working directory', metavar='(req)')
-parser.add_argument('-f', required=True, help='first bin folder name', metavar='(req)')
-parser.add_argument('-fx', required=True, help='bin file extension in first bin folder', metavar='(req)')
-parser.add_argument('-s', required=True, help='second bin folder name', metavar='(req)')
-parser.add_argument('-sx', required=True, help='bin file extension in second bin folder', metavar='(req)')
-parser.add_argument('-blastn', required=True, help='path to blastn executable', metavar='(req)')
-parser.add_argument('-makeblastdb', required=True, help='path to makeblastdb executable', metavar='(req)')
-parser.add_argument('-bin_size_curoff', required=False, default=524288, type=int, help='length cutoff for refined bins, default = 524288 (0.5MB)', metavar='(opt)')
+parser.add_argument('-wd',
+                    required=True,
+                    help='path to working directory',
+                    metavar='(req)')
+
+parser.add_argument('-f',
+                    required=True,
+                    help='first bin folder name',
+                    metavar='(req)')
+
+parser.add_argument('-fx',
+                    required=True,
+                    help='bin file extension in first bin folder',
+                    metavar='(req)')
+
+parser.add_argument('-s',
+                    required=True,
+                    help='second bin folder name',
+                    metavar='(req)')
+
+parser.add_argument('-sx',
+                    required=True,
+                    help='bin file extension in second bin folder',
+                    metavar='(req)')
+
+parser.add_argument('-blastn',
+                    required=True,
+                    help='path to blastn executable',
+                    metavar='(req)')
+
+parser.add_argument('-makeblastdb',
+                    required=True,
+                    help='path to makeblastdb executable',
+                    metavar='(req)')
+
+parser.add_argument('-bin_size_curoff',
+                    required=False,
+                    default=524288,
+                    type=int,
+                    help='length cutoff for refined bins, default = 524288 (0.5MB)',
+                    metavar='(opt)')
+
 args = parser.parse_args()
 
 wd = args.wd
