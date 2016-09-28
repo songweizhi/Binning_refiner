@@ -21,24 +21,23 @@ Dependencies:
 How to run it:
 ---
 
-1. Binning Refiner is implemented in python3, please use python3 instead of python.
+1. It is recommended to define a working directory to hold all input and output files. Input bin sets from different
+binning program need to be placed in different folders.
 
-1. First, you need to define a working directory to hold all input and output files.
+1. Bin file extension can be '.fa', '.fas' or '.fasta'. All bins within the same folder must have the same extension.
 
-1. Each set of input bins should be placed in separated folder directly under the working directory. Folder names and
-bin file extension within each folder also need to be specified in commands.
+1. (Optional) You may want to remove input bins which are highly contaminated or ultra small before the refining step
+(not that much necessary, as a quality control step will be applied after refining). To do this:
 
-1. (Optional) All bins in the above folders will be used as inputs for refining. you may want to remove bins which
-are highly contaminated or ultra small before the refining step (not that much necessary, as a quality control step will
-be applied after refining). To do this:
-
-    1. First, you need to run CheckM for quality assessment of input bins. CheckM_qsuber.py can help to do this all in
+    1. You need to run CheckM for quality assessment of input bins. CheckM_qsuber.py can help to do this all in
     one go, please refers to the script for how to use it.
 
-    1. Then, analysis CheckM results, Bin_filter.py was writen for this. To run it, you need to specifiy the bin size
+    1. Analysis CheckM results, Bin_filter.py was writen for this. To run it, you need to specifiy the bin size
     cutoff (in bp) and contamination cutoff in its configuration part. please refers to the script for further information.
 
-1. Running it!
+1. Running it
+
+        # This pipeline is implemented in python3, please use python3 instead of python
 
         # Example commands:
         $ python3 /path/to/Binning_refiner.py -wd /home/testdata -f MetaBAT -s MyCC
@@ -48,15 +47,17 @@ be applied after refining). To do this:
         $ python3 /path/to/Get_statistics.py -f /home/testdata/MetaBAT -s /home/testdata/MyCC -r /home/testdata/outputs/Refined -o /home/testdata
 
         # For help:
-        $ python3 Binning_refiner.py -h
-        $ python3 CheckM_qsuber.py -h
-        $ python3 Get_statistics.py -h
+        $ python3 /path/to/Binning_refiner.py -h
+        $ python3 /path/to/CheckM_qsuber.py -h
+        $ python3 /path/to/Get_statistics.py -h
 
 
 Output files:
 ---
 
 1. Refined bins (from Binning_refiner.py)
+
+1. Contamination-free refined bins (from Get_statistics.py)
 
 1. Cross-link (shared sequences) between input bins (from Binning_refiner.py)
 
