@@ -40,12 +40,10 @@ be applied after refining). To do this:
 
 1. Running it!
 
-        # 1. get refined bins
         $ python3 Binning_refiner.py -h
         usage: Binning_refiner.py [-h] -wd req) -f (req) -s (req) [-blastn (opt)]
                                   [-makeblastdb (opt)] [-bin_size_curoff (opt]
-
-        optional arguments:
+        arguments:
           -h, --help            show this help message and exit
           -wd (req)             path to working directory
           -f (req)              first bin folder name
@@ -58,13 +56,33 @@ be applied after refining). To do this:
 
 
 
+        $ python3 CheckM_qsuber.py -h
+        usage: CheckM_qsuber.py [-h] -wd required) -email (required) [-nodes (opt)]
+                                [-ppn (opt)] [-memory (opt)] [-walltime (opt)]
+                                [-python_v (opt)] [-hmmer_v (opt)] [-pplacer_v (opt)]
+                                [-prodigal_v (opt]
+        arguments:
+          -h, --help         show this help message and exit
+          -wd (required)     path to working directory
+          -email (required)  your email address
+          -nodes (opt)       nodes number needed (default = 1)
+          -ppn (opt)         ppn number needed (default = 12)
+          -memory (opt)      memory needed (default = 120)
+          -walltime (opt)    walltime needed (default = 2:59:00)
+          -python_v (opt)    python version (default: python/2.7.8)
+          -hmmer_v (opt)     hmmer version (default: hmmer/3.1b2)
+          -pplacer_v (opt)   pplacer version (default: pplacer/1.1.alpha16)
+          -prodigal_v (opt)  prodigal version (default: prodigal/2.6.3)
 
 
-        # 2. quality assessment of refined bin
-        $ python3 CheckM_qsuber.py -wd -email
-
-        # 3. quality summary of input/output bins (completeness, contamination, bin size, bin number, total length)
-        $ python3 Get_statistics.py -f -s -r -o
+        $ python3 Get_statistics.py -h
+        usage: Get_statistics.py [-h] -f req) -s (req) -r (req) -o (req
+        arguments:
+          -h, --help  show this help message and exit
+          -f (req)    path to first bin folder
+          -s (req)    path to second bin folder
+          -r (req)    path to refined bin folder
+          -o (req)    output folder
 
 Output files:
 ---
