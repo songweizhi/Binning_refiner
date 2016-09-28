@@ -41,7 +41,24 @@ be applied after refining). To do this:
 1. Running it!
 
         # 1. get refined bins
-        $ python3 Binning_refiner.py -wd -f -s
+        $ python3 Binning_refiner.py -h
+        usage: Binning_refiner.py [-h] -wd req) -f (req) -s (req) [-blastn (opt)]
+                                  [-makeblastdb (opt)] [-bin_size_curoff (opt]
+
+        optional arguments:
+          -h, --help            show this help message and exit
+          -wd (req)             path to working directory
+          -f (req)              first bin folder name
+          -s (req)              second bin folder name
+          -blastn (opt)         path to blastn executable
+          -makeblastdb (opt)    path to makeblastdb executable
+          -bin_size_curoff (opt)
+                                length cutoff for refined bins, default = 524288
+                                (0.5MB)
+
+
+
+
 
         # 2. quality assessment of refined bin
         $ python3 CheckM_qsuber.py -wd -email

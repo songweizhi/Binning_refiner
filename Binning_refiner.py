@@ -43,13 +43,13 @@ parser.add_argument('-blastn',
                     required=False,
                     default='/Users/songweizhi/Softwares/ncbi-blast-2.4.0+/bin/blastn',
                     help='path to blastn executable',
-                    metavar='(req)')
+                    metavar='(opt)')
 
 parser.add_argument('-makeblastdb',
                     required=False,
                     default='/Users/songweizhi/Softwares/ncbi-blast-2.4.0+/bin/makeblastdb',
                     help='path to makeblastdb executable',
-                    metavar='(req)')
+                    metavar='(opt)')
 
 parser.add_argument('-bin_size_curoff',
                     required=False,
