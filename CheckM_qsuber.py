@@ -26,11 +26,6 @@ parser.add_argument('-wd',
                     help='path to working directory',
                     metavar='(required)')
 
-parser.add_argument('-bx',
-                    required=True,
-                    help='bin file extension',
-                    metavar='(required)')
-
 parser.add_argument('-email',
                     required=True,
                     help='your email address',
@@ -90,7 +85,6 @@ parser.add_argument('-prodigal_v',
 args = parser.parse_args()
 
 wd = args.wd
-bin_file_extention = args.bx
 nodes_number = args.nodes
 ppn_number = args.ppn
 memory = args.memory
@@ -99,7 +93,6 @@ email = args.email
 modules_needed = [args.python_v, args.hmmer_v, args.pplacer_v, args.prodigal_v]
 
 ########################################################################################################################
-
 
 # define folder/file name
 checkm_wd = 'checkm_wd'
@@ -110,33 +103,6 @@ pwd_qsub_files_folder = '%s/%s' % (wd, qsub_files_folder)
 
 # forward to working directory
 os.chdir(wd)
-
-if os.path.isdir(pwd_checkm_wd):
-    choice = str(input(
-        'CheckM working directory detected, Press "S/s" to skip this step, Press any other key to overwrite it.\nYour choice: '))
-    if choice in ['s', 'S']:
-        pass
-    else:
-        pass
-
-########
-# put in def
-# detected results , not only wd
-########
-
-
-if not os.path.isdir(pwd_checkm_wd):
-    os.mkdir(pwd_checkm_wd)
-    os.mkdir(pwd_qsub_files_folder)
-else:
-    shutil.rmtree(pwd_checkm_wd)
-    os.mkdir(pwd_checkm_wd)
-    os.mkdir(pwd_qsub_files_folder)
-
-
-# get bin name list
-bin_files = '%s/*.fa*' % wd
-bins = [os.path.basename(file_name) for file_name in glob.glob(bin_files)]
 
 
 # prepare qsub file header
@@ -149,25 +115,76 @@ line_6 = '#PBS -M ' + email + '\n'
 line_7 = '#PBS -m ae\n'
 line_8 = 'cd $PBS_O_WORDIR\n'
 header = line_1 + line_2 + line_3 + line_4 + line_5 + line_6 + line_7 + line_8
+
 # Prepare module lines
 module_lines = ''
 for module in modules_needed:
     module_lines += 'module load ' + module + '\n'
 
-# get qsub file and submit it
-for bin in bins:
-    bin_folder = bin[:-(len(bin_file_extention) + 1)]
-    qsub_file = '%s.sh' % bin_folder
-    pwd_qsub_file = '%s/%s' % (pwd_qsub_files_folder, qsub_file)
-    out = open(pwd_qsub_file, 'w')
-    # create a folder for current bin
-    os.mkdir('%s/%s/%s' % (wd, checkm_wd, bin_folder))
-    pwd_bin = '%s/%s' % (wd, bin)
-    pwd_bin_foler = '%s/%s/%s' % (wd, checkm_wd, bin_folder)
-    os.system('cp %s %s' % (pwd_bin, pwd_bin_foler))
-    out.write('%s\n%s' % (header, module_lines))
-    cmds = 'checkm lineage_wf -x %s -t %s %s %s/out_%s -f %s/out_%s/out_%s.txt' % (bin_file_extention, ppn_number, pwd_bin_foler, pwd_bin_foler, bin_folder, pwd_bin_foler, bin_folder, bin_folder)
-    out.write(cmds)
-    out.close()
-    os.system('qsub %s' % pwd_qsub_file)
-    #print('qsub %s' % pwd_qsub_file)
+
+def run_qsuber():
+    # get bin name list
+    bin_files = '%s/*.fa*' % wd
+    bins = [os.path.basename(file_name) for file_name in glob.glob(bin_files)]
+
+    if len(bins) == 0:
+        print('No input bin detected from %s, please double-check.' % pwd_checkm_wd)
+        exit()
+
+    bin_file_ext_list = []
+    for bin in bins:
+        name, ext = os.path.splitext(bin)
+        bin_file_ext_list.append(ext[1:])
+
+    # uniq bin_file_ext_list
+    bin_file_ext_list_uniq = []
+    for each in bin_file_ext_list:
+        if each not in bin_file_ext_list_uniq:
+            bin_file_ext_list_uniq.append(each)
+        else:
+            pass
+
+    # check whether bins in the same folder have same extension, exit if not
+    if len(bin_file_ext_list_uniq) > 1:
+        print('Different bin file extensions were detected from bins in %s, please use same extension (fa, fas or fasta) '
+              'for each bin sets.' % pwd_checkm_wd)
+        exit()
+    else:
+        pass
+
+    # get bin file extension
+    bin_file_extension = bin_file_ext_list_uniq[0]
+
+    # get qsub file and submit it
+    for bin in bins:
+        bin_folder = bin[:-(len(bin_file_extension) + 1)]
+        qsub_file = '%s.sh' % bin_folder
+        pwd_qsub_file = '%s/%s' % (pwd_qsub_files_folder, qsub_file)
+        out = open(pwd_qsub_file, 'w')
+        # create a folder for current bin
+        os.mkdir('%s/%s/%s' % (wd, checkm_wd, bin_folder))
+        pwd_bin = '%s/%s' % (wd, bin)
+        pwd_bin_foler = '%s/%s/%s' % (wd, checkm_wd, bin_folder)
+        os.system('cp %s %s' % (pwd_bin, pwd_bin_foler))
+        out.write('%s\n%s' % (header, module_lines))
+        cmds = 'checkm lineage_wf -x %s -t %s %s %s/out_%s -f %s/out_%s/out_%s.txt' % (
+            bin_file_extension, ppn_number, pwd_bin_foler, pwd_bin_foler, bin_folder, pwd_bin_foler, bin_folder, bin_folder)
+        out.write(cmds)
+        out.close()
+        os.system('qsub %s' % pwd_qsub_file)
+
+
+# check whether previous results exist
+if os.path.isdir(pwd_checkm_wd):
+    choice = str(input('CheckM working directory detected, Press "S/s" to skip this step, Press any other key to overwrite it.\nYour choice: '))
+    if choice in ['s', 'S']:
+        pass
+    else:
+        shutil.rmtree(pwd_checkm_wd)
+        os.mkdir(pwd_checkm_wd)
+        os.mkdir(pwd_qsub_files_folder)
+        run_qsuber()
+else:
+    os.mkdir(pwd_checkm_wd)
+    os.mkdir(pwd_qsub_files_folder)
+    run_qsuber()

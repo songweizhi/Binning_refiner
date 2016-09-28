@@ -3,7 +3,7 @@ Binning Refiner
 
 + This pipeline was developed to refine metagenomics bins by the combination of different binning programs.
 
-+ Contact: Weizhi Song (songwz03@gmail.com)
++ Contact: songwz03@gmail.com
 
 Dependencies:
 ---
@@ -41,20 +41,20 @@ be applied after refining). To do this:
 1. Running it!
 
         # 1. get refined bins
-        $ python3 Binning_refiner.py -wd -f -fx -s -sx -blastn -makeblastdb
+        $ python3 Binning_refiner.py -wd -f -s
 
         # 2. quality assessment of refined bin
-        $ python3 CheckM_qsuber.py -wd -bx -email
+        $ python3 CheckM_qsuber.py -wd -email
 
         # 3. quality summary of input/output bins (completeness, contamination, bin size, bin number, total length)
-        $ python3 Get_statistics.py -f -fx -s -sx -r -rx -o
+        $ python3 Get_statistics.py -f -s -r -o
 
 Output files:
 ---
 
 1. Refined bins (from Binning_refiner.py)
 
-1. Cross-link between input bins (from Binning_refiner.py)
+1. Cross-link (shared sequences) between input bins (from Binning_refiner.py)
 
     ![Sankey_plot](doc/images/sankey_plot.jpg)
 

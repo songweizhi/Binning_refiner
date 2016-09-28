@@ -14,28 +14,13 @@ parser.add_argument('-f',
                     required=True,
                     metavar='(req)')
 
-parser.add_argument('-fx',
-                    help='bin file extension in first bin folder',
-                    required=True,
-                    metavar='(req)')
-
 parser.add_argument('-s',
                     help='path to second bin folder',
                     required=True,
                     metavar='(req)')
 
-parser.add_argument('-sx',
-                    help='bin file extension in second bin folder',
-                    required=True,
-                    metavar='(req)')
-
 parser.add_argument('-r',
                     help='path to refined bin folder',
-                    required=True,
-                    metavar='(req)')
-
-parser.add_argument('-rx',
-                    help='bin file extension in refined bin folder',
                     required=True,
                     metavar='(req)')
 
@@ -47,7 +32,7 @@ parser.add_argument('-o',
 args = parser.parse_args()
 
 out = args.o
-bin_folders = [[args.f, args.fx], [args.s, args.sx], [args.r, args.rx]]
+bin_folders = [args.f, args.s, args.r]
 ########################################################################################################################
 
 # define folder/file name
@@ -69,14 +54,10 @@ list_of_total_length = []
 list_of_contamination_free_bin_total_length = []
 list_of_contamination_free_bin_list = []
 
-for each_bin_set in bin_folders:
-    checkm_wd = each_bin_set[0]
-    bin_file_extension = each_bin_set[1]
-
+for checkm_wd in bin_folders:
     completeness_list, contamination_list, bin_size_list, qualified_bin_number, contamination_free_bin_number, \
     total_length, contamination_free_bin_total_length,  contamination_free_bin_list = get_bin_statistics(checkm_wd,
-                                                                           checkm_wd_name,
-                                                                           bin_file_extension)
+                                                                           checkm_wd_name)
     list_of_completeness_list.append(completeness_list)
     list_of_contamination_list.append(contamination_list)
     list_of_bin_size_list.append(bin_size_list)
@@ -99,7 +80,7 @@ list_of_contamination_free_bin_total_length_array = list(map(get_array, list_of_
 ###################################################### Plot Image ######################################################
 
 fig, axes = plt.subplots(nrows=1, ncols=4, figsize=(24, 6))
-label_name_list = [bin_folders[0][0].split('/')[-1], bin_folders[1][0].split('/')[-1], bin_folders[2][0].split('/')[-1]]
+label_name_list = [bin_folders[0].split('/')[-1], bin_folders[1].split('/')[-1], bin_folders[2].split('/')[-1]]
 
 # box plot of completeness, contamination and bin size
 boxplot_inputs = [list_of_completeness_list_array, list_of_contamination_list_array, list_of_bin_size_list_array]
@@ -179,6 +160,5 @@ else:
 contamination_free_refined_bins = list_of_contamination_free_bin_list[2]
 for contamination_free_refined_bin in contamination_free_refined_bins:
     pwd_contamination_free_refined_bin = '%s/%s' % (args.r, contamination_free_refined_bin)
-    print(pwd_contamination_free_refined_bin)
     os.system('cp %s %s' % (pwd_contamination_free_refined_bin, pwd_contamination_free_refined_bin_folder))
 

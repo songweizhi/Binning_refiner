@@ -2,13 +2,37 @@ import os
 import glob
 from lib.get_bin_size import get_bin_size
 
-def get_bin_statistics(pwd_checkm_wd, checkm_wd_name, bin_file_extention):
+def get_bin_statistics(pwd_checkm_wd, checkm_wd_name):
     # get bin name list
-    bin_files_re = '%s/*.%s' % (pwd_checkm_wd, bin_file_extention)
+    bin_files_re = '%s/*.fa*' % (pwd_checkm_wd)
     bins = [os.path.basename(file_name) for file_name in glob.glob(bin_files_re)]
     if len(bins) == 0:
-        print('No input bin detected from %s, please-check' % pwd_checkm_wd)
+        print('No input bin detected from %s, please double-check.' % pwd_checkm_wd)
         exit()
+
+    bin_file_ext_list = []
+    for bin in bins:
+        name, ext = os.path.splitext(bin)
+        bin_file_ext_list.append(ext[1:])
+
+    # uniq bin_file_ext_list
+    bin_file_ext_list_uniq = []
+    for each in bin_file_ext_list:
+        if each not in bin_file_ext_list_uniq:
+            bin_file_ext_list_uniq.append(each)
+        else:
+            pass
+
+    # check whether bins in the same folder have same extension, exit if not
+    if len(bin_file_ext_list_uniq) > 1:
+        print('Different bin file extensions were detected from bins in %s, please use same extension (fa, fas or fasta) '
+              'for each bin sets.' % pwd_checkm_wd)
+        exit()
+    else:
+        pass
+
+    # get bin file extension
+    bin_file_extension = bin_file_ext_list_uniq[0]
 
     # initialize output
     completeness_list = []
@@ -21,8 +45,16 @@ def get_bin_statistics(pwd_checkm_wd, checkm_wd_name, bin_file_extention):
     con_free_total_length_bp = 0
     # get statistics
     for each_bin in bins:
-        bin_name = each_bin[:-(len(bin_file_extention) + 1)]
+        bin_name = each_bin[:-(len(bin_file_extension) + 1)]
         pwd_checkm_output = '%s/%s/%s/out_%s/out_%s.txt' % (pwd_checkm_wd, checkm_wd_name, bin_name, bin_name, bin_name)
+
+        # check whether CheckM results exist
+        if not os.path.exists('%s/%s' % (pwd_checkm_wd, checkm_wd_name)):
+            print('No CheckM results detected from %s, please double-check.' % pwd_checkm_wd)
+            exit()
+        else:
+            pass
+
         pwd_bin_file = '%s/%s' % (pwd_checkm_wd, each_bin)
         bin_size = get_bin_size(pwd_bin_file)
         bin_size_list.append(bin_size / (1024 * 1024))

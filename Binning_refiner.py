@@ -34,28 +34,20 @@ parser.add_argument('-f',
                     help='first bin folder name',
                     metavar='(req)')
 
-parser.add_argument('-fx',
-                    required=True,
-                    help='bin file extension in first bin folder',
-                    metavar='(req)')
-
 parser.add_argument('-s',
                     required=True,
                     help='second bin folder name',
                     metavar='(req)')
 
-parser.add_argument('-sx',
-                    required=True,
-                    help='bin file extension in second bin folder',
-                    metavar='(req)')
-
 parser.add_argument('-blastn',
-                    required=True,
+                    required=False,
+                    default='/Users/songweizhi/Softwares/ncbi-blast-2.4.0+/bin/blastn',
                     help='path to blastn executable',
                     metavar='(req)')
 
 parser.add_argument('-makeblastdb',
-                    required=True,
+                    required=False,
+                    default='/Users/songweizhi/Softwares/ncbi-blast-2.4.0+/bin/makeblastdb',
                     help='path to makeblastdb executable',
                     metavar='(req)')
 
@@ -71,8 +63,6 @@ args = parser.parse_args()
 wd = args.wd
 input_bin_folder_1 = args.f
 input_bin_folder_2 = args.s
-bin_folder_1_file_extension = args.fx
-bin_folder_2_file_extension = args.sx
 bin_size_cutoff = args.bin_size_curoff
 pwd_blastn_exe = args.blastn
 pwd_makeblastdb_exe = args.makeblastdb
@@ -93,7 +83,7 @@ googlevis_input_filtered_filename = 'input_for_googlevis_filtered.csv'
 plot_html =                         'googleVis_%s_against_%s.html'              % (input_bin_folder_1, input_bin_folder_2)
 plot_html_filtered =                'googleVis_%s_against_%s_cutoff_%sbp.html'  % (input_bin_folder_1, input_bin_folder_2, bin_size_cutoff)
 new_bin_contigs_filename =          'new_bin_contigs.txt'
-refined_bins_folder =               'refined_bins'
+refined_bins_folder =               'Refined'
 
 pwd_output_folder =             '%s/%s'     % (wd, output_folder)
 pwd_bin_folder_1_new =          '%s/%s/%s'  % (wd, blast_wd, bin_folder_1_new)
@@ -169,18 +159,58 @@ os.chdir(wd)
 
 
 # get bin name list
-bin_folder_1_bins_files = '%s/%s/*.%s' % (wd, input_bin_folder_1, bin_folder_1_file_extension)
-bin_folder_2_bins_files = '%s/%s/*.%s' % (wd, input_bin_folder_2, bin_folder_2_file_extension)
+bin_folder_1_bins_files = '%s/%s/*.fa*' % (wd, input_bin_folder_1)
+bin_folder_2_bins_files = '%s/%s/*.fa*' % (wd, input_bin_folder_2)
 
 bin_folder_1_bins = [os.path.basename(file_name) for file_name in glob.glob(bin_folder_1_bins_files)]
 if len(bin_folder_1_bins) == 0:
-    print('No input bin detected from %s/%s, please-check' % (wd, input_bin_folder_1))
+    print('No input bin detected from %s/%s, please double-check' % (wd, input_bin_folder_1))
     exit()
+
+bin_folder_1_bins_ext_list = []
+for bin_folder_1_bin in bin_folder_1_bins:
+    name_no_use, ext = os.path.splitext(bin_folder_1_bin)
+    bin_folder_1_bins_ext_list.append(ext)
+
+bin_folder_1_bins_ext_list_uniq = []
+for each in bin_folder_1_bins_ext_list:
+    if each not in bin_folder_1_bins_ext_list_uniq:
+        bin_folder_1_bins_ext_list_uniq.append(each)
+    else:
+        pass
+# check whether bins in the same folder have same extension, exit if not
+if len(bin_folder_1_bins_ext_list_uniq) > 1:
+    print('Different bin file extensions were detected from bins in %s/%s, please use same extension (fa, fas or fasta) '
+          'for each bin in same bin sets.' % (wd, input_bin_folder_1))
+    exit()
+else:
+    pass
+
 
 bin_folder_2_bins = [os.path.basename(file_name) for file_name in glob.glob(bin_folder_2_bins_files)]
 if len(bin_folder_2_bins) == 0:
-    print('No input bin detected from %s/%s, please-check' % (wd, input_bin_folder_2))
+    print('No input bin detected from %s/%s, please double-check' % (wd, input_bin_folder_2))
     exit()
+
+bin_folder_2_bins_ext_list = []
+for bin_folder_2_bin in bin_folder_2_bins:
+    name_no_use, ext = os.path.splitext(bin_folder_2_bin)
+    bin_folder_2_bins_ext_list.append(ext[1:])
+print(bin_folder_2_bins_ext_list)
+bin_folder_2_bins_ext_list_uniq = []
+for each in bin_folder_2_bins_ext_list:
+    if each not in bin_folder_2_bins_ext_list_uniq:
+        bin_folder_2_bins_ext_list_uniq.append(each)
+    else:
+        pass
+print(bin_folder_2_bins_ext_list_uniq)
+if len(bin_folder_2_bins_ext_list_uniq) > 1:
+    print(
+        'Different bin file extensions were detected from bins in %s/%s, please use same extension (fa, fas or fasta) '
+        'for each bin in same bin sets.' % (wd, input_bin_folder_2))
+    exit()
+else:
+    pass
 
 
 # remove existing output folder, if any
