@@ -26,15 +26,6 @@ binning program need to be placed in different folders.
 
 1. Bin file extension can be '.fa', '.fas' or '.fasta'. All bins within the same folder must have the same extension.
 
-1. (Optional) You may want to remove input bins which are highly contaminated or ultra small before the refining step
-(not that much necessary, as a quality control step will be applied after refining). To do this:
-
-    1. You need to run CheckM for quality assessment of input bins. CheckM_qsuber.py can help to do this all in
-    one go, please refers to the script for how to use it.
-
-    1. Analysis CheckM results, Bin_filter.py was writen for this. To run it, you need to specifiy the bin size
-    cutoff (in bp) and contamination cutoff in its configuration part. please refers to the script for further information.
-
 1. Running it
 
         # This pipeline is implemented in python3, please use python3 instead of python
