@@ -41,13 +41,13 @@ parser.add_argument('-s',
 
 parser.add_argument('-blastn',
                     required=False,
-                    default='/Users/songweizhi/Softwares/ncbi-blast-2.4.0+/bin/blastn',
+                    default='blastn',
                     help='path to blastn executable',
                     metavar='(opt)')
 
 parser.add_argument('-makeblastdb',
                     required=False,
-                    default='/Users/songweizhi/Softwares/ncbi-blast-2.4.0+/bin/makeblastdb',
+                    default='makeblastdb',
                     help='path to makeblastdb executable',
                     metavar='(opt)')
 
@@ -196,22 +196,20 @@ bin_folder_2_bins_ext_list = []
 for bin_folder_2_bin in bin_folder_2_bins:
     name_no_use, ext = os.path.splitext(bin_folder_2_bin)
     bin_folder_2_bins_ext_list.append(ext[1:])
-print(bin_folder_2_bins_ext_list)
+
 bin_folder_2_bins_ext_list_uniq = []
 for each in bin_folder_2_bins_ext_list:
     if each not in bin_folder_2_bins_ext_list_uniq:
         bin_folder_2_bins_ext_list_uniq.append(each)
     else:
         pass
-print(bin_folder_2_bins_ext_list_uniq)
+
 if len(bin_folder_2_bins_ext_list_uniq) > 1:
-    print(
-        'Different bin file extensions were detected from bins in %s/%s, please use same extension (fa, fas or fasta) '
-        'for each bin in same bin sets.' % (wd, input_bin_folder_2))
+    print('Different bin file extensions were detected from bins in %s/%s, please use same extension (fa, fas or fasta) '
+          'for each bin in same bin sets.' % (wd, input_bin_folder_2))
     exit()
 else:
     pass
-
 
 # remove existing output folder, if any
 if os.path.isdir(output_folder):
@@ -329,18 +327,6 @@ new_bin_contigs.close()
 googlevis_input_filtered.close()
 
 
-# plot size distribution of all new bins
-plot_identity_list(bin_size_list, bin_size_cutoff, 'Bin Size Distribution', pwd_output_folder)
-plot_identity_list(bin_size_list_filtered, bin_size_cutoff, 'Bin Size Distribution (cutoff' + str(bin_size_cutoff) + 'bp)', pwd_output_folder)
-
-
-# plot googlevis image
-print('Plotting...')
-plot_height = max([len(bin_folder_1_bins), len(bin_folder_2_bins)]) * 40
-GoogleVis_Sankey_plotter(pwd_googlevis_input, pwd_plot_html, plot_height)
-GoogleVis_Sankey_plotter(pwd_googlevis_input_filtered, pwd_plot_html_filtered, plot_height)
-
-
 # get new bins and filter with size
 print('Extracting new bins')
 os.mkdir(pwd_refined_bins_folder)
@@ -361,3 +347,15 @@ for each_new_bin in new_bins:
             if each_contig.id in new_bin_contig_list:
                 SeqIO.write(each_contig, fasta_handle, 'fasta')
         fasta_handle.close()
+
+
+# plot size distribution of all new bins
+plot_identity_list(bin_size_list, bin_size_cutoff, 'Bin Size Distribution', pwd_output_folder)
+plot_identity_list(bin_size_list_filtered, bin_size_cutoff, 'Bin Size Distribution (cutoff' + str(bin_size_cutoff) + 'bp)', pwd_output_folder)
+
+
+# plot googlevis image
+print('Plotting...')
+plot_height = max([len(bin_folder_1_bins), len(bin_folder_2_bins)]) * 40
+GoogleVis_Sankey_plotter(pwd_googlevis_input, pwd_plot_html, plot_height)
+GoogleVis_Sankey_plotter(pwd_googlevis_input_filtered, pwd_plot_html_filtered, plot_height)

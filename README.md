@@ -22,25 +22,26 @@ How to run it:
 ---
 
 1. It is recommended to define a working directory to hold all input and output files. Input bin sets from different
-binning program need to be placed in different folders.
+binning programs need to be placed in different folders.
 
-1. Bin file extension can be '.fa', '.fas' or '.fasta'. All bins within the same folder must have the same extension.
+1. Accepted bin file extensions include 'fa', 'fas' or 'fasta'. All input bins from the same binning program must have the same extension.
 
-1. Running it
+1. (Reminder) As CheckM is a memory eating program, CheckM_qsuber.py will submit one job for each input/output bin. This will become annoying
+if you have hundreds of bins, as the same number of emails will influx your account!
 
         # This pipeline is implemented in python3, please use python3 instead of python
 
         # Example commands:
-        $ python3 /path/to/Binning_refiner.py -wd /home/testdata -f MetaBAT -s MyCC
-        $ python3 /path/to/CheckM_qsuber.py -email songwz03@gmail.com -wd /home/testdata/MetaBAT
-        $ python3 /path/to/CheckM_qsuber.py -email songwz03@gmail.com -wd /home/testdata/MyCC
-        $ python3 /path/to/CheckM_qsuber.py -email songwz03@gmail.com -wd /home/testdata/outputs/Refined
-        $ python3 /path/to/Get_statistics.py -f /home/testdata/MetaBAT -s /home/testdata/MyCC -r /home/testdata/outputs/Refined -o /home/testdata
+        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/Binning_refiner.py -wd /home/testdata -f MetaBAT -s MyCC
+        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email songwz03@gmail.com -wd /home/testdata/MetaBAT
+        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email songwz03@gmail.com -wd /home/testdata/MyCC
+        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email songwz03@gmail.com -wd /home/testdata/outputs/Refined
+        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/Get_statistics.py -f /home/testdata/MetaBAT -s /home/testdata/MyCC -r /home/testdata/outputs/Refined -o /home/testdata
 
         # For help:
-        $ python3 /path/to/Binning_refiner.py -h
-        $ python3 /path/to/CheckM_qsuber.py -h
-        $ python3 /path/to/Get_statistics.py -h
+        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/Binning_refiner.py -h
+        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -h
+        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/Get_statistics.py -h
 
 
 Output files:

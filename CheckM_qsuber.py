@@ -3,7 +3,7 @@ import glob
 import shutil
 import argparse
 
-usage = """
+"""
 
     It will:
     1. Create a new folder for each of your input bins and copy your bin into its corresponding folder
