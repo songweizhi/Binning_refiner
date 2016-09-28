@@ -41,18 +41,12 @@ be applied after refining). To do this:
 1. Running it!
 
         # Example commands:
-
-        # 1. Binning_refiner.py
         $ python3 Binning_refiner.py -wd /Users/songweizhi/Desktop/testdata -f MetaBAT -s MyCC
-        # 2. CheckM_qsuber.py
-        $ python3 CheckM_qsuber.py -wd /Users/songweizhi/Desktop/testdata/MetaBAT -email weizhi.song@student.unsw.edu.au
-        $ python3 CheckM_qsuber.py -wd /Users/songweizhi/Desktop/testdata/MyCC -email weizhi.song@student.unsw.edu.au
-        $ python3 CheckM_qsuber.py -wd /Users/songweizhi/Desktop/testdata/outputs/Refined -email weizhi.song@student.unsw.edu.au
-        # 3. Get_statistics.py
+        $ python3 CheckM_qsuber.py -wd /Users/songweizhi/Desktop/testdata/MetaBAT -email songwz03@gmail.com
         $ python3 Get_statistics.py -f /Users/songweizhi/Desktop/testdata/MetaBAT -s /Users/songweizhi/Desktop/testdata/MyCC -r /Users/songweizhi/Desktop/testdata/outputs/refined_bins -o /Users/songweizhi/Desktop/testdata
 
 
-        # for help:
+        # For help:
         $ python3 Binning_refiner.py -h
         usage: Binning_refiner.py [-h] -wd (req) -f (req) -s (req) [-blastn (opt)]
                                   [-makeblastdb (opt)] [-bin_size_curoff (opt)]
