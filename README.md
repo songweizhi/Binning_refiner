@@ -34,8 +34,6 @@ if you have hundreds of bins, as the same number of emails will influx your acco
         # Example commands:
         $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/Binning_refiner.py -wd /home/testdata -f MetaBAT -s MyCC
         $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email songwz03@gmail.com -wd /home/testdata/MetaBAT
-        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email songwz03@gmail.com -wd /home/testdata/MyCC
-        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email songwz03@gmail.com -wd /home/testdata/outputs/Refined
         $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/Get_statistics.py -f /home/testdata/MetaBAT -s /home/testdata/MyCC -r /home/testdata/outputs/Refined -o /home/testdata
 
         # For help:
