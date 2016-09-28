@@ -40,9 +40,24 @@ be applied after refining). To do this:
 
 1. Running it!
 
+        # Example commands:
+
+        # Binning_refiner.py
+        $ python3 Binning_refiner.py -wd /Users/songweizhi/Desktop/testdata -f MetaBAT -s MyCC
+
+        # CheckM_qsuber.py
+        $ python3 CheckM_qsuber.py -wd /Users/songweizhi/Desktop/testdata/MetaBAT -email weizhi.song@student.unsw.edu.au
+        $ python3 CheckM_qsuber.py -wd /Users/songweizhi/Desktop/testdata/MyCC -email weizhi.song@student.unsw.edu.au
+        $ python3 CheckM_qsuber.py -wd /Users/songweizhi/Desktop/testdata/outputs/Refined -email weizhi.song@student.unsw.edu.au
+
+        # Get_statistics.py
+        $ python3 Get_statistics.py -f /Users/songweizhi/Desktop/testdata/MetaBAT -s /Users/songweizhi/Desktop/testdata/MyCC -r /Users/songweizhi/Desktop/testdata/outputs/refined_bins -o /Users/songweizhi/Desktop/testdata
+
+
+        # for help:
         $ python3 Binning_refiner.py -h
-        usage: Binning_refiner.py [-h] -wd req) -f (req) -s (req) [-blastn (opt)]
-                                  [-makeblastdb (opt)] [-bin_size_curoff (opt]
+        usage: Binning_refiner.py [-h] -wd (req) -f (req) -s (req) [-blastn (opt)]
+                                  [-makeblastdb (opt)] [-bin_size_curoff (opt)]
         arguments:
           -h, --help            show this help message and exit
           -wd (req)             path to working directory
@@ -55,12 +70,11 @@ be applied after refining). To do this:
                                 (0.5MB)
 
 
-
         $ python3 CheckM_qsuber.py -h
-        usage: CheckM_qsuber.py [-h] -wd required) -email (required) [-nodes (opt)]
+        usage: CheckM_qsuber.py [-h] -wd (required) -email (required) [-nodes (opt)]
                                 [-ppn (opt)] [-memory (opt)] [-walltime (opt)]
                                 [-python_v (opt)] [-hmmer_v (opt)] [-pplacer_v (opt)]
-                                [-prodigal_v (opt]
+                                [-prodigal_v (opt)]
         arguments:
           -h, --help         show this help message and exit
           -wd (required)     path to working directory
@@ -76,7 +90,7 @@ be applied after refining). To do this:
 
 
         $ python3 Get_statistics.py -h
-        usage: Get_statistics.py [-h] -f req) -s (req) -r (req) -o (req
+        usage: Get_statistics.py [-h] -f (req) -s (req) -r (req) -o (req)
         arguments:
           -h, --help  show this help message and exit
           -f (req)    path to first bin folder

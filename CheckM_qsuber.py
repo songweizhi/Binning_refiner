@@ -24,12 +24,12 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-wd',
                     required=True,
                     help='path to working directory',
-                    metavar='(required)')
+                    metavar='(req)')
 
 parser.add_argument('-email',
                     required=True,
                     help='your email address',
-                    metavar='(required)')
+                    metavar='(req)')
 
 parser.add_argument('-nodes',
                     required=False,
