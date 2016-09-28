@@ -42,15 +42,13 @@ be applied after refining). To do this:
 
         # Example commands:
 
-        # Binning_refiner.py
+        # 1. Binning_refiner.py
         $ python3 Binning_refiner.py -wd /Users/songweizhi/Desktop/testdata -f MetaBAT -s MyCC
-
-        # CheckM_qsuber.py
+        # 2. CheckM_qsuber.py
         $ python3 CheckM_qsuber.py -wd /Users/songweizhi/Desktop/testdata/MetaBAT -email weizhi.song@student.unsw.edu.au
         $ python3 CheckM_qsuber.py -wd /Users/songweizhi/Desktop/testdata/MyCC -email weizhi.song@student.unsw.edu.au
         $ python3 CheckM_qsuber.py -wd /Users/songweizhi/Desktop/testdata/outputs/Refined -email weizhi.song@student.unsw.edu.au
-
-        # Get_statistics.py
+        # 3. Get_statistics.py
         $ python3 Get_statistics.py -f /Users/songweizhi/Desktop/testdata/MetaBAT -s /Users/songweizhi/Desktop/testdata/MyCC -r /Users/songweizhi/Desktop/testdata/outputs/refined_bins -o /Users/songweizhi/Desktop/testdata
 
 
