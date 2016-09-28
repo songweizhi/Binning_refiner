@@ -41,36 +41,33 @@ be applied after refining). To do this:
 1. Running it!
 
         # Example commands:
-        $ python3 Binning_refiner.py -wd /Users/songweizhi/Desktop/testdata -f MetaBAT -s MyCC
-        $ python3 CheckM_qsuber.py -wd /Users/songweizhi/Desktop/testdata/MetaBAT -email songwz03@gmail.com
-        $ python3 Get_statistics.py -f /Users/songweizhi/Desktop/testdata/MetaBAT -s /Users/songweizhi/Desktop/testdata/MyCC -r /Users/songweizhi/Desktop/testdata/outputs/refined_bins -o /Users/songweizhi/Desktop/testdata
+        $ python3 Binning_refiner.py -wd /home/testdata -f MetaBAT -s MyCC
+        $ python3 CheckM_qsuber.py -email songwz03@gmail.com -wd /home/testdata/MetaBAT
+        $ python3 CheckM_qsuber.py -email songwz03@gmail.com -wd /home/testdata/MyCC
+        $ python3 CheckM_qsuber.py -email songwz03@gmail.com -wd /home/testdata/outputs/Refined
+        $ python3 Get_statistics.py -f /home/testdata/MetaBAT -s /home/testdata/MyCC -r /home/testdata/outputs/Refined -o /home/testdata
 
 
         # For help:
         $ python3 Binning_refiner.py -h
-        usage: Binning_refiner.py [-h] -wd (req) -f (req) -s (req) [-blastn (opt)]
-                                  [-makeblastdb (opt)] [-bin_size_curoff (opt)]
+        usage: Binning_refiner.py -wd -f -s [-blastn] [-makeblastdb] [-bin_size_curoff]
+
         arguments:
-          -h, --help            show this help message and exit
           -wd (req)             path to working directory
           -f (req)              first bin folder name
           -s (req)              second bin folder name
           -blastn (opt)         path to blastn executable
           -makeblastdb (opt)    path to makeblastdb executable
-          -bin_size_curoff (opt)
-                                length cutoff for refined bins, default = 524288
-                                (0.5MB)
+          -bin_size_curoff(opt) length cutoff for refined bins, default = 524288 (0.5MB)
 
 
         $ python3 CheckM_qsuber.py -h
-        usage: CheckM_qsuber.py [-h] -wd (required) -email (required) [-nodes (opt)]
-                                [-ppn (opt)] [-memory (opt)] [-walltime (opt)]
-                                [-python_v (opt)] [-hmmer_v (opt)] [-pplacer_v (opt)]
-                                [-prodigal_v (opt)]
+        usage: CheckM_qsuber.py -wd -email [-nodes] [-ppn] [-memory] [-walltime]
+                                [-python_v] [-hmmer_v] [-pplacer_v] [-prodigal_v]
+
         arguments:
-          -h, --help         show this help message and exit
-          -wd (required)     path to working directory
-          -email (required)  your email address
+          -wd (req)          path to working directory
+          -email (req)       your email address
           -nodes (opt)       nodes number needed (default = 1)
           -ppn (opt)         ppn number needed (default = 12)
           -memory (opt)      memory needed (default = 120)
@@ -82,9 +79,9 @@ be applied after refining). To do this:
 
 
         $ python3 Get_statistics.py -h
-        usage: Get_statistics.py [-h] -f (req) -s (req) -r (req) -o (req)
+        usage: Get_statistics.py -f -s -r -o
+
         arguments:
-          -h, --help  show this help message and exit
           -f (req)    path to first bin folder
           -s (req)    path to second bin folder
           -r (req)    path to refined bin folder
