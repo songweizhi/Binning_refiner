@@ -5,15 +5,10 @@ import argparse
 
 usage = """
 
-    Usage:
-
-    python3 path/to/this/script.py
-
     It will:
     1. Create a new folder for each of your input bins and copy your bin into its corresponding folder
     2. Generate qsub file to run CheckM for each input bin
     3. Submit generated qsub files
-    4. Bin file extension need to be 'fa', 'fas' or 'fasta'
 
 """
 
@@ -147,7 +142,7 @@ def run_qsuber():
     # check whether bins in the same folder have same extension, exit if not
     if len(bin_file_ext_list_uniq) > 1:
         print('Different bin file extensions were detected from bins in %s, please use same extension (fa, fas or fasta) '
-              'for each bin sets.' % pwd_checkm_wd)
+              'for all bins in same bin sets.' % pwd_checkm_wd)
         exit()
     else:
         pass

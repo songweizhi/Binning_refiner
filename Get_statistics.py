@@ -84,7 +84,7 @@ label_name_list = [bin_folders[0].split('/')[-1], bin_folders[1].split('/')[-1],
 
 # box plot of completeness, contamination and bin size
 boxplot_inputs = [list_of_completeness_list_array, list_of_contamination_list_array, list_of_bin_size_list_array]
-title_list = ['Completeness', 'Contamination', 'Bin Size (MB)']
+title_list = ['Completeness (CheckM)', 'Contamination (CheckM)', 'Bin Size (MB)']
 n = 0
 for each_plot in boxplot_inputs:
     axes[n].boxplot(boxplot_inputs[n], labels=label_name_list)
