@@ -47,45 +47,11 @@ be applied after refining). To do this:
         $ python3 CheckM_qsuber.py -email songwz03@gmail.com -wd /home/testdata/outputs/Refined
         $ python3 Get_statistics.py -f /home/testdata/MetaBAT -s /home/testdata/MyCC -r /home/testdata/outputs/Refined -o /home/testdata
 
-
         # For help:
         $ python3 Binning_refiner.py -h
-        usage: Binning_refiner.py -wd -f -s [-blastn] [-makeblastdb] [-bin_size_curoff]
-
-        arguments:
-          -wd (req)             path to working directory
-          -f (req)              first bin folder name
-          -s (req)              second bin folder name
-          -blastn (opt)         path to blastn executable
-          -makeblastdb (opt)    path to makeblastdb executable
-          -bin_size_curoff(opt) length cutoff for refined bins, default = 524288 (0.5MB)
-
-
         $ python3 CheckM_qsuber.py -h
-        usage: CheckM_qsuber.py -wd -email [-nodes] [-ppn] [-memory] [-walltime]
-                                [-python_v] [-hmmer_v] [-pplacer_v] [-prodigal_v]
-
-        arguments:
-          -wd (req)          path to working directory
-          -email (req)       your email address
-          -nodes (opt)       nodes number needed (default = 1)
-          -ppn (opt)         ppn number needed (default = 12)
-          -memory (opt)      memory needed (default = 120)
-          -walltime (opt)    walltime needed (default = 2:59:00)
-          -python_v (opt)    python version (default: python/2.7.8)
-          -hmmer_v (opt)     hmmer version (default: hmmer/3.1b2)
-          -pplacer_v (opt)   pplacer version (default: pplacer/1.1.alpha16)
-          -prodigal_v (opt)  prodigal version (default: prodigal/2.6.3)
-
-
         $ python3 Get_statistics.py -h
-        usage: Get_statistics.py -f -s -r -o
 
-        arguments:
-          -f (req)    path to first bin folder
-          -s (req)    path to second bin folder
-          -r (req)    path to refined bin folder
-          -o (req)    output folder
 
 Output files:
 ---

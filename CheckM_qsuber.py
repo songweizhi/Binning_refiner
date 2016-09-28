@@ -23,7 +23,7 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument('-wd',
                     required=True,
-                    help='path to working directory',
+                    help='path to bin folder',
                     metavar='(req)')
 
 parser.add_argument('-email',
