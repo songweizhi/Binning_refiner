@@ -16,7 +16,7 @@ import argparse
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('-wd',
+parser.add_argument('-i',
                     required=True,
                     help='path to bin folder',
                     metavar='(req)')

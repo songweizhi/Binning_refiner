@@ -29,7 +29,7 @@ binning programs need to be placed in different folders directly under working d
 1. (Reminder) As CheckM is a memory eating program, CheckM_qsuber.py will submit one job for each input/output bins. This will become annoying
 if you have hundreds of bins, as the same number of emails will influx your email account!
 
-        # Binning Refiner scripts are implemented in python3, please use python3 instead of python, path to python3 executable on Katana:
+        # Binning Refiner scripts are implemented in python3, please use python3 instead of python, path to python3 executable on Katana is:
         /share/apps/python/3.4.3/bin/python3
 
         # Modules need to be loaded:
@@ -38,7 +38,7 @@ if you have hundreds of bins, as the same number of emails will influx your emai
 
         # Example commands:
         $ /path/to/python3 /path/to/Binning_refiner.py -wd /path/to/working/directory -f first_input_bin_folder_name -s second_input_bin_folder_name
-        $ /path/to/python3 /path/to/CheckM_qsuber.py -email your_email_address -wd /path/to/bin/folder
+        $ /path/to/python3 /path/to/CheckM_qsuber.py -email your_email_address -i /path/to/bin/folder
         $ /path/to/python3 /path/to/Get_statistics.py -f /path/to/first/bin/folder -s /path/to/second/bin/folder -r /path/to/refined/bin/folder -o /path/to/output/folder
 
         # For help:
