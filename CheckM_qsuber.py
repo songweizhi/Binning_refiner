@@ -79,7 +79,7 @@ parser.add_argument('-prodigal_v',
 
 args = parser.parse_args()
 
-wd = args.wd
+wd = args.i
 nodes_number = args.nodes
 ppn_number = args.ppn
 memory = args.memory
@@ -109,6 +109,8 @@ line_5 = '#PBS -j oe\n'
 line_6 = '#PBS -M ' + email + '\n'
 line_7 = '#PBS -m ae\n'
 line_8 = 'cd $PBS_O_WORDIR\n'
+#line_8 = 'cd %s\n' % pwd_qsub_files_folder
+
 header = line_1 + line_2 + line_3 + line_4 + line_5 + line_6 + line_7 + line_8
 
 # Prepare module lines
@@ -166,7 +168,9 @@ def run_qsuber():
             bin_file_extension, ppn_number, pwd_bin_foler, pwd_bin_foler, bin_folder, pwd_bin_foler, bin_folder, bin_folder)
         out.write(cmds)
         out.close()
+        os.chdir(pwd_qsub_files_folder)
         os.system('qsub %s' % pwd_qsub_file)
+        os.chdir(wd)
 
 
 # check whether previous results exist

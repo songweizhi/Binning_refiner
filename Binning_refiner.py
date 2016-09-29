@@ -327,6 +327,18 @@ new_bin_contigs.close()
 googlevis_input_filtered.close()
 
 
+# plot size distribution of all new bins
+# plot_identity_list(bin_size_list, bin_size_cutoff, 'Bin Size Distribution', pwd_output_folder)
+# plot_identity_list(bin_size_list_filtered, bin_size_cutoff, 'Bin Size Distribution (cutoff' + str(bin_size_cutoff) + 'bp)', pwd_output_folder)
+
+
+# plot googlevis image
+print('Plotting...')
+plot_height = max([len(bin_folder_1_bins), len(bin_folder_2_bins)]) * 40
+GoogleVis_Sankey_plotter(pwd_googlevis_input, pwd_plot_html, plot_height)
+GoogleVis_Sankey_plotter(pwd_googlevis_input_filtered, pwd_plot_html_filtered, plot_height)
+
+
 # get new bins and filter with size
 print('Extracting new bins')
 os.mkdir(pwd_refined_bins_folder)
@@ -341,21 +353,10 @@ for each_new_bin in new_bins:
         fasta_handle = open('%s/%s.fasta' % (pwd_refined_bins_folder, new_bin_name), 'w')
         all_contigs = SeqIO.parse(pwd_combined_folder1_bins, 'fasta')
         for each_contig in all_contigs:
-            new_contig_id = '%s_%s' % (each_contig.id.split('_')[2], each_contig.id.split('_')[3])
+            new_contig_id = each_contig.id.split('__')[2]
             each_contig.id = new_contig_id
             each_contig.description = ''
             if each_contig.id in new_bin_contig_list:
                 SeqIO.write(each_contig, fasta_handle, 'fasta')
         fasta_handle.close()
 
-
-# plot size distribution of all new bins
-plot_identity_list(bin_size_list, bin_size_cutoff, 'Bin Size Distribution', pwd_output_folder)
-plot_identity_list(bin_size_list_filtered, bin_size_cutoff, 'Bin Size Distribution (cutoff' + str(bin_size_cutoff) + 'bp)', pwd_output_folder)
-
-
-# plot googlevis image
-print('Plotting...')
-plot_height = max([len(bin_folder_1_bins), len(bin_folder_2_bins)]) * 40
-GoogleVis_Sankey_plotter(pwd_googlevis_input, pwd_plot_html, plot_height)
-GoogleVis_Sankey_plotter(pwd_googlevis_input_filtered, pwd_plot_html_filtered, plot_height)

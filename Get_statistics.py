@@ -1,6 +1,8 @@
 import os
 import shutil
 import argparse
+import matplotlib as mpl
+mpl.use('Agg')
 import matplotlib.pyplot as plt
 from lib.get_array import get_array
 from lib.get_bin_statistics import get_bin_statistics

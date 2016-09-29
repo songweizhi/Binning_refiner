@@ -6,9 +6,9 @@ def GoogleVis_Sankey_plotter(input_csv, output_html, height):
     utils = rpackages.importr('googleVis')
     packages_needed = ['googleVis']
     for each_package in packages_needed :
-        if not rpackages.isinstalled(each_package) :
+        if not rpackages.isinstalled(each_package):
             utils.install_packages(each_package)
-        else :
+        else:
             pass
 
     df = robjects.DataFrame.from_csvfile(input_csv)

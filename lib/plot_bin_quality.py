@@ -1,4 +1,6 @@
 import numpy as np
+import matplotlib as mpl
+mpl.use('Agg')
 import matplotlib.pyplot as plt
 
 def plot_bin_quality(bin_quality_file, image_title, pwd_image_file):
