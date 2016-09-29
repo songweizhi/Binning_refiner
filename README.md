@@ -22,26 +22,29 @@ How to run it:
 ---
 
 1. It is recommended to define a working directory to hold all input and output files. Input bin sets from different
-binning programs need to be placed in different folders.
+binning programs need to be placed in different folders directly under working directory.
 
-1. Accepted bin file extensions include 'fa', 'fas' or 'fasta'. All input bins from the same binning program must have the same extension.
+1. Accepted bin file extensions include 'fa', 'fas' or 'fasta'. All input bins in the same folder must have the same extension.
 
-1. (Reminder) As CheckM is a memory eating program, CheckM_qsuber.py will submit one job for each input/output bin. This will become annoying
-if you have hundreds of bins, as the same number of emails will influx your account!
+1. (Reminder) As CheckM is a memory eating program, CheckM_qsuber.py will submit one job for each input/output bins. This will become annoying
+if you have hundreds of bins, as the same number of emails will influx your email account!
 
-        # This pipeline is implemented in python3, please use python3 instead of python
+        # Binning Refiner scripts are implemented in python3, please use python3 instead of python, path to python3 executable on Katana:
+        /share/apps/python/3.4.3/bin/python3
 
-        # Example commands:
+        # Modules need to be loaded:
         $ module load R/3.2.2
         $ module load blast+/2.2.31
-        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/Binning_refiner.py -wd /home/testdata -f MetaBAT -s MyCC
-        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email songwz03@gmail.com -wd /home/testdata/MetaBAT
-        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/Get_statistics.py -f /home/testdata/MetaBAT -s /home/testdata/MyCC -r /home/testdata/outputs/Refined -o /home/testdata
+
+        # Example commands:
+        $ /path/to/python3 /path/to/Binning_refiner.py -wd /path/to/working/directory -f first_input_bin_folder_name -s second_input_bin_folder_name
+        $ /path/to/python3 /path/to/CheckM_qsuber.py -email your_email_address -wd /path/to/bin/folder
+        $ /path/to/python3 /path/to/Get_statistics.py -f /path/to/first/bin/folder -s /path/to/second/bin/folder -r /path/to/refined/bin/folder -o /path/to/output/folder
 
         # For help:
-        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/Binning_refiner.py -h
-        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -h
-        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/Get_statistics.py -h
+        $ /path/to/python3 /path/to/Binning_refiner.py -h
+        $ /path/to/python3 /path/to/CheckM_qsuber.py -h
+        $ /path/to/python3 /path/to/Get_statistics.py -h
 
 
 Output files:
