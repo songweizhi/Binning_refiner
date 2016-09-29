@@ -9,16 +9,14 @@ from lib.GoogleVis_Sankey_plotter import GoogleVis_Sankey_plotter
 steps = """"
 
     Steps:
-    1. Run MetaBAT and MyCC
-    2. Combine predicted bins
-    3. Make blast db with MetaBAT or MyCC
+    2. Combine MetaBAT and MyCC predicted bins respectively
+    3. Make blast db
     4. Run Blast
-    5. Filter blast hits, identity 100%, alignment length 100bp?
+    5. Filter blast hits
     6. Prepare input for googleVis
     7. Plot Sankey images
+    8. get refined bins
 
-    Please note:
-    No underscore in the name of the two bin folders !!!
 """
 
 ##################################################### CONFIGURATION ####################################################
