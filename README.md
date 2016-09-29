@@ -31,7 +31,7 @@ if you have hundreds of bins, as the same number of emails will influx your emai
 
 1. Binning Refiner scripts are implemented in python3, please use python3 instead of python. Its scripts have been
 transferred to my home directory on Katana (/home/z5039045/Binning_refiner), you can call it directory from this directory.
-Any updates/bug fix will be synchronized to this folder at first time.
+Any updates/bug-fix will be synchronized to this folder at first time.
 
         # Modules need to be loaded first:
         $ module load R/3.2.2
@@ -55,6 +55,7 @@ Any updates/bug fix will be synchronized to this folder at first time.
 
         # 3. get statistics (after all submitted jobs in the 2nd step finished)
         $ python3 /home/z5039045/Binning_refiner/Get_statistics.py -f /path/to/first/bin/folder -s /path/to/second/bin/folder -r /path/to/refined/bin/folder -o /path/to/output/folder
+
 
 Output files:
 ---
