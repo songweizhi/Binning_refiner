@@ -32,19 +32,22 @@ if you have hundreds of bins, as the same number of emails will influx your emai
         # Binning Refiner scripts are implemented in python3, please use python3 instead of python, path to python3 executable on Katana is:
         /share/apps/python/3.4.3/bin/python3
 
+        # Binning Refiner scripts have been transferred to my home directory on Katana, any updates/bug fix will synchronized to this folder at first time.
+        /home/z5039045/Binning_refiner
+
         # Modules need to be loaded:
         $ module load R/3.2.2
         $ module load blast+/2.2.31
 
         # Example commands:
-        $ /path/to/python3 /path/to/Binning_refiner.py -wd /path/to/working/directory -f first_input_bin_folder_name -s second_input_bin_folder_name
-        $ /path/to/python3 /path/to/CheckM_qsuber.py -email your_email_address -i /path/to/bin/folder
-        $ /path/to/python3 /path/to/Get_statistics.py -f /path/to/first/bin/folder -s /path/to/second/bin/folder -r /path/to/refined/bin/folder -o /path/to/output/folder
+        $ python3 Binning_refiner.py -wd /path/to/working/directory -f first_input_bin_folder_name -s second_input_bin_folder_name
+        $ python3 CheckM_qsuber.py -email your_email_address -i /path/to/bin/folder
+        $ python3 Get_statistics.py -f /path/to/first/bin/folder -s /path/to/second/bin/folder -r /path/to/refined/bin/folder -o /path/to/output/folder
 
         # For help:
-        $ /path/to/python3 /path/to/Binning_refiner.py -h
-        $ /path/to/python3 /path/to/CheckM_qsuber.py -h
-        $ /path/to/python3 /path/to/Get_statistics.py -h
+        $ python3 Binning_refiner.py -h
+        $ python3 CheckM_qsuber.py -h
+        $ python3 Get_statistics.py -h
 
 
 Output files:
