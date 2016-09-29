@@ -30,10 +30,10 @@ binning programs need to be placed in different folders directly under working d
 if you have hundreds of bins, as the same number of emails will influx your email account!
 
         # Binning Refiner scripts are implemented in python3, please use python3 instead of python, path to python3 executable on Katana is:
-        /share/apps/python/3.4.3/bin/python3
+        $ /share/apps/python/3.4.3/bin/python3
 
         # Binning Refiner scripts have been transferred to my home directory on Katana, any updates/bug fix will synchronized to this folder at first time.
-        /home/z5039045/Binning_refiner
+        $ /home/z5039045/Binning_refiner
 
         # Modules need to be loaded:
         $ module load R/3.2.2
