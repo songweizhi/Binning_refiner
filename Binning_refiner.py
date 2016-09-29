@@ -2,8 +2,9 @@ import os
 import glob
 import shutil
 import argparse
+from sys import stdout
 from Bio import SeqIO
-from lib.identity_list_ploter import plot_identity_list
+#from lib.identity_list_ploter import plot_identity_list
 from lib.GoogleVis_Sankey_plotter import GoogleVis_Sankey_plotter
 
 steps = """"
@@ -335,19 +336,28 @@ print('Plotting...')
 plot_height = max([len(bin_folder_1_bins), len(bin_folder_2_bins)]) * 40
 GoogleVis_Sankey_plotter(pwd_googlevis_input, pwd_plot_html, plot_height)
 GoogleVis_Sankey_plotter(pwd_googlevis_input_filtered, pwd_plot_html_filtered, plot_height)
-
+print('Please ignore "RRuntimeWarning" if there are any above.')
 
 # get new bins and filter with size
-print('Extracting new bins')
+print('Extracting contigs for new bins:')
 os.mkdir(pwd_refined_bins_folder)
 
-new_bins = open(pwd_new_bin_contigs)
+# get total number of refined bins
+new_bins = open(pwd_googlevis_input_filtered)
+total = -1  # remove title line
 for each_new_bin in new_bins:
+    total += 1
+
+new_bins = open(pwd_new_bin_contigs)
+n = 1
+for each_new_bin in new_bins:
+
     each_new_bin_split = each_new_bin.strip().split('\t')
     new_bin_name = each_new_bin_split[0]
     new_bin_size = int(each_new_bin_split[1])
     new_bin_contig_list = each_new_bin_split[2:]
     if new_bin_size >= bin_size_cutoff:
+        stdout.write("\rProcessing %dth of %d refined new bins: %s" % (n, total, new_bin_name))
         fasta_handle = open('%s/%s.fasta' % (pwd_refined_bins_folder, new_bin_name), 'w')
         all_contigs = SeqIO.parse(pwd_combined_folder1_bins, 'fasta')
         for each_contig in all_contigs:
@@ -357,4 +367,7 @@ for each_new_bin in new_bins:
             if each_contig.id in new_bin_contig_list:
                 SeqIO.write(each_contig, fasta_handle, 'fasta')
         fasta_handle.close()
+        n += 1
 
+print('\nDone!')
+print('Please run CheckM_qsuber.py for each input/output bin set to get their quality.')
