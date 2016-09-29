@@ -53,7 +53,7 @@ if you have hundreds of bins, as the same number of emails will influx your emai
 Output files:
 ---
 
-1. Refined bins (from Binning_refiner.py)
+1. Refined bins (>= 0.5MB, from Binning_refiner.py)
 
 1. Contamination-free refined bins (from Get_statistics.py)
 
