@@ -180,6 +180,7 @@ if os.path.isdir(pwd_checkm_wd):
         pass
     else:
         shutil.rmtree(pwd_checkm_wd)
+        shutil.rmtree(pwd_qsub_files_folder)
         os.mkdir(pwd_checkm_wd)
         os.mkdir(pwd_qsub_files_folder)
         run_qsuber()
