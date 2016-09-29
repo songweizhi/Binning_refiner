@@ -117,12 +117,11 @@ def run_blast():
     # add binning program and bin id to metabat_bin's contig name
     print('Adding binning program and bin id to contig name')
     for metabat_bin in bin_folder_1_bins:
-        metabat_bin_split = metabat_bin.split('.')
+        bin_name_metabat, ext = os.path.splitext(metabat_bin)
         bin_content = SeqIO.parse('%s/%s/%s' % (wd, input_bin_folder_1, metabat_bin), 'fasta')
-        bin_id = 'bin%s' % metabat_bin_split[1]
-        new = open('%s/%s/%s/%s_%s.fasta' % (wd, blast_wd, bin_folder_1_new, input_bin_folder_1, bin_id), 'w')
+        new = open('%s/%s/%s/%s_%s.fasta' % (wd, blast_wd, bin_folder_1_new, input_bin_folder_1, bin_name_metabat), 'w')
         for contig in bin_content:
-            new_id = '%s_%s_%s' % (input_bin_folder_1, bin_id, contig.id)
+            new_id = '%s__%s__%s' % (input_bin_folder_1, bin_name_metabat, contig.id)
             contig.id = new_id
             contig.description = ''
             SeqIO.write(contig, new, 'fasta')
@@ -130,12 +129,12 @@ def run_blast():
 
     # add binning program and bin id to mycc_bin's contig name
     for mycc_bin in bin_folder_2_bins:
-        mycc_bin_split = mycc_bin.split('.')
+        bin_name_mycc, ext = os.path.splitext(mycc_bin)
         bin_content = SeqIO.parse('%s/%s/%s' % (wd, input_bin_folder_2, mycc_bin), 'fasta')
-        bin_id = 'bin%s' % mycc_bin_split[1]
-        new = open('%s/%s/%s/%s_%s.fasta' % (wd, blast_wd, bin_folder_2_new, input_bin_folder_2, bin_id), 'w')
+
+        new = open('%s/%s/%s/%s_%s.fasta' % (wd, blast_wd, bin_folder_2_new, input_bin_folder_2, mycc_bin), 'w')
         for contig in bin_content:
-            new_id = '%s_%s_%s' % (input_bin_folder_2, bin_id, contig.id)
+            new_id = '%s__%s__%s' % (input_bin_folder_2, bin_name_mycc, contig.id)
             contig.id = new_id
             contig.description = ''
             SeqIO.write(contig, new, 'fasta')
@@ -178,6 +177,7 @@ for each in bin_folder_1_bins_ext_list:
         bin_folder_1_bins_ext_list_uniq.append(each)
     else:
         pass
+
 # check whether bins in the same folder have same extension, exit if not
 if len(bin_folder_1_bins_ext_list_uniq) > 1:
     print('Different bin file extensions were detected from bins in %s/%s, please use same extension (fa, fas or fasta) '
@@ -249,13 +249,13 @@ blast_result_filtered_2 = open(pwd_blast_result_filtered_2, 'w')
 for match in blast_result:
     match_split = match.strip().split('\t')
     query = match_split[0]
-    query_split = query.split('_')
-    query_bin = query_split[0] + '_' + query_split[1]
-    query_scaffold = query_split[2] + '_' + query_split[3]
+    query_split = query.split('__')
+    query_bin = query_split[1]
+    query_scaffold = query_split[2]
     subject = match_split[1]
-    subject_split = subject.split('_')
-    subject_bin = subject_split[0] + '_' + subject_split[1]
-    subject_scaffold = subject_split[2] + '_' + subject_split[3]
+    subject_split = subject.split('__')
+    subject_bin = subject_split[1]
+    subject_scaffold = subject_split[2]
     identity = float(match_split[2])
     alignment_len = int(match_split[3])
     query_len = int(match_split[12])
