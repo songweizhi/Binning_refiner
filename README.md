@@ -1,7 +1,7 @@
 Binning Refiner
 ---
 
-+ This pipeline was developed to refine metagenomics bins by the combination of different binning programs.
++ This pipeline was developed to refine metagenomic bins by the combination of different binning programs.
 
 + Contact: songwz03@gmail.com
 
@@ -29,34 +29,32 @@ binning programs need to be placed in different folders directly under working d
 1. (Reminder) As CheckM is a memory eating program, CheckM_qsuber.py will submit one job for each input/output bins. This will become annoying
 if you have hundreds of bins, as the same number of emails will influx your email account!
 
-        # Binning Refiner scripts are implemented in python3, please use python3 instead of python, path to python3 executable on Katana is:
-        $ /share/apps/python/3.4.3/bin/python3
+1. Binning Refiner scripts are implemented in python3, please use python3 instead of python. Its scripts have been
+transferred to my home directory on Katana (/home/z5039045/Binning_refiner), you can call it directory from this directory.
+Any updates/bug fix will be synchronized to this folder at first time.
 
-        # Binning Refiner scripts have been transferred to my home directory on Katana, any updates/bug fix will synchronized to this folder at first time.
-        $ /home/z5039045/Binning_refiner
-
-        # Modules need to be loaded:
+        # Modules need to be loaded first:
         $ module load R/3.2.2
+        $ module load python/3.4.3
         $ module load blast+/2.2.31
+
+        # For help:
+        $ python3 /home/z5039045/Binning_refiner/Binning_refiner.py -h
+        $ python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -h
+        $ python3 /home/z5039045/Binning_refiner/Get_statistics.py -h
 
         # Example commands:
 
         # 1. get refined bins
-        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/Binning_refiner.py -wd /path/to/working/directory -f first_input_bin_folder_name -s second_input_bin_folder_name
+        $ python3 /home/z5039045/Binning_refiner/Binning_refiner.py -wd /path/to/working/directory -f first_input_bin_folder_name -s second_input_bin_folder_name
 
         # 2. get quality for each of the three bin sets
-        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /path/to/first/bin/folder
-        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /path/to/second/bin/folder
-        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /path/to/refined/bin/folder
+        $ python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /path/to/first/bin/folder
+        $ python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /path/to/second/bin/folder
+        $ python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /path/to/refined/bin/folder
 
         # 3. get statistics (after all submitted jobs in the 2nd step finished)
-        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/Get_statistics.py -f /path/to/first/bin/folder -s /path/to/second/bin/folder -r /path/to/refined/bin/folder -o /path/to/output/folder
-
-        # For help:
-        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/Binning_refiner.py -h
-        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -h
-        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/Get_statistics.py -h
-
+        $ python3 /home/z5039045/Binning_refiner/Get_statistics.py -f /path/to/first/bin/folder -s /path/to/second/bin/folder -r /path/to/refined/bin/folder -o /path/to/output/folder
 
 Output files:
 ---
