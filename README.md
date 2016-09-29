@@ -40,14 +40,22 @@ if you have hundreds of bins, as the same number of emails will influx your emai
         $ module load blast+/2.2.31
 
         # Example commands:
-        $ python3 Binning_refiner.py -wd /path/to/working/directory -f first_input_bin_folder_name -s second_input_bin_folder_name
-        $ python3 CheckM_qsuber.py -email your_email_address -i /path/to/bin/folder
-        $ python3 Get_statistics.py -f /path/to/first/bin/folder -s /path/to/second/bin/folder -r /path/to/refined/bin/folder -o /path/to/output/folder
+
+        # 1. get refined bins
+        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/Binning_refiner.py -wd /path/to/working/directory -f first_input_bin_folder_name -s second_input_bin_folder_name
+
+        # 2. get quality for each of the three bin sets
+        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /path/to/first/bin/folder
+        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /path/to/second/bin/folder
+        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /path/to/refined/bin/folder
+
+        # 3. get statistics (after all submitted jobs in the 2nd step finished)
+        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/Get_statistics.py -f /path/to/first/bin/folder -s /path/to/second/bin/folder -r /path/to/refined/bin/folder -o /path/to/output/folder
 
         # For help:
-        $ python3 Binning_refiner.py -h
-        $ python3 CheckM_qsuber.py -h
-        $ python3 Get_statistics.py -h
+        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/Binning_refiner.py -h
+        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -h
+        $ /share/apps/python/3.4.3/bin/python3 /home/z5039045/Binning_refiner/Get_statistics.py -h
 
 
 Output files:
