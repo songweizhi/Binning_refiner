@@ -40,27 +40,27 @@ directory. Any updates or bug-fix will be synchronized to this folder at first t
 This will become annoying if you have hundreds of bins, as the same number of emails will influx your email account!
 
         # Modules need to be loaded first:
-        $ module load R/3.2.2
-        $ module load python/3.4.3
-        $ module load blast+/2.2.31
+        module load R/3.2.2
+        module load python/3.4.3
+        module load blast+/2.2.31
 
         # For help:
-        $ python3 /home/z5039045/Binning_refiner/Binning_refiner.py -h
-        $ python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -h
-        $ python3 /home/z5039045/Binning_refiner/Get_statistics.py -h
+        python3 /home/z5039045/Binning_refiner/Binning_refiner.py -h
+        python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -h
+        python3 /home/z5039045/Binning_refiner/Get_statistics.py -h
 
         # Example commands:
 
         # 1. get refined bins
-        $ python3 /home/z5039045/Binning_refiner/Binning_refiner.py -wd /path/to/working/directory -f first_input_bin_folder_name -s second_input_bin_folder_name
+        python3 /home/z5039045/Binning_refiner/Binning_refiner.py -wd /path/to/working/directory -f first_input_bin_folder_name -s second_input_bin_folder_name
 
         # 2. get qualities for each of the three bin sets
-        $ python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /path/to/first/bin/folder
-        $ python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /path/to/second/bin/folder
-        $ python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /path/to/refined/bin/folder
+        python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /path/to/first/bin/folder
+        python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /path/to/second/bin/folder
+        python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /path/to/refined/bin/folder
 
         # 3. get statistics (after all submitted jobs in the 2nd step finished)
-        $ python3 /home/z5039045/Binning_refiner/Get_statistics.py -f /path/to/first/bin/folder -s /path/to/second/bin/folder -r /path/to/refined/bin/folder -o /path/to/output/folder
+        python3 /home/z5039045/Binning_refiner/Get_statistics.py -f /path/to/first/bin/folder -s /path/to/second/bin/folder -r /path/to/refined/bin/folder -o /path/to/output/folder
 
 
 Output files:
