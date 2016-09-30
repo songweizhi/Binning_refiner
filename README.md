@@ -48,7 +48,7 @@ if you have hundreds of bins, as the same number of emails will influx your emai
         # 1. get refined bins
         $ python3 /home/z5039045/Binning_refiner/Binning_refiner.py -wd /path/to/working/directory -f first_input_bin_folder_name -s second_input_bin_folder_name
 
-        # 2. get quality for each of the three bin sets
+        # 2. get qualities for each of the three bin sets
         $ python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /path/to/first/bin/folder
         $ python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /path/to/second/bin/folder
         $ python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /path/to/refined/bin/folder
