@@ -278,6 +278,8 @@ sorted = open(pwd_blast_result_filtered_2_sorted)
 googlevis_input = open(pwd_googlevis_input, 'w')
 googlevis_input_filtered = open(pwd_googlevis_input_filtered, 'w')
 new_bin_contigs = open(pwd_new_bin_contigs, 'w')
+new_bin_contigs.write('Refined_bin_name\tRefined_bin_length\tContigs_in_refined_bin\n')
+
 googlevis_input.write('%s,%s,Length\n' % (input_bin_folder_1, input_bin_folder_2))
 googlevis_input_filtered.write('%s,%s,Length\n' % (input_bin_folder_1, input_bin_folder_2))
 
@@ -346,26 +348,26 @@ total = -1  # remove title line
 for each_new_bin in new_bins:
     total += 1
 
-new_bins = open(pwd_new_bin_contigs)
+new_bins = open(pwd_new_bin_contigs) ###!!!!!!!!!!!!
 n = 1
 for each_new_bin in new_bins:
-
-    each_new_bin_split = each_new_bin.strip().split('\t')
-    new_bin_name = each_new_bin_split[0]
-    new_bin_size = int(each_new_bin_split[1])
-    new_bin_contig_list = each_new_bin_split[2:]
-    if new_bin_size >= bin_size_cutoff:
-        stdout.write("\rProcessing %dth of %d refined new bins: %s" % (n, total, new_bin_name))
-        fasta_handle = open('%s/%s.fasta' % (pwd_refined_bins_folder, new_bin_name), 'w')
-        all_contigs = SeqIO.parse(pwd_combined_folder1_bins, 'fasta')
-        for each_contig in all_contigs:
-            new_contig_id = each_contig.id.split('__')[2]
-            each_contig.id = new_contig_id
-            each_contig.description = ''
-            if each_contig.id in new_bin_contig_list:
-                SeqIO.write(each_contig, fasta_handle, 'fasta')
-        fasta_handle.close()
-        n += 1
+    if not each_new_bin.startswith('Refined_bin_name'):
+        each_new_bin_split = each_new_bin.strip().split('\t')
+        new_bin_name = each_new_bin_split[0]
+        new_bin_size = int(each_new_bin_split[1])
+        new_bin_contig_list = each_new_bin_split[2:]
+        if new_bin_size >= bin_size_cutoff:
+            stdout.write("\rProcessing %dth of %d refined new bins: %s" % (n, total, new_bin_name))
+            fasta_handle = open('%s/%s.fasta' % (pwd_refined_bins_folder, new_bin_name), 'w')
+            all_contigs = SeqIO.parse(pwd_combined_folder1_bins, 'fasta')
+            for each_contig in all_contigs:
+                new_contig_id = each_contig.id.split('__')[2]
+                each_contig.id = new_contig_id
+                each_contig.description = ''
+                if each_contig.id in new_bin_contig_list:
+                    SeqIO.write(each_contig, fasta_handle, 'fasta')
+            fasta_handle.close()
+            n += 1
 
 print('\nDone!')
 print('Please run CheckM_qsuber.py for each input/output bin set to get their quality.')
