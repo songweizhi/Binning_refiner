@@ -27,8 +27,8 @@ binning programs need to be placed in different folders directly under working d
 1. Accepted bin file extensions include 'fa', 'fas' or 'fasta'. All input bins in the same folder must have the same extension.
 
 1. Binning Refiner scripts are implemented in python3, please use python3 instead of python. Its scripts have been
-transferred to my home directory on Katana (/home/z5039045/Binning_refiner), you can call it directory from this directory.
-Any updates/bug-fix will be synchronized to this folder at first time.
+transferred to my home directory on Katana (/home/z5039045/Binning_refiner), you can call it directly from my home
+directory. Any updates or bug-fix will be synchronized to this folder at first time.
 
 1. (Reminder) As CheckM is a memory eating program, CheckM_qsuber.py will submit one job for each input/output bins. This will become annoying
 if you have hundreds of bins, as the same number of emails will influx your email account!
