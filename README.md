@@ -21,17 +21,23 @@ Dependencies:
 How to run it:
 ---
 
-1. It is recommended to define a working directory to hold all input and output files. Input bin sets from different
+1. Binning Refiner takes output bins from 2 different binning programs as inputs. It was developed to make your input
+bins more "specific". You may need to try metagenomic binning steps with different parameters (like "verysensitive" and
+"superspecific" for MetaBAT) to get the best output after refining (that is maximum contamination clearance and minimum
+sequences lost). In my case, I can get more contamination-free bins (both of bin number and total length) with inputs
+which are obtained from MetaBAT with "verysensitive" setting.
+
+1. You need to define a working directory to hold all input and output files. Input bin sets from different
 binning programs need to be placed in different folders directly under working directory.
 
 1. Accepted bin file extensions include 'fa', 'fas' or 'fasta'. All input bins in the same folder must have the same extension.
 
-1. Binning Refiner scripts are implemented in python3, please use python3 instead of python. Its scripts have been
+1. Binning Refiner scripts are implemented in python3, please use python3 instead of python. These scripts have been
 transferred to my home directory on Katana (/home/z5039045/Binning_refiner), you can call it directly from my home
 directory. Any updates or bug-fix will be synchronized to this folder at first time.
 
-1. (Reminder) As CheckM is a memory eating program, CheckM_qsuber.py will submit one job for each input/output bins. This will become annoying
-if you have hundreds of bins, as the same number of emails will influx your email account!
+1. (Reminder) As CheckM is a memory eating program, CheckM_qsuber.py will submit one job for each input/output bins.
+This will become annoying if you have hundreds of bins, as the same number of emails will influx your email account!
 
         # Modules need to be loaded first:
         $ module load R/3.2.2
