@@ -52,16 +52,15 @@ This will become annoying if you have hundreds of bins, as the same number of em
         # Example commands:
 
         # 1. get refined bins
-        python3 /home/z5039045/Binning_refiner/Binning_refiner.py -wd /path/to/working/directory -f first_input_bin_folder_name -s second_input_bin_folder_name
+        python3 /home/z5039045/Binning_refiner/Binning_refiner.py -wd /.../test_data -f MetaBAT -s MyCC
 
         # 2. get qualities for each of the three bin sets
-        python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /path/to/first/bin/folder
-        python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /path/to/second/bin/folder
-        python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /path/to/refined/bin/folder
+        python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /.../test_data/MetaBAT
+        python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /.../test_data/MyCC
+        python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /.../test_data/outputs/Refined
 
         # 3. get statistics (after all submitted jobs in the 2nd step finished)
-        python3 /home/z5039045/Binning_refiner/Get_statistics.py -f /path/to/first/bin/folder -s /path/to/second/bin/folder -r /path/to/refined/bin/folder -o /path/to/output/folder
-
+        python3 /home/z5039045/Binning_refiner/Get_statistics.py -f /.../test_data/MetaBAT -s /.../test_data/MyCC -r /.../test_data/outputs/Refined -o /.../test_data
 
 Output files:
 ---
