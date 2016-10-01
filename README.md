@@ -20,7 +20,7 @@ Dependencies:
 How to run it:
 ---
 
-1. Binning Refiner takes binning program produced bins as input. Its purpose is to make your bins more "specific".
+1. Binning Refiner takes two binning program produced bin sets as input. Its purpose is to make your bins more "specific".
 You may need to try binning step with different parameters (like "verysensitive" and "superspecific" for MetaBAT) to get
 the best output after refining (maximum contamination clearance and minimum sequences lost). In my case, I can get more
 contamination-free bins (both of bin number and total length) with inputs which are obtained from MetaBAT with
