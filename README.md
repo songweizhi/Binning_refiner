@@ -17,15 +17,14 @@ Dependencies:
 + [BioPython](https://github.com/biopython/biopython.github.io/)
 + [Blast+ 2.2.31](http://www.ncbi.nlm.nih.gov/news/06-16-2015-blast-plus-update/)
 
-
 How to run it:
 ---
 
-1. Binning Refiner takes output bins from 2 different binning programs as inputs. It was developed to make your input
-bins more "specific". You may need to try metagenomic binning steps with different parameters (like "verysensitive" and
-"superspecific" for MetaBAT) to get the best output after refining (that is maximum contamination clearance and minimum
-sequences lost). In my case, I can get more contamination-free bins (both of bin number and total length) with inputs
-which are obtained from MetaBAT with "verysensitive" setting.
+1. Binning Refiner takes binning program produced bins as input. Its purpose is to make your bins more "specific".
+You may need to try binning step with different parameters (like "verysensitive" and "superspecific" for MetaBAT) to get
+the best output after refining (maximum contamination clearance and minimum sequences lost). In my case, I can get more
+contamination-free bins (both of bin number and total length) with inputs which are obtained from MetaBAT with
+"verysensitive" setting.
 
 1. You need to define a working directory to hold all input and output files. Input bin sets from different
 binning programs need to be placed in different folders directly under working directory.
