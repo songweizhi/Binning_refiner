@@ -35,7 +35,7 @@ binning programs need to be placed in different folders directly under working d
 transferred to my home directory on Katana (/home/z5039045/Binning_refiner), you can call it directly from my home
 directory. Any updates or bug-fix will be synchronized to this folder at first time.
 
-1. (Reminder) As CheckM is a memory eating program, CheckM_qsuber.py will submit one job for each input/output bins.
+1. (Reminder) As CheckM is a memory eating program, CheckM_qsuber.py will submit one job for each input/refined bins.
 This will become annoying if you have hundreds of bins, as the same number of emails will influx your email account!
 
         # Modules need to be loaded first:
@@ -72,7 +72,8 @@ Output files:
 
     ![Sankey_plot](doc/images/sankey_plot.jpg)
 
-    Each band in the above image represents one refined bin, we will get 9 refined bins in this case:
+    Each band in the above image represents one refined bin, band width is proportional to refined bin size.
+    we will get 9 refined bins in this case:
 
         MetaBAT_bin2___MyCC_bin5.fasta   MetaBAT_bin1___MyCC_bin5.fasta   MetaBAT_bin6___MyCC_bin1.fasta
         MetaBAT_bin6___MyCC_bin4.fasta   MetaBAT_bin3___MyCC_bin1.fasta   MetaBAT_bin3___MyCC_bin4.fasta
