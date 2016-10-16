@@ -16,10 +16,10 @@ import argparse
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('-i',
-                    required=True,
-                    help='path to bin folder',
-                    metavar='(req)')
+# parser.add_argument('-i',
+#                     required=True,
+#                     help='path to bin folder',
+#                     metavar='(req)')
 
 parser.add_argument('-email',
                     required=True,
@@ -79,7 +79,8 @@ parser.add_argument('-prodigal_v',
 
 args = parser.parse_args()
 
-wd = args.i
+# wd = args.i
+wd = os.getcwd()
 nodes_number = args.nodes
 ppn_number = args.ppn
 memory = args.memory
@@ -153,24 +154,32 @@ def run_qsuber():
     bin_file_extension = bin_file_ext_list_uniq[0]
 
     # get qsub file and submit it
+    checkm_cmd_file_name = 'Commands_for_CheckM.txt'
+    pwd_checkm_cmd_file = '%s/%s' % (pwd_qsub_files_folder, checkm_cmd_file_name)
+    checkm_cmd_file = open(pwd_checkm_cmd_file, 'w')
     for bin in bins:
-        bin_folder = bin[:-(len(bin_file_extension) + 1)]
-        qsub_file = '%s.sh' % bin_folder
+        bin_name = bin[:-(len(bin_file_extension) + 1)]
+        qsub_file = '%s.sh' % bin_name
         pwd_qsub_file = '%s/%s' % (pwd_qsub_files_folder, qsub_file)
         out = open(pwd_qsub_file, 'w')
         # create a folder for current bin
-        os.mkdir('%s/%s/%s' % (wd, checkm_wd, bin_folder))
+        os.mkdir('%s/%s/%s' % (wd, checkm_wd, bin_name))
         pwd_bin = '%s/%s' % (wd, bin)
-        pwd_bin_foler = '%s/%s/%s' % (wd, checkm_wd, bin_folder)
+
+        pwd_bin_foler = '%s/%s/%s' % (wd, checkm_wd, bin_name)
         os.system('cp %s %s' % (pwd_bin, pwd_bin_foler))
         out.write('%s\n%s' % (header, module_lines))
-        cmds = 'checkm lineage_wf -x %s -t %s %s %s/out_%s -f %s/out_%s/out_%s.txt' % (
-            bin_file_extension, ppn_number, pwd_bin_foler, pwd_bin_foler, bin_folder, pwd_bin_foler, bin_folder, bin_folder)
+        cmds = 'checkm lineage_wf -x %s -t %s %s %s -f %s/%s.txt\n' % (
+            bin_file_extension, ppn_number, pwd_bin_foler, pwd_bin_foler, pwd_checkm_wd, bin_name)
+        cmds_non_qsub = 'checkm lineage_wf -x %s -t %s %s %s -f %s/%s.txt &\n' % (
+            bin_file_extension, ppn_number, pwd_bin_foler, pwd_bin_foler, pwd_checkm_wd, bin_name)
+        checkm_cmd_file.write(cmds_non_qsub)
         out.write(cmds)
         out.close()
         os.chdir(pwd_qsub_files_folder)
         os.system('qsub %s' % pwd_qsub_file)
         os.chdir(wd)
+    checkm_cmd_file.close()
 
 
 # check whether previous results exist

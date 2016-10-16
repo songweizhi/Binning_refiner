@@ -51,7 +51,8 @@ This will become annoying if you have hundreds of bins, as the same number of em
         # Example commands:
 
         # 1. get refined bins
-        python3 /home/z5039045/Binning_refiner/Binning_refiner.py -wd /.../test_data -f MetaBAT -s MyCC
+        # cd to your working directory
+        python3 /home/z5039045/Binning_refiner/Binning_refiner.py -f MetaBAT -s MyCC
 
         # 2. get qualities for each of the three bin sets
         python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /.../test_data/MetaBAT
