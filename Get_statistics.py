@@ -58,8 +58,8 @@ list_of_contamination_free_bin_list = []
 
 for bin_folder in bin_folders:
     completeness_list, contamination_list, bin_size_list, qualified_bin_number, contamination_free_bin_number, \
-    total_length, contamination_free_bin_total_length, contamination_free_bin_list = get_bin_statistics(bin_folder,
-                                                                                                        checkm_wd_name, out)
+    total_length, contamination_free_bin_total_length, contamination_free_bin_list = get_bin_statistics(bin_folder, checkm_wd_name, out)
+
     list_of_completeness_list.append(completeness_list)
     list_of_contamination_list.append(contamination_list)
     list_of_bin_size_list.append(bin_size_list)

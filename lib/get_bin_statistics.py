@@ -96,4 +96,3 @@ def get_bin_statistics(bin_folder, checkm_wd_name, out):
     qualities_all_bins.close()
     return completeness_list, contamination_list, bin_size_list, bin_number, con_free_bin_number, total_length_mb, con_free_total_length_mb, con_free_bin_list
 
-
