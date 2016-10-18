@@ -78,7 +78,6 @@ bin_folder_2_new =                  '%s_new'            % input_bin_folder_2
 output_folder =                     'outputs'
 blast_wd =                          'Blast_wd'
 
-# blast_results_folder =              'Blast_results'
 googlevis_input_filename =          'googleVis_%s_vs_%s_all.csv'              % (input_bin_folder_1, input_bin_folder_2)
 googlevis_input_filtered_filename = 'googleVis_%s_vs_%s_size_cutoff_%sMB.csv'  % (input_bin_folder_1, input_bin_folder_2, bin_size_cutoff_MB)
 plot_html =                         'googleVis_%s_vs_%s_all.html'              % (input_bin_folder_1, input_bin_folder_2)
@@ -90,7 +89,6 @@ pwd_output_folder =             '%s/%s'     % (wd, output_folder)
 pwd_bin_folder_1_new =          '%s/%s/%s'  % (wd, blast_wd, bin_folder_1_new)
 pwd_bin_folder_2_new =          '%s/%s/%s'  % (wd, blast_wd, bin_folder_2_new)
 pwd_blast_wd =                  '%s/%s'     % (wd, blast_wd)
-# pwd_blast_results_folder =      '%s/%s/%s'  % (wd, output_folder, blast_results_folder)
 pwd_googlevis_input =           '%s/%s/%s'  % (wd, output_folder, googlevis_input_filename)
 pwd_googlevis_input_filtered =  '%s/%s/%s'  % (wd, output_folder, googlevis_input_filtered_filename)
 pwd_plot_html =                 '%s/%s/%s'  % (wd, output_folder, plot_html)
@@ -352,7 +350,7 @@ total = -1  # remove title line
 for each_new_bin in new_bins:
     total += 1
 
-new_bins = open(pwd_new_bin_contigs) ###!!!!!!!!!!!!
+new_bins = open(pwd_new_bin_contigs)
 n = 1
 for each_new_bin in new_bins:
     if not each_new_bin.startswith('Refined_bin_name'):

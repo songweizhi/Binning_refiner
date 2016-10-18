@@ -16,11 +16,6 @@ import argparse
 
 parser = argparse.ArgumentParser()
 
-# parser.add_argument('-i',
-#                     required=True,
-#                     help='path to bin folder',
-#                     metavar='(req)')
-
 parser.add_argument('-email',
                     required=True,
                     help='your email address',
@@ -53,25 +48,25 @@ parser.add_argument('-walltime',
                     help='walltime needed (default = 2:59:00)',
                     metavar='(opt)')
 
-parser.add_argument('-python_v',
+parser.add_argument('-python',
                     required=False,
                     default='python/2.7.8',
                     help='python version (default: python/2.7.8)',
                     metavar='(opt)')
 
-parser.add_argument('-hmmer_v',
+parser.add_argument('-hmmer',
                     required=False,
                     default='hmmer/3.1b2',
                     help='hmmer version (default: hmmer/3.1b2)',
                     metavar='(opt)')
 
-parser.add_argument('-pplacer_v',
+parser.add_argument('-pplacer',
                     required=False,
                     default='pplacer/1.1.alpha16',
                     help='pplacer version (default: pplacer/1.1.alpha16)',
                     metavar='(opt)')
 
-parser.add_argument('-prodigal_v',
+parser.add_argument('-prodigal',
                     required=False,
                     default='prodigal/2.6.3',
                     help='prodigal version (default: prodigal/2.6.3)',
@@ -79,14 +74,13 @@ parser.add_argument('-prodigal_v',
 
 args = parser.parse_args()
 
-# wd = args.i
 wd = os.getcwd()
 nodes_number = args.nodes
 ppn_number = args.ppn
 memory = args.memory
 walltime_needed = args.walltime
 email = args.email
-modules_needed = [args.python_v, args.hmmer_v, args.pplacer_v, args.prodigal_v]
+modules_needed = [args.python, args.hmmer, args.pplacer, args.prodigal]
 
 ########################################################################################################################
 
@@ -95,10 +89,6 @@ checkm_wd = 'checkm_wd'
 qsub_files_folder = 'qsub_files_for_checkm'
 pwd_checkm_wd = '%s/%s' % (wd, checkm_wd)
 pwd_qsub_files_folder = '%s/%s' % (wd, qsub_files_folder)
-
-
-# forward to working directory
-os.chdir(wd)
 
 
 # prepare qsub file header
