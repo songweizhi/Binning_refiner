@@ -60,7 +60,7 @@ This will become annoying if you have hundreds of bins, as the same number of em
 
         # 3. get statistics (after all submitted jobs in the 2nd step finished)
         # cd to your working directory, then
-        python3 /home/z5039045/Binning_refiner/Get_statistics.py -f MetaBAT -s MyCC -r outputs/Refined -o .
+        python3 /home/z5039045/Binning_refiner/Get_statistics.py -f MetaBAT -s MyCC -r outputs/Refined
 
 Output files:
 ---

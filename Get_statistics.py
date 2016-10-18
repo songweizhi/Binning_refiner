@@ -26,17 +26,10 @@ parser.add_argument('-r',
                     required=True,
                     metavar='(req)')
 
-parser.add_argument('-o',
-                    help='output folder',
-                    required=True,
-                    metavar='(req)')
-
 args = parser.parse_args()
 
-out = args.o
+out = os.getcwd()
 
-if out[-1] == '/':
-    out = out[:-1]
 if args.f[-1] == '/':
     args.f = args.f[:-1]
 if args.s[-1] == '/':
