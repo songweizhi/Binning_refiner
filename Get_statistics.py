@@ -34,13 +34,23 @@ parser.add_argument('-o',
 args = parser.parse_args()
 
 out = args.o
+
+if out[-1] == '/':
+    out = out[:-1]
+if args.f[-1] == '/':
+    args.f = args.f[:-1]
+if args.s[-1] == '/':
+    args.s = args.s[:-1]
+if args.r[-1] == '/':
+    args.r = args.r[:-1]
+
 bin_folders = [args.f, args.s, args.r]
 ########################################################################################################################
 
 # define folder/file name
 checkm_wd_name = 'checkm_wd'
 contamination_free_refined_bin_folder = 'contamination_free_refined_bins'
-statistics_image_filename = 'plot_stat.png'
+statistics_image_filename = 'Bin_qualities_overallpy.png'
 pwd_statistics_image = '%s/%s' % (out, statistics_image_filename)
 pwd_contamination_free_refined_bin_folder = '%s/%s' % (args.r, contamination_free_refined_bin_folder)
 

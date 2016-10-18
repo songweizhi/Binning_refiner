@@ -46,7 +46,7 @@ def get_bin_statistics(bin_folder, checkm_wd_name, out):
     total_length_bp = 0
     con_free_total_length_bp = 0
     # get statistics
-    qualities_all_bins_filename = '%s_bins_qualities.txt' % bin_folder_name
+    qualities_all_bins_filename = 'Bin_qualities_%s.txt' % bin_folder_name
     pwd_qualities_all_bins_filename = '%s/%s' % (out, qualities_all_bins_filename)
     qualities_all_bins = open(pwd_qualities_all_bins_filename, 'w')
     qualities_all_bins.write('Bin_name\tBin_size(MB)\tCompleteness\tContamination\n')

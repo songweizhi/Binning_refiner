@@ -51,16 +51,16 @@ This will become annoying if you have hundreds of bins, as the same number of em
         # Example commands:
 
         # 1. get refined bins
-        # cd to your working directory
+        # cd to your working directory, then
         python3 /home/z5039045/Binning_refiner/Binning_refiner.py -f MetaBAT -s MyCC
 
         # 2. get qualities for each of the three bin sets
-        python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /.../test_data/MetaBAT
-        python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /.../test_data/MyCC
-        python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address -i /.../test_data/outputs/Refined
+        # cd to each of your bin folders, then
+        python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address
 
         # 3. get statistics (after all submitted jobs in the 2nd step finished)
-        python3 /home/z5039045/Binning_refiner/Get_statistics.py -f /.../test_data/MetaBAT -s /.../test_data/MyCC -r /.../test_data/outputs/Refined -o /.../test_data
+        # cd to your working directory, then
+        python3 /home/z5039045/Binning_refiner/Get_statistics.py -f MetaBAT -s MyCC -r outputs/Refined -o .
 
 Output files:
 ---
