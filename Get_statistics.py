@@ -1,6 +1,8 @@
 import os
 import shutil
 import argparse
+import numpy as np
+from scipy import stats
 import matplotlib as mpl
 mpl.use('Agg')
 import matplotlib.pyplot as plt
@@ -43,7 +45,7 @@ bin_folders = [args.f, args.s, args.r]
 # define folder/file name
 checkm_wd_name = 'checkm_wd'
 contamination_free_refined_bin_folder = 'contamination_free_refined_bins'
-statistics_image_filename = 'Bin_qualities_overallpy.png'
+statistics_image_filename = 'Bin_qualities_overall.png'
 pwd_statistics_image = '%s/%s' % (out, statistics_image_filename)
 pwd_contamination_free_refined_bin_folder = '%s/%s' % (args.r, contamination_free_refined_bin_folder)
 
@@ -71,6 +73,32 @@ for bin_folder in bin_folders:
     list_of_total_length.append(total_length)
     list_of_contamination_free_bin_total_length.append(contamination_free_bin_total_length)
     list_of_contamination_free_bin_list.append(contamination_free_bin_list)
+
+
+# get basic statistics of first bin set
+print('basic statistics of bin set: %s' % args.f)
+print('Bin number: %s' % len(list_of_contamination_list[0]))
+print('Mean: %s' % np.mean(list_of_contamination_list[0]))
+print('Std: %s' % np.std(list_of_contamination_list[0]))
+
+# get basic statistics of second  bin set
+print('basic statistics of bin set: %s' % args.s)
+print('Bin number: %s' % len(list_of_contamination_list[1]))
+print('Mean: %s' % np.mean(list_of_contamination_list[1]))
+print('Std: %s' % np.std(list_of_contamination_list[1]))
+
+# get basic statistics of refined bin set
+print('basic statistics of bin set: %s' % args.r)
+print('Bin number: %s' % len(list_of_contamination_list[2]))
+print('Mean: %s' % np.mean(list_of_contamination_list[2]))
+print('Std: %s' % np.std(list_of_contamination_list[2]))
+
+print('Two-sample t-test between %s and %s:' % (args.f, args.r))
+print(stats.ttest_ind(list_of_contamination_list[0], list_of_contamination_list[2], equal_var=False))
+
+print('Two-sample t-test between %s and %s:' % (args.s, args.r))
+print(stats.ttest_ind(list_of_contamination_list[1], list_of_contamination_list[2], equal_var=False))
+
 
 # turn number list to array
 list_of_completeness_list_array = list(map(get_array, list_of_completeness_list))

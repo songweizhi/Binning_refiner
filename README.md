@@ -32,7 +32,7 @@ binning programs need to be placed in different folders directly under working d
 1. Accepted bin file extensions include 'fa', 'fas' or 'fasta'. All input bins in the same folder must have the same extension.
 
 1. Binning Refiner scripts are implemented in python3, please use python3 instead of python. These scripts have been
-transferred to my home directory on Katana (/home/z5039045/Binning_refiner), you can call it directly from my home
+transferred to my scratch on Katana (/srv/scratch/z5039045/Binning_refiner), you can call it directly from my home
 directory. Any updates or bug-fix will be synchronized to this folder at first time.
 
 1. (Reminder) As CheckM is a memory eating program, CheckM_qsuber.py will submit one job for each input/refined bins.
@@ -44,23 +44,23 @@ This will become annoying if you have hundreds of bins, as the same number of em
         module load blast+/2.2.31
 
         # For help:
-        python3 /home/z5039045/Binning_refiner/Binning_refiner.py -h
-        python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -h
-        python3 /home/z5039045/Binning_refiner/Get_statistics.py -h
+        python3 /srv/scratch/z5039045/Binning_refiner/Binning_refiner.py -h
+        python3 /srv/scratch/z5039045/Binning_refiner/CheckM_qsuber.py -h
+        python3 /srv/scratch/z5039045/Binning_refiner/Get_statistics.py -h
 
         # Example commands:
 
         # 1. get refined bins
         # cd to your working directory, then
-        python3 /home/z5039045/Binning_refiner/Binning_refiner.py -f MetaBAT -s MyCC
+        python3 /srv/scratch/z5039045/Binning_refiner/Binning_refiner.py -f MetaBAT -s MyCC
 
         # 2. get qualities for each of the three bin sets
         # cd to each of your bin folders, then
-        python3 /home/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address
+        python3 /srv/scratch/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address
 
         # 3. get statistics (after all submitted jobs in the 2nd step finished)
         # cd to your working directory, then
-        python3 /home/z5039045/Binning_refiner/Get_statistics.py -f MetaBAT -s MyCC -r outputs/Refined
+        python3 /srv/scratch/z5039045/Binning_refiner/Get_statistics.py -f MetaBAT -s MyCC -r outputs/Refined
 
 Output files:
 ---
