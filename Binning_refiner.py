@@ -7,9 +7,7 @@ from Bio import SeqIO
 #from lib.identity_list_ploter import plot_identity_list
 from lib.GoogleVis_Sankey_plotter import GoogleVis_Sankey_plotter
 
-
-steps = """"
-
+""""
     Steps:
     2. Combine MetaBAT and MyCC predicted bins respectively
     3. Make blast db
@@ -18,7 +16,6 @@ steps = """"
     6. Prepare input for googleVis
     7. Plot Sankey images
     8. get refined bins
-
 """
 
 ##################################################### CONFIGURATION ####################################################
@@ -65,9 +62,6 @@ bin_size_cutoff = args.bin_size_curoff
 bin_size_cutoff_MB = float("{0:.2f}".format(bin_size_cutoff / (1024 * 1024)))
 pwd_blastn_exe = args.blastn
 pwd_makeblastdb_exe = args.makeblastdb
-
-########################################################################################################################
-
 
 ################################################ Define folder/file name ###############################################
 
@@ -376,4 +370,4 @@ os.system('mv ./%s/%s ./%s/Shared_contigs_between_%s_and_%s_bins.txt' % (output_
 
 
 print('\nDone!')
-print('Please run CheckM_qsuber.py for each input/output bin set to get their quality.')
+print('Please run CheckM_qsuber.py for each input/output bin set to get their qualities.')

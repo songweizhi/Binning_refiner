@@ -29,17 +29,15 @@ parser.add_argument('-r',
                     metavar='(req)')
 
 args = parser.parse_args()
-
 out = os.getcwd()
-
-if args.f[-1] == '/':
-    args.f = args.f[:-1]
-if args.s[-1] == '/':
-    args.s = args.s[:-1]
-if args.r[-1] == '/':
-    args.r = args.r[:-1]
-
 bin_folders = [args.f, args.s, args.r]
+
+for each_bin_folder in bin_folders:
+    if each_bin_folder[-1] == '/':
+        each_bin_folder = each_bin_folder[:-1]
+    else:
+        pass
+
 ########################################################################################################################
 
 # define folder/file name
