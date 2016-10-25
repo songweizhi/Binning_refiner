@@ -56,7 +56,7 @@ This will become annoying if you have hundreds of bins, as the same number of em
 
         # 2. get qualities for each of the three bin sets
         # cd to each of your bin folders, then
-        python3 /srv/scratch/z5039045/Binning_refiner/CheckM_qsuber.py -email your_email_address
+        python3 /srv/scratch/z5039045/Binning_refiner/CheckM_qsuber.py -e your_email_address
 
         # 3. get statistics (after all submitted jobs in the 2nd step finished)
         # cd to your working directory, then

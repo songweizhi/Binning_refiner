@@ -24,32 +24,27 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument('-1',
                     required=True,
-                    help='first bin folder name',
-                    metavar='(req)')
+                    help='first bin folder name')
 
 parser.add_argument('-2',
                     required=True,
-                    help='second bin folder name',
-                    metavar='(req)')
+                    help='second bin folder name')
 
-parser.add_argument('-blastn',
+parser.add_argument('-bn',
                     required=False,
                     default='blastn',
-                    help='path to blastn executable',
-                    metavar='(opt)')
+                    help='path to blastn executable')
 
-parser.add_argument('-makeblastdb',
+parser.add_argument('-db',
                     required=False,
                     default='makeblastdb',
-                    help='path to makeblastdb executable',
-                    metavar='(opt)')
+                    help='path to makeblastdb executable')
 
-parser.add_argument('-bin_size_curoff',
+parser.add_argument('-ms',
                     required=False,
                     default=524288,
                     type=int,
-                    help='length cutoff for refined bins, default = 524288 (0.5MB)',
-                    metavar='(opt)')
+                    help='minimum size for refined bins, default = 524288 (0.5MB)')
 
 args = vars(parser.parse_args())
 input_bin_folder_1 = args['1']
@@ -58,10 +53,10 @@ if input_bin_folder_1[-1] == '/':
 input_bin_folder_2 = args['2']
 if input_bin_folder_2[-1] == '/':
     input_bin_folder_2 = input_bin_folder_2[:-1]
-bin_size_cutoff = args['bin_size_curoff']
+bin_size_cutoff = args['ms']
 bin_size_cutoff_MB = float("{0:.2f}".format(bin_size_cutoff / (1024 * 1024)))
-pwd_blastn_exe = args['blastn']
-pwd_makeblastdb_exe = args['makeblastdb']
+pwd_blastn_exe = args['bn']
+pwd_makeblastdb_exe = args['db']
 
 ################################################ Define folder/file name ###############################################
 

@@ -15,18 +15,15 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument('-1',
                     help='path to first bin folder',
-                    required=True,
-                    metavar='(req)')
+                    required=True)
 
 parser.add_argument('-2',
                     help='path to second bin folder',
-                    required=True,
-                    metavar='(req)')
+                    required=True)
 
 parser.add_argument('-r',
                     help='path to refined bin folder',
-                    required=True,
-                    metavar='(req)')
+                    required=True)
 
 args = vars(parser.parse_args())
 

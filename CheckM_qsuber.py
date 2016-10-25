@@ -16,7 +16,7 @@ import argparse
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('-email',
+parser.add_argument('-e',
                     required=True,
                     help='your email address',
                     metavar='(req)')
@@ -72,15 +72,15 @@ parser.add_argument('-prodigal',
                     help='prodigal version (default: prodigal/2.6.3)',
                     metavar='(opt)')
 
-args = parser.parse_args()
+args = vars(parser.parse_args())
 
 wd = os.getcwd()
-nodes_number = args.nodes
-ppn_number = args.ppn
-memory = args.memory
-walltime_needed = args.walltime
-email = args.email
-modules_needed = [args.python, args.hmmer, args.pplacer, args.prodigal]
+nodes_number = args['nodes']
+ppn_number = args['ppn']
+memory = args['memory']
+walltime_needed = args['walltime']
+email = args['e']
+modules_needed = [args['python'], args['hmmer'], args['pplacer'], args['prodigal']]
 
 ########################################################################################################################
 
