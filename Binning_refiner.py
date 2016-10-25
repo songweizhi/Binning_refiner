@@ -22,12 +22,12 @@ from lib.GoogleVis_Sankey_plotter import GoogleVis_Sankey_plotter
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('-f',
+parser.add_argument('-1',
                     required=True,
                     help='first bin folder name',
                     metavar='(req)')
 
-parser.add_argument('-s',
+parser.add_argument('-2',
                     required=True,
                     help='second bin folder name',
                     metavar='(req)')
@@ -51,17 +51,17 @@ parser.add_argument('-bin_size_curoff',
                     help='length cutoff for refined bins, default = 524288 (0.5MB)',
                     metavar='(opt)')
 
-args = parser.parse_args()
-input_bin_folder_1 = args.f
+args = vars(parser.parse_args())
+input_bin_folder_1 = args['1']
 if input_bin_folder_1[-1] == '/':
     input_bin_folder_1 = input_bin_folder_1[:-1]
-input_bin_folder_2 = args.s
+input_bin_folder_2 = args['2']
 if input_bin_folder_2[-1] == '/':
     input_bin_folder_2 = input_bin_folder_2[:-1]
-bin_size_cutoff = args.bin_size_curoff
+bin_size_cutoff = args['bin_size_curoff']
 bin_size_cutoff_MB = float("{0:.2f}".format(bin_size_cutoff / (1024 * 1024)))
-pwd_blastn_exe = args.blastn
-pwd_makeblastdb_exe = args.makeblastdb
+pwd_blastn_exe = args['blastn']
+pwd_makeblastdb_exe = args['makeblastdb']
 
 ################################################ Define folder/file name ###############################################
 

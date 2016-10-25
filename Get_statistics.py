@@ -13,12 +13,12 @@ from lib.get_bin_statistics import get_bin_statistics
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('-f',
+parser.add_argument('-1',
                     help='path to first bin folder',
                     required=True,
                     metavar='(req)')
 
-parser.add_argument('-s',
+parser.add_argument('-2',
                     help='path to second bin folder',
                     required=True,
                     metavar='(req)')
@@ -28,26 +28,26 @@ parser.add_argument('-r',
                     required=True,
                     metavar='(req)')
 
-args = parser.parse_args()
-out = os.getcwd()
+args = vars(parser.parse_args())
 
-if args.f[-1] == '/':
-    args.f = args.f[:-1]
-if args.s[-1] == '/':
-    args.s = args.s[:-1]
-if args.r[-1] == '/':
-    args.r = args.r[:-1]
+if args['1'][-1] == '/':
+    args['1'] = args['1'][:-1]
+if args['2'][-1] == '/':
+    args['2'] = args['2'][:-1]
+if args['r'][-1] == '/':
+    args['r'] = args['r'][:-1]
 
-bin_folders = [args.f, args.s, args.r]
+bin_folders = [args['1'], args['2'], args['r']]
 
 ########################################################################################################################
 
 # define folder/file name
+out = os.getcwd()
 checkm_wd_name = 'checkm_wd'
 contamination_free_refined_bin_folder = 'contamination_free_refined_bins'
 statistics_image_filename = 'Bin_qualities_overall.png'
 pwd_statistics_image = '%s/%s' % (out, statistics_image_filename)
-pwd_contamination_free_refined_bin_folder = '%s/%s' % (args.r, contamination_free_refined_bin_folder)
+pwd_contamination_free_refined_bin_folder = '%s/%s' % (args['r'], contamination_free_refined_bin_folder)
 
 #################################################### Get input data ####################################################
 
@@ -76,27 +76,27 @@ for bin_folder in bin_folders:
 
 
 # get basic statistics of first bin set
-print('basic statistics of bin set: %s' % args.f)
+print('basic statistics of bin set: %s' % args['1'])
 print('Bin number: %s' % len(list_of_contamination_list[0]))
 print('Mean: %s' % np.mean(list_of_contamination_list[0]))
 print('Std: %s' % np.std(list_of_contamination_list[0]))
 
 # get basic statistics of second  bin set
-print('basic statistics of bin set: %s' % args.s)
+print('basic statistics of bin set: %s' % args['2'])
 print('Bin number: %s' % len(list_of_contamination_list[1]))
 print('Mean: %s' % np.mean(list_of_contamination_list[1]))
 print('Std: %s' % np.std(list_of_contamination_list[1]))
 
 # get basic statistics of refined bin set
-print('basic statistics of bin set: %s' % args.r)
+print('basic statistics of bin set: %s' % args['r'])
 print('Bin number: %s' % len(list_of_contamination_list[2]))
 print('Mean: %s' % np.mean(list_of_contamination_list[2]))
 print('Std: %s' % np.std(list_of_contamination_list[2]))
 
-print('Two-sample t-test between %s and %s:' % (args.f, args.r))
+print('Two-sample t-test between %s and %s:' % (args['1'], args['r']))
 print(stats.ttest_ind(list_of_contamination_list[0], list_of_contamination_list[2], equal_var=False))
 
-print('Two-sample t-test between %s and %s:' % (args.s, args.r))
+print('Two-sample t-test between %s and %s:' % (args['2'], args['r']))
 print(stats.ttest_ind(list_of_contamination_list[1], list_of_contamination_list[2], equal_var=False))
 
 
@@ -192,6 +192,6 @@ else:
 # copy contamination free refined bins to defined bin folder
 contamination_free_refined_bins = list_of_contamination_free_bin_list[2]
 for contamination_free_refined_bin in contamination_free_refined_bins:
-    pwd_contamination_free_refined_bin = '%s/%s' % (args.r, contamination_free_refined_bin)
+    pwd_contamination_free_refined_bin = '%s/%s' % (args['r'], contamination_free_refined_bin)
     os.system('cp %s %s' % (pwd_contamination_free_refined_bin, pwd_contamination_free_refined_bin_folder))
 

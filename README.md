@@ -52,7 +52,7 @@ This will become annoying if you have hundreds of bins, as the same number of em
 
         # 1. get refined bins
         # cd to your working directory, then
-        python3 /srv/scratch/z5039045/Binning_refiner/Binning_refiner.py -f MetaBAT -s MyCC
+        python3 /srv/scratch/z5039045/Binning_refiner/Binning_refiner.py -1 MetaBAT -2 MyCC
 
         # 2. get qualities for each of the three bin sets
         # cd to each of your bin folders, then
@@ -60,7 +60,7 @@ This will become annoying if you have hundreds of bins, as the same number of em
 
         # 3. get statistics (after all submitted jobs in the 2nd step finished)
         # cd to your working directory, then
-        python3 /srv/scratch/z5039045/Binning_refiner/Get_statistics.py -f MetaBAT -s MyCC -r outputs/Refined
+        python3 /srv/scratch/z5039045/Binning_refiner/Get_statistics.py -1 MetaBAT -2 MyCC -r outputs/Refined
 
 Output files:
 ---
