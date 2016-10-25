@@ -30,13 +30,15 @@ parser.add_argument('-r',
 
 args = parser.parse_args()
 out = os.getcwd()
-bin_folders = [args.f, args.s, args.r]
 
-for each_bin_folder in bin_folders:
-    if each_bin_folder[-1] == '/':
-        each_bin_folder = each_bin_folder[:-1]
-    else:
-        pass
+if args.f[-1] == '/':
+    args.f = args.f[:-1]
+if args.s[-1] == '/':
+    args.s = args.s[:-1]
+if args.r[-1] == '/':
+    args.r = args.r[:-1]
+
+bin_folders = [args.f, args.s, args.r]
 
 ########################################################################################################################
 
@@ -118,7 +120,7 @@ boxplot_inputs = [list_of_completeness_list_array, list_of_contamination_list_ar
 title_list = ['Completeness (CheckM)', 'Contamination (CheckM)', 'Bin Size (MB)']
 n = 0
 for each_plot in boxplot_inputs:
-    axes[n].boxplot(boxplot_inputs[n], labels=label_name_list)
+    axes[n].boxplot(boxplot_inputs[n], labels=label_name_list, showfliers=False)
     axes[n].set_title(title_list[n], fontsize=12)
     n += 1
 
@@ -137,7 +139,7 @@ for each_bin_set in bin_folders:
     # dot for contamination free bins
     plot_point_con_free_bin = axes[axes_num].scatter(list_of_contamination_free_bin_number_array[n],
                                                      list_of_contamination_free_bin_total_length_array[n],
-                                                     marker='+', color=color_list[n], s=30)
+                                                     marker='s', color=color_list[n], s=30)
     dots_all_bin.append(plot_point_all_bin)
     dots_con_free_bin.append(plot_point_con_free_bin)
     n += 1
@@ -155,7 +157,7 @@ axes[axes_num].legend((dots_con_free_bin[0],
                        '%s_all' % label_name_list[0],
                        '%s_all' % label_name_list[1],
                        '%s_all' % label_name_list[2]),
-                      loc='upper right', ncol=2, fontsize=7, scatterpoints=1)
+                      loc='upper right', ncol=2, fontsize=11, scatterpoints=1)
 
 # add title and x/y axis name to scatter plot
 axes[axes_num].set_title('Bin Number and Total Length', fontsize=12)
@@ -172,7 +174,7 @@ y_min = min(list_of_contamination_free_bin_total_length_array) - min(list_of_tot
 if y_min < 0:
     y_min = 0
 
-y_max = max(list_of_total_length_array) + max(list_of_total_length_array) / 5
+y_max = max(list_of_total_length_array) + max(list_of_total_length_array) / 4
 axes[axes_num].axis([x_min, x_max, y_min, y_max])
 
 fig.subplots_adjust(wspace=0.25)
