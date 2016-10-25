@@ -67,36 +67,35 @@ pwd_makeblastdb_exe = args['makeblastdb']
 
 wd = os.getcwd()
 
-bin_folder_1_new =                  '%s_new'            % input_bin_folder_1
-bin_folder_2_new =                  '%s_new'            % input_bin_folder_2
+bin_folder_1_new =                  '%s_new'                    % input_bin_folder_1
+bin_folder_2_new =                  '%s_new'                    % input_bin_folder_2
 output_folder =                     'outputs'
 blast_wd =                          'Blast_wd'
 
-googlevis_input_filename =          'googleVis_%s_vs_%s_all.csv'              % (input_bin_folder_1, input_bin_folder_2)
-googlevis_input_filtered_filename = 'googleVis_%s_vs_%s_size_cutoff_%sMB.csv'  % (input_bin_folder_1, input_bin_folder_2, bin_size_cutoff_MB)
-plot_html =                         'googleVis_%s_vs_%s_all.html'              % (input_bin_folder_1, input_bin_folder_2)
+googlevis_input_filename =          'googleVis_%s_vs_%s_all.csv'                % (input_bin_folder_1, input_bin_folder_2)
+googlevis_input_filtered_filename = 'googleVis_%s_vs_%s_size_cutoff_%sMB.csv'   % (input_bin_folder_1, input_bin_folder_2, bin_size_cutoff_MB)
+plot_html =                         'googleVis_%s_vs_%s_all.html'               % (input_bin_folder_1, input_bin_folder_2)
 plot_html_filtered =                'googleVis_%s_vs_%s_size_cutoff_%sMB.html'  % (input_bin_folder_1, input_bin_folder_2, bin_size_cutoff_MB)
 new_bin_contigs_filename =          'Contigs_in_refined_bins.txt'
 refined_bins_folder =               'Refined'
 
-pwd_output_folder =             '%s/%s'     % (wd, output_folder)
-pwd_bin_folder_1_new =          '%s/%s/%s'  % (wd, blast_wd, bin_folder_1_new)
-pwd_bin_folder_2_new =          '%s/%s/%s'  % (wd, blast_wd, bin_folder_2_new)
-pwd_blast_wd =                  '%s/%s'     % (wd, blast_wd)
-pwd_googlevis_input =           '%s/%s/%s'  % (wd, output_folder, googlevis_input_filename)
-pwd_googlevis_input_filtered =  '%s/%s/%s'  % (wd, output_folder, googlevis_input_filtered_filename)
-pwd_plot_html =                 '%s/%s/%s'  % (wd, output_folder, plot_html)
-pwd_plot_html_filtered =        '%s/%s/%s'  % (wd, output_folder, plot_html_filtered)
-pwd_new_bin_contigs =           '%s/%s/%s'  % (wd, output_folder, new_bin_contigs_filename)
-pwd_refined_bins_folder =       '%s/%s/%s'  % (wd, output_folder, refined_bins_folder)
+pwd_output_folder =                 '%s/%s'                     % (wd, output_folder)
+pwd_bin_folder_1_new =              '%s/%s/%s'                  % (wd, blast_wd, bin_folder_1_new)
+pwd_bin_folder_2_new =              '%s/%s/%s'                  % (wd, blast_wd, bin_folder_2_new)
+pwd_blast_wd =                      '%s/%s'                     % (wd, blast_wd)
+pwd_googlevis_input =               '%s/%s/%s'                  % (wd, output_folder, googlevis_input_filename)
+pwd_googlevis_input_filtered =      '%s/%s/%s'                  % (wd, output_folder, googlevis_input_filtered_filename)
+pwd_plot_html =                     '%s/%s/%s'                  % (wd, output_folder, plot_html)
+pwd_plot_html_filtered =            '%s/%s/%s'                  % (wd, output_folder, plot_html_filtered)
+pwd_new_bin_contigs =               '%s/%s/%s'                  % (wd, output_folder, new_bin_contigs_filename)
+pwd_refined_bins_folder =           '%s/%s/%s'                  % (wd, output_folder, refined_bins_folder)
 
-
-blast_result = 'blast_%s_vs_%s.tab' % (input_bin_folder_1, input_bin_folder_2)
-pwd_blast_result = '%s/%s' % (pwd_blast_wd, blast_result)
-combined_folder1_bins = 'combined_%s_bins.fasta' % input_bin_folder_1
-pwd_combined_folder1_bins = '%s/%s' % (pwd_blast_wd, combined_folder1_bins)
-combined_folder2_bins = 'combined_%s_bins.fasta' % input_bin_folder_2
-pwd_combined_folder2_bins = '%s/%s' % (pwd_blast_wd, combined_folder2_bins)
+blast_result =                      'blast_%s_vs_%s.tab'        % (input_bin_folder_1, input_bin_folder_2)
+pwd_blast_result =                  '%s/%s'                     % (pwd_blast_wd, blast_result)
+combined_folder1_bins =             'combined_%s_bins.fasta'    % input_bin_folder_1
+pwd_combined_folder1_bins =         '%s/%s'                     % (pwd_blast_wd, combined_folder1_bins)
+combined_folder2_bins =             'combined_%s_bins.fasta'    % input_bin_folder_2
+pwd_combined_folder2_bins =         '%s/%s'                     % (pwd_blast_wd, combined_folder2_bins)
 
 ########################################################################################################################
 
