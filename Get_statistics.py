@@ -14,11 +14,11 @@ from lib.get_bin_statistics import get_bin_statistics
 parser = argparse.ArgumentParser()
 
 parser.add_argument('-1',
-                    help='path to first bin folder',
+                    help='path to 1st bin folder',
                     required=True)
 
 parser.add_argument('-2',
-                    help='path to second bin folder',
+                    help='path to 2nd bin folder',
                     required=True)
 
 parser.add_argument('-r',
@@ -42,7 +42,9 @@ bin_folders = [args['1'], args['2'], args['r']]
 out = os.getcwd()
 checkm_wd_name = 'checkm_wd'
 contamination_free_refined_bin_folder = 'contamination_free_refined_bins'
+statistics_txt_filename = 'Bin_qualities_overall.txt'
 statistics_image_filename = 'Bin_qualities_overall.png'
+pwd_statistics_txt = '%s/%s' % (out, statistics_txt_filename)
 pwd_statistics_image = '%s/%s' % (out, statistics_image_filename)
 pwd_contamination_free_refined_bin_folder = '%s/%s' % (args['r'], contamination_free_refined_bin_folder)
 
@@ -73,39 +75,29 @@ for bin_folder in bin_folders:
 
 
 # get basic statistics of first bin set
-print('basic statistics of bin set: %s' % args['1'])
-print('Bin number: %s' % len(list_of_contamination_list[0]))
-print('Mean: %s' % np.mean(list_of_contamination_list[0]))
-print('Std: %s' % np.std(list_of_contamination_list[0]))
-
-# get basic statistics of second  bin set
-print('basic statistics of bin set: %s' % args['2'])
-print('Bin number: %s' % len(list_of_contamination_list[1]))
-print('Mean: %s' % np.mean(list_of_contamination_list[1]))
-print('Std: %s' % np.std(list_of_contamination_list[1]))
-
-# get basic statistics of refined bin set
-print('basic statistics of bin set: %s' % args['r'])
-print('Bin number: %s' % len(list_of_contamination_list[2]))
-print('Mean: %s' % np.mean(list_of_contamination_list[2]))
-print('Std: %s' % np.std(list_of_contamination_list[2]))
-
-print('Two-sample t-test between %s and %s:' % (args['1'], args['r']))
-print(stats.ttest_ind(list_of_contamination_list[0], list_of_contamination_list[2], equal_var=False))
-
-print('Two-sample t-test between %s and %s:' % (args['2'], args['r']))
-print(stats.ttest_ind(list_of_contamination_list[1], list_of_contamination_list[2], equal_var=False))
-
+statistics_overall_out = open(pwd_statistics_txt, 'w')
+statistics_overall_out.write('\t\t\t%s\t%s\t%s\n'               % (args['1'].split('/')[-1], args['2'].split('/')[-1], args['r'].split('/')[-1]))
+statistics_overall_out.write('Bin number\t\t%s\t%s\t%s\n'       % (len(list_of_contamination_list[0]), len(list_of_contamination_list[1]), len(list_of_contamination_list[2])))
+statistics_overall_out.write('Completeness Mean\t%s\t%s\t%s\n'  % (float("{0:.2f}".format(np.mean(list_of_completeness_list[0]))), float("{0:.2f}".format(np.mean(list_of_completeness_list[1]))), float("{0:.2f}".format(np.mean(list_of_completeness_list[2])))))
+statistics_overall_out.write('Completeness Std\t%s\t%s\t%s\n'   % (float("{0:.2f}".format(np.std(list_of_completeness_list[0]))), float("{0:.2f}".format(np.std(list_of_completeness_list[1]))), float("{0:.2f}".format(np.std(list_of_completeness_list[2])))))
+statistics_overall_out.write('Contamination Mean\t%s\t%s\t%s\n' % (float("{0:.2f}".format(np.mean(list_of_contamination_list[0]))), float("{0:.2f}".format(np.mean(list_of_contamination_list[1]))), float("{0:.2f}".format(np.mean(list_of_contamination_list[2])))))
+statistics_overall_out.write('Contamination Std\t%s\t%s\t%s\n'  % (float("{0:.2f}".format(np.std(list_of_contamination_list[0]))), float("{0:.2f}".format(np.std(list_of_contamination_list[1]))), float("{0:.2f}".format(np.std(list_of_contamination_list[2])))))
+statistics_overall_out.write('Bin size Mean\t\t%s\t%s\t%s\n'    % (float("{0:.2f}".format(np.mean(list_of_bin_size_list[0]))), float("{0:.2f}".format(np.mean(list_of_bin_size_list[1]))), float("{0:.2f}".format(np.mean(list_of_bin_size_list[2])))))
+statistics_overall_out.write('Bin size Std\t\t%s\t%s\t%s\n'     % (float("{0:.2f}".format(np.std(list_of_bin_size_list[0]))), float("{0:.2f}".format(np.std(list_of_bin_size_list[1]))), float("{0:.2f}".format(np.std(list_of_bin_size_list[2])))))
+statistics_overall_out.write('\n\nP-value(Two-sample t-test):\n\t%s_vs_%s\t%s_vs_%s\n' % (args['1'].split('/')[-1], args['r'].split('/')[-1], args['2'].split('/')[-1], args['r'].split('/')[-1]))
+statistics_overall_out.write('Completeness\t%s\t%s\n'           % (float("{0:.3f}".format(stats.ttest_ind(list_of_completeness_list[0], list_of_completeness_list[2], equal_var=False).pvalue)), float("{0:.3f}".format(stats.ttest_ind(list_of_completeness_list[1], list_of_completeness_list[2], equal_var=False).pvalue))))
+statistics_overall_out.write('Contamination\t%s\t%s\n'          % (float("{0:.3f}".format(stats.ttest_ind(list_of_contamination_list[0], list_of_contamination_list[2], equal_var=False).pvalue)), float("{0:.3f}".format(stats.ttest_ind(list_of_contamination_list[1], list_of_contamination_list[2], equal_var=False).pvalue))))
+statistics_overall_out.write('Bin size\t%s\t%s\n'               % (float("{0:.3f}".format(stats.ttest_ind(list_of_bin_size_list[0], list_of_bin_size_list[2], equal_var=False).pvalue)), float("{0:.3f}".format(stats.ttest_ind(list_of_bin_size_list[1], list_of_bin_size_list[2], equal_var=False).pvalue))))
+statistics_overall_out.close()
 
 # turn number list to array
-list_of_completeness_list_array = list(map(get_array, list_of_completeness_list))
-list_of_contamination_list_array = list(map(get_array, list_of_contamination_list))
-list_of_bin_size_list_array = list(map(get_array, list_of_bin_size_list))
-list_of_qualified_bin_number_array = list(map(get_array, list_of_qualified_bin_number))
-list_of_contamination_free_bin_number_array = list(map(get_array, list_of_contamination_free_bin_number))
-list_of_total_length_array = list(map(get_array, list_of_total_length))
+list_of_completeness_list_array =                   list(map(get_array, list_of_completeness_list))
+list_of_contamination_list_array =                  list(map(get_array, list_of_contamination_list))
+list_of_bin_size_list_array =                       list(map(get_array, list_of_bin_size_list))
+list_of_qualified_bin_number_array =                list(map(get_array, list_of_qualified_bin_number))
+list_of_contamination_free_bin_number_array =       list(map(get_array, list_of_contamination_free_bin_number))
+list_of_total_length_array =                        list(map(get_array, list_of_total_length))
 list_of_contamination_free_bin_total_length_array = list(map(get_array, list_of_contamination_free_bin_total_length))
-
 
 ###################################################### Plot Image ######################################################
 

@@ -33,18 +33,18 @@ parser.add_argument('-2',
 parser.add_argument('-bn',
                     required=False,
                     default='blastn',
-                    help='path to blastn executable')
+                    help='(optional) path to blastn executable')
 
 parser.add_argument('-db',
                     required=False,
                     default='makeblastdb',
-                    help='path to makeblastdb executable')
+                    help='(optional) path to makeblastdb executable')
 
 parser.add_argument('-ms',
                     required=False,
                     default=524288,
                     type=int,
-                    help='minimum size for refined bins, default = 524288 (0.5MB)')
+                    help='(optional) minimum size for refined bins, default = 524288 (0.5MB)')
 
 args = vars(parser.parse_args())
 input_bin_folder_1 = args['1']
