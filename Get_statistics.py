@@ -25,6 +25,12 @@ parser.add_argument('-r',
                     help='path to refined bin folder',
                     required=True)
 
+parser.add_argument('-ms',
+                    required=False,
+                    default=524288,
+                    type=int,
+                    help='(optional) minimum size for refined bins, default = 524288 (0.5MB)')
+
 args = vars(parser.parse_args())
 
 if args['1'][-1] == '/':
@@ -34,6 +40,7 @@ if args['2'][-1] == '/':
 if args['r'][-1] == '/':
     args['r'] = args['r'][:-1]
 
+bin_size_cutoff = int(args['ms'])
 bin_folders = [args['1'], args['2'], args['r']]
 
 ########################################################################################################################
@@ -62,7 +69,7 @@ list_of_contamination_free_bin_list = []
 
 for bin_folder in bin_folders:
     completeness_list, contamination_list, bin_size_list, qualified_bin_number, contamination_free_bin_number, \
-    total_length, contamination_free_bin_total_length, contamination_free_bin_list = get_bin_statistics(bin_folder, checkm_wd_name, out)
+    total_length, contamination_free_bin_total_length, contamination_free_bin_list = get_bin_statistics(bin_folder, checkm_wd_name, out, bin_size_cutoff)
 
     list_of_completeness_list.append(completeness_list)
     list_of_contamination_list.append(contamination_list)
@@ -106,7 +113,7 @@ label_name_list = [bin_folders[0].split('/')[-1], bin_folders[1].split('/')[-1],
 
 # box plot of completeness, contamination and bin size
 boxplot_inputs = [list_of_completeness_list_array, list_of_contamination_list_array, list_of_bin_size_list_array]
-title_list = ['Completeness (CheckM)', 'Contamination (CheckM)', 'Bin Size (MB)']
+title_list = ['Completeness (CheckM)', 'Contamination (CheckM)', 'Bin Size (Mbp)']
 n = 0
 for each_plot in boxplot_inputs:
     axes[n].boxplot(boxplot_inputs[n], labels=label_name_list, showfliers=False)
@@ -151,7 +158,7 @@ axes[axes_num].legend((dots_con_free_bin[0],
 # add title and x/y axis name to scatter plot
 axes[axes_num].set_title('Bin Number and Total Length', fontsize=12)
 axes[axes_num].set_xlabel('Bin Number')
-axes[axes_num].set_ylabel('Total Length (MB)')
+axes[axes_num].set_ylabel('Total Length (Mbp)')
 
 # set x/y axis range
 x_min = min(list_of_contamination_free_bin_number_array) - min(list_of_qualified_bin_number_array) / 5

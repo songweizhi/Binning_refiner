@@ -323,7 +323,7 @@ googlevis_input_filtered.close()
 
 # plot googlevis image
 print('Plotting...')
-plot_height = max([len(bin_folder_1_bins), len(bin_folder_2_bins)]) * 40
+plot_height = max([len(bin_folder_1_bins), len(bin_folder_2_bins)]) * 25
 GoogleVis_Sankey_plotter(pwd_googlevis_input, pwd_plot_html, plot_height)
 GoogleVis_Sankey_plotter(pwd_googlevis_input_filtered, pwd_plot_html_filtered, plot_height)
 print('Please ignore "RRuntimeWarning" if there are any above.')
