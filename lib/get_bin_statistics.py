@@ -56,7 +56,7 @@ def get_bin_statistics(bin_folder, checkm_wd_name, out, bin_size_cutoff):
 
         # check whether CheckM results exist
         if not os.path.exists('%s/%s' % (bin_folder, checkm_wd_name)):
-            print('No CheckM results detected from %s, please double-check.' % bin_folder)
+            print('No CheckM results detected from %s, please run CkeckM_qsuber.py for this bin set first.' % bin_folder)
             exit()
         else:
             pass
