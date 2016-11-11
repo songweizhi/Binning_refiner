@@ -16,12 +16,12 @@ Dependencies:
 ---
 
 + [R](https://www.r-project.org)
-+ [Numpy](http://www.numpy.org)
-+ [Matplotlib](http://matplotlib.org)
-+ [rpy2](http://rpy2.bitbucket.org)
-+ [GoogleVis](https://github.com/mages/googleVis#googlevis)
++ R package: [GoogleVis](https://github.com/mages/googleVis#googlevis)
++ Python module: [rpy2](http://rpy2.bitbucket.org)
++ Python module: [Numpy](http://www.numpy.org)
++ Python module: [Matplotlib](http://matplotlib.org)
++ Python module: [BioPython](https://github.com/biopython/biopython.github.io/)
 + [CheckM](http://ecogenomics.github.io/CheckM/)
-+ [BioPython](https://github.com/biopython/biopython.github.io/)
 + [Blast+ 2.2.31](http://www.ncbi.nlm.nih.gov/news/06-16-2015-blast-plus-update/)
 
 How to run it:
