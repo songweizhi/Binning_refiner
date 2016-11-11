@@ -37,32 +37,21 @@ directly under working directory.
 transferred to my scratch on Katana (/srv/scratch/z5039045/Binning_refiner), you can call it directly from my home
 directory(for Katana users). Any updates or bug-fix will be synchronized to this folder at first time.
 
-1. (Reminder) As CheckM is a memory eating program, CheckM_qsuber.py will submit one job for each input and refined bins.
-This will become annoying if you have hundreds of bins, as the same number of emails will influx your email account!
-
-        # Modules need to be loaded first:
-        module load R/3.2.2
-        module load python/3.4.3
-        module load blast+/2.2.31
 
         # For help:
-        python3 /srv/scratch/z5039045/Binning_refiner/Binning_refiner.py -h
-        python3 /srv/scratch/z5039045/Binning_refiner/CheckM_qsuber.py -h
-        python3 /srv/scratch/z5039045/Binning_refiner/Get_statistics.py -h
+        python3 Binning_refiner.py -h
+        python3 CheckM_qsuber.py -h
+        python3 Get_statistics.py -h
 
         # Example commands:
-
         # 1. get refined bins
-        # cd to your working directory, then
-        python3 /srv/scratch/z5039045/Binning_refiner/Binning_refiner.py -1 MetaBAT -2 MyCC
+        python3 Binning_refiner.py -1 MetaBAT -2 MyCC
 
         # 2. get qualities for each of the three bin sets
-        # cd to each of your bin folders, then
-        python3 /srv/scratch/z5039045/Binning_refiner/CheckM_qsuber.py -e your_email_address
+        python3 CheckM_qsuber.py -e your_email_address
 
-        # 3. get statistics (after all submitted jobs in the 2nd step finished)
-        # cd to your working directory, then
-        python3 /srv/scratch/z5039045/Binning_refiner/Get_statistics.py -1 MetaBAT -2 MyCC -r outputs/Refined
+        # 3. get statistics
+        python3 Get_statistics.py -1 MetaBAT -2 MyCC -r outputs/Refined
 
 Output files:
 ---

@@ -22,7 +22,8 @@ python3 /srv/scratch/z5039045/Binning_refiner/Get_statistics.py -h
 # cd to your working directory, then
 python3 /srv/scratch/z5039045/Binning_refiner/Binning_refiner.py -1 MetaBAT -2 MyCC
 
-# 2. get qualities for each of the three bin sets
+# 2. get qualities for each of the three bin sets (Reminder: As CheckM is a memory eating program, CheckM_qsuber.py will submit one job for each input and refined bins.
+This will become annoying if you have hundreds of bins, as the same number of emails will influx your email account!)
 # cd to each of your bin folders, then
 python3 /srv/scratch/z5039045/Binning_refiner/CheckM_qsuber.py -e your_email_address
 
