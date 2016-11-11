@@ -27,22 +27,17 @@ Dependencies:
 How to run it:
 ---
 
-1. Binning Refiner takes two binning programs produced bin sets as inputs. Its purpose is to make your bins more "specific".
-You may need to try binning step with different parameters (like "verysensitive" and "superspecific" in MetaBAT) to get
-the best output after refining (maximum contamination clearance and minimum sequences lost). In my case, I can get more
-contamination-free bins (both of bin number and total length) with inputs which are obtained from MetaBAT with
-"verysensitive" setting.
-
-1. You need to define a working directory to hold all input and output files. Input bin sets from different
-binning programs need to be placed in different folders directly under working directory.
+1. Binning_refiner takes two binning programs produced bin sets as inputs. You need to define a working directory to
+hold all input and output files. Input bin sets from different binning programs need to be placed in different folders
+directly under working directory.
 
 1. Accepted bin file extensions include 'fa', 'fas' or 'fasta'. All input bins in the same folder must have the same extension.
 
-1. Binning Refiner scripts are implemented in python3, please use python3 instead of python. These scripts have been
+1. Binning_refiner scripts are implemented in python3, please use python3 instead of python. These scripts have been
 transferred to my scratch on Katana (/srv/scratch/z5039045/Binning_refiner), you can call it directly from my home
-directory. Any updates or bug-fix will be synchronized to this folder at first time.
+directory(for Katana users). Any updates or bug-fix will be synchronized to this folder at first time.
 
-1. (Reminder) As CheckM is a memory eating program, CheckM_qsuber.py will submit one job for each input/refined bins.
+1. (Reminder) As CheckM is a memory eating program, CheckM_qsuber.py will submit one job for each input and refined bins.
 This will become annoying if you have hundreds of bins, as the same number of emails will influx your email account!
 
         # Modules need to be loaded first:
@@ -72,11 +67,11 @@ This will become annoying if you have hundreds of bins, as the same number of em
 Output files:
 ---
 
-1. Refined bins (>= 0.5MB, from Binning_refiner.py)
+1. All refined bins bigger than defined size cutoff
 
-1. Contamination-free refined bins (from Get_statistics.py)
+1. Contamination-free refined bins
 
-1. Cross-link (shared sequences) between input bins (from Binning_refiner.py)
+1. Cross-link (shared sequences) between input bins
 
     ![Sankey_plot](doc/images/sankey_plot.jpg)
 
@@ -87,6 +82,6 @@ Output files:
         MetaBAT_bin6___MyCC_bin4.fasta   MetaBAT_bin3___MyCC_bin1.fasta   MetaBAT_bin3___MyCC_bin4.fasta
         MetaBAT_bin4___MyCC_bin2.fasta   MetaBAT_bin5___MyCC_bin3.fasta   MetaBAT_bin5___MyCC_bin6.fasta
 
-1. Statistics of input and refined bins (from Get_statistics.py)
+1. Statistics of input and refined bins
 
     ![Statistics](doc/images/statistics.png)
