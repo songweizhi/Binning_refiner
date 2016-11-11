@@ -33,9 +33,9 @@ directly under working directory.
 
 1. Accepted bin file extensions include 'fa', 'fas' or 'fasta'. All input bins in the same folder must have the same extension.
 
-1. Binning_refiner scripts are implemented in python3, please use python3 instead of python. These scripts have been
-transferred to my scratch on Katana (/srv/scratch/z5039045/Binning_refiner), you can call it directly from my home
-directory(for Katana users). Any updates or bug-fix will be synchronized to this folder at first time.
+1. Binning_refiner scripts are implemented in python3, please use python3 instead of python.
+
+1. For Katana users from UNSW, a specilized manual was prepared and placed in doc/manual.
 
 
         # For help:
