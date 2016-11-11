@@ -75,8 +75,8 @@ Output files:
 
     ![Sankey_plot](doc/images/sankey_plot.jpg)
 
-    Each band in the above image represents one refined bin, band width is proportional to refined bin size.
-    we will get 9 refined bins in this case:
+    Each band will be treated as a refined bin, its width is proportional to the total length of shared contigs between
+    two connected bins. We will get 9 refined bins in the above illustration:
 
         MetaBAT_bin2___MyCC_bin5.fasta   MetaBAT_bin1___MyCC_bin5.fasta   MetaBAT_bin6___MyCC_bin1.fasta
         MetaBAT_bin6___MyCC_bin4.fasta   MetaBAT_bin3___MyCC_bin1.fasta   MetaBAT_bin3___MyCC_bin4.fasta
