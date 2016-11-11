@@ -35,7 +35,7 @@ directly under working directory.
 
 1. Binning_refiner scripts are implemented in python3, please use python3 instead of python.
 
-1. For Katana users from UNSW, a specilized manual was prepared and placed in doc/manual.
+1. For Katana users from UNSW, a specialized manual was prepared and placed at doc/manual.
 
 
         # For help:
