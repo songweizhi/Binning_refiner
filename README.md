@@ -24,7 +24,7 @@ Dependencies:
 + [CheckM](http://ecogenomics.github.io/CheckM/)
 + [Blast+ 2.2.31](http://www.ncbi.nlm.nih.gov/news/06-16-2015-blast-plus-update/)
 
-How to run it:
+How to run:
 ---
 
 1. Binning_refiner takes two binning programs produced bin sets as inputs. You need to define a working directory to
