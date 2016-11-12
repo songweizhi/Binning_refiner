@@ -6,6 +6,7 @@ Binning_refiner
 + Last update: 2016-11-11
 + Contact: Weizhi Song (songwz03@gmail.com), Torsten Thomas(t.thomas@unsw.edu.au)
 + Affiliation: The Centre for Marine Bio-Innovation (CMB), The University of New South Wales, Sydney, Australia
++ A manuscript describing how it works and its performance on mock and real metagenomic datasets was placed at doc/manual.
 
 Dependencies:
 ---
