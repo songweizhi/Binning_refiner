@@ -1,15 +1,10 @@
-Binning Refiner
+Binning_refiner
 ---
 
-+ This pipeline was developed to refine metagenomic bins by the combination of different binning programs.
-
-
++ Binning_refiner: Improving genome bins through the combination of different binning programs
 + Version 1.0.0
 + Last update: 2016-11-11
-
-
-+ Contact: Weizhi Song (songwz03@gmail.com)
-
++ Contact: Weizhi Song (songwz03@gmail.com), Torsten Thomas(t.thomas@unsw.edu.au)
 + Affiliation: The Centre for Marine Bio-Innovation (CMB), The University of New South Wales, Sydney, Australia
 
 Dependencies:
