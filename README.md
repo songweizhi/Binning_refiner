@@ -52,7 +52,7 @@ directly under working directory.
 Output files:
 ---
 
-1. All refined bins bigger than defined size cutoff
+1. All refined bins larger than defined size cutoff
 
 1. Contamination-free refined bins
 
