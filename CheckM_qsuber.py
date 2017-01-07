@@ -159,10 +159,8 @@ def run_qsuber():
         pwd_bin_foler = '%s/%s/%s' % (wd, checkm_wd, bin_name)
         os.system('cp %s %s' % (pwd_bin, pwd_bin_foler))
         out.write('%s\n%s' % (header, module_lines))
-        cmds = 'checkm lineage_wf -x %s -t %s %s %s -f %s/%s.txt\n' % (
-            bin_file_extension, ppn_number, pwd_bin_foler, pwd_bin_foler, pwd_checkm_wd, bin_name)
-        cmds_non_qsub = 'checkm lineage_wf -x %s -t %s %s %s -f %s/%s.txt &\n' % (
-            bin_file_extension, ppn_number, pwd_bin_foler, pwd_bin_foler, pwd_checkm_wd, bin_name)
+        cmds =          'checkm lineage_wf -x %s -t %s %s %s -f %s/%s.txt\n' % (bin_file_extension, ppn_number, pwd_bin_foler, pwd_bin_foler, pwd_checkm_wd, bin_name)
+        cmds_non_qsub = 'checkm lineage_wf -x %s -t %s %s %s -f %s/%s.txt &\n' % (bin_file_extension, ppn_number, pwd_bin_foler, pwd_bin_foler, pwd_checkm_wd, bin_name)
         checkm_cmd_file.write(cmds_non_qsub)
         out.write(cmds)
         out.close()

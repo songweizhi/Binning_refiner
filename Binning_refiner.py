@@ -196,6 +196,8 @@ if len(bin_folder_2_bins_ext_list_uniq) > 1:
 else:
     pass
 
+
+
 # remove existing output folder, if any
 if os.path.isdir(output_folder):
     shutil.rmtree(output_folder)
@@ -266,8 +268,8 @@ googlevis_input_filtered = open(pwd_googlevis_input_filtered, 'w')
 new_bin_contigs = open(pwd_new_bin_contigs, 'w')
 new_bin_contigs.write('Refined_bin_name\tRefined_bin_length\tContigs_in_refined_bin\n')
 
-googlevis_input.write('%s,%s,Length_in_MB\n' % (input_bin_folder_1, input_bin_folder_2))
-googlevis_input_filtered.write('%s,%s,Length_in_MB\n' % (input_bin_folder_1, input_bin_folder_2))
+googlevis_input.write('%s,%s,Length_in_Mbp\n' % (input_bin_folder_1, input_bin_folder_2))
+googlevis_input_filtered.write('%s,%s,Length_in_Mbp\n' % (input_bin_folder_1, input_bin_folder_2))
 
 current_match = ''
 current_match_under_score = ''
