@@ -22,6 +22,8 @@ parser.add_argument('-2',
                     help='path to 2nd bin folder',
                     required=True)
 
+
+
 parser.add_argument('-r',
                     help='path to refined bin folder',
                     required=True)
