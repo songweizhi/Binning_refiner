@@ -21,9 +21,7 @@ import glob
 from time import sleep
 import shutil
 import argparse
-from sys import stdout
 from Bio import SeqIO
-from lib.identity_list_ploter import plot_identity_list
 from lib.GoogleVis_Sankey_plotter import GoogleVis_Sankey_plotter
 
 
