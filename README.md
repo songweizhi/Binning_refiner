@@ -3,10 +3,24 @@ Binning_refiner
 
 + Binning_refiner: Improving genome bins through the combination of different binning programs
 + A manuscript describing how it works and its performance on mock and real metagenomic datasets can be found at doc/manual.
-+ Version: 2.0.0
++ Version: 1.1
 + Last update: 2017-01-08
 + Contact: Weizhi Song (songwz03@gmail.com), Torsten Thomas(t.thomas@unsw.edu.au)
 + Affiliation: The Centre for Marine Bio-Innovation (CMB), The University of New South Wales, Sydney, Australia
+
+Change Log:
+---
+Version 1.1 (2017-01-08):
++ Support for either 2 or 3 binning programs.
++ No need to run blast, greatly reduced process time.
++ "root" bins are excluded from consideration.
++ Able to customize the completeness cutoff for contamination-free bins.
++ Provide information for good-quality bins.
++ Able to customize the completeness and contamination cutoff for good-quality bins.
+
+Version 1.0 (2016-11-011):
+
+
 
 Dependencies:
 ---
