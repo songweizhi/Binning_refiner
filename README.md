@@ -33,11 +33,6 @@ directly under working directory.
 1. For Katana users from UNSW, a specialized manual was prepared and placed at doc/manual.
 
 
-        # For help:
-        python3 Binning_refiner.py -h
-        python3 CheckM_runner.py -h
-        python3 Get_statistics.py -h
-
         # Example commands:
         # 1. get refined bins
         python3 Binning_refiner.py -1 MetaBAT -2 MyCC
@@ -52,6 +47,13 @@ directly under working directory.
         python3 Get_statistics.py -1 MetaBAT -2 MyCC -3 Concoct -r outputs/Refined
 
 
+        # Please run the following commands for more information:
+        python3 Binning_refiner.py -h
+        python3 CheckM_runner.py -h
+        python3 Get_statistics.py -h
+
+
+
 Output files:
 ---
 
@@ -59,7 +61,7 @@ Output files:
 
 1. Refined contamination-free bins (you can customize the completeness cutoff for contamination-free bins with argument "-contamination_free_bin_completeness_cutoff" from Get_statistics.py)
 
-1. Refined good bins (you can customize the completeness and contamination cutoff for good bins with argument "-good_bin_completeness_cutoff" and "-good_bin_completeness_cutoff" from Get_statistics.py)
+1. Refined good bins (you can customize the completeness and contamination cutoff for good bins with argument "-good_bin_completeness_cutoff" and "-good_bin_contamination_cutoff" from Get_statistics.py)
 
 1. Cross-link (shared sequences) between input bins. Each band will be treated as a refined bin, the width is proportional to its size. We will get 9 refined bins in the illustration.
 
