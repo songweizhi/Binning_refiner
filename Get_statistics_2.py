@@ -2,14 +2,12 @@ import os
 import glob
 import shutil
 import argparse
-import numpy as np
-from scipy import stats
 import matplotlib as mpl
 mpl.use('Agg')
 import matplotlib.pyplot as plt
 from lib.get_array import get_array
 from lib.get_bin_size import get_bin_size
-from lib.get_bin_statistics import get_bin_statistics
+
 
 #################################################### CONFIGURATION #####################################################
 
@@ -37,17 +35,17 @@ parser.add_argument('-ms',
                     type=int,
                     help='(optional) minimum size for refined bins, default = 524288 (0.5MB)')
 
-parser.add_argument('-good_bin_completeness',
+parser.add_argument('-good_bin_completeness_cutoff',
                     required=False,
                     default=70,
                     type=int,
-                    help='(optional) the completeness cutoff of good bins')
+                    help='(optional) the completeness cutoff for good bins')
 
-parser.add_argument('-good_bin_contamination',
+parser.add_argument('-good_bin_contamination_cutoff',
                     required=False,
                     default=5,
                     type=int,
-                    help='(optional) the contamination cutoff of good bins')
+                    help='(optional) the contamination cutoff for good bins')
 
 
 args = vars(parser.parse_args())
@@ -59,12 +57,10 @@ if input_bin_folder_1[-1] == '/':
     input_bin_folder_1 = input_bin_folder_1[:-1]
 input_bin_folder_list.append(input_bin_folder_1)
 
-
 input_bin_folder_2 = args['2']
 if input_bin_folder_2[-1] == '/':
     input_bin_folder_2 = input_bin_folder_2[:-1]
 input_bin_folder_list.append(input_bin_folder_2)
-
 
 if args['3'] != None:
     input_bin_folder_3 = args['3']
@@ -72,13 +68,15 @@ if args['3'] != None:
         input_bin_folder_3 = input_bin_folder_3[:-1]
     input_bin_folder_list.append(input_bin_folder_3)
 
-
 input_refined_bin_folder = args['r']
 if input_refined_bin_folder[-1] == '/':
     input_refined_bin_folder = input_refined_bin_folder[:-1]
 input_bin_folder_list.append(input_refined_bin_folder)
 
 bin_size_cutoff = int(args['ms'])
+good_bin_completeness_cutoff = int(args['good_bin_completeness_cutoff'])
+good_bin_contamination_cutoff = int(args['good_bin_contamination_cutoff'])
+
 
 
 ########################################################################################################################
@@ -86,11 +84,9 @@ bin_size_cutoff = int(args['ms'])
 # define folder/file name
 wd = os.getcwd()
 checkm_wd_name = 'checkm_wd'
-contamination_free_refined_bin_folder = 'contamination_free_refined_bins'
-statistics_txt_filename = 'Bin_qualities_overall.txt'
-pwd_statistics_txt = '%s/%s' % (wd, statistics_txt_filename)
-pwd_contamination_free_refined_bin_folder = '%s/%s' % (args['r'], contamination_free_refined_bin_folder)
 pwd_statistics_image = '%s/outputs/Bin_qualities.png' % (wd)
+pwd_refined_con_free_bin_folder = '%s/outputs/Refined_contamination_free_bins' % (wd)
+pwd_refined_good_bin_folder = '%s/outputs/Refined_good_bins' % (wd)
 
 #################################################### Get input data ####################################################
 
@@ -139,8 +135,9 @@ for each_bin_folder in input_bin_folder_list:
     quality_file_handle_unploted = open(pwd_quality_file_unploted, 'w')
     quality_file_handle_qualified = open(pwd_quality_file_qualified, 'w')
 
-    quality_file_handle_unploted.write('Bin_name\tMarker_lineage\tBin_size(Mbp)\tCompleteness\tContamination\tHeterogeneity\n')
-    quality_file_handle_qualified.write('Bin_name\tMarker_lineage\tBin_size(Mbp)\tCompleteness\tContamination\tHeterogeneity\n')
+    quality_file_first_line = 'Bin_name\tMarker_lineage\tBin_size(Mbp)\tCompleteness\tContamination\tHeterogeneity\n'
+    quality_file_handle_unploted.write(quality_file_first_line)
+    quality_file_handle_qualified.write(quality_file_first_line)
 
     unploted_bin_number = 0
     for each_bin in each_bin_folder_bin_list:
@@ -150,7 +147,6 @@ for each_bin_folder in input_bin_folder_list:
 
         bin_size = get_bin_size(pwd_bin_file)
         bin_size_Mbp = float("{0:.2f}".format(bin_size / (1024 * 1024)))
-        #print(bin_size_Mbp)
 
         # check whether quality file exist
         if os.path.isfile(pwd_bin_quality_file):
@@ -171,10 +167,11 @@ for each_bin_folder in input_bin_folder_list:
                     contamination = float(quality_split_new[13])
                     Heterogeneity = float(quality_split_new[14])
 
-                    if (Marker_lineage != 'root') and (bin_size_Mbp >= 0.5):
-                        quality_file_handle_qualified.write('%s\t%s\t%s\t%s\t%s\t%s\n' % (bin_name, Marker_lineage, bin_size_Mbp, completeness, contamination, Heterogeneity))
-                    elif (Marker_lineage == 'root') or (bin_size_Mbp < 0.5):
-                        quality_file_handle_unploted.write('%s\t%s\t%s\t%s\t%s\t%s\n' % (bin_name, Marker_lineage, bin_size_Mbp, completeness, contamination, Heterogeneity))
+                    output_line = '%s\t%s\t%s\t%s\t%s\t%s\n' % (bin_name, Marker_lineage, bin_size_Mbp, completeness, contamination, Heterogeneity)
+                    if (Marker_lineage != 'root') and (bin_size >= args['ms']):
+                        quality_file_handle_qualified.write(output_line)
+                    elif (Marker_lineage == 'root') or (bin_size < args['ms']):
+                        quality_file_handle_unploted.write(output_line)
                         unploted_bin_number += 1
 
     quality_file_handle_unploted.close()
@@ -191,11 +188,13 @@ list_of_contamination_list = []
 list_of_bin_size_list = []
 list_of_bin_number = []
 list_of_good_bin_number = []
-list_of_contamination_free_bin_number = []
+list_of_con_free_bin_number = []
 list_of_total_length = []
 list_of_good_bin_total_length = []
-list_of_contamination_free_bin_total_length = []
-list_of_contamination_free_bin_list = []
+list_of_con_free_bin_total_length = []
+list_of_con_free_bin_list = []
+list_of_good_bin_list = []
+
 
 for each_bin_folder_2 in input_bin_folder_list:
     if '/' in each_bin_folder_2:
@@ -208,13 +207,14 @@ for each_bin_folder_2 in input_bin_folder_list:
     completeness_list = []
     contamination_list = []
     bin_size_list = []
-    contamination_free_bin_list = []
+    con_free_bin_list = []
+    good_bin_list = []
     bin_number = 0
     good_bin_number = 0
-    contamination_free_bin_number = 0
+    con_free_bin_number = 0
     total_length = 0
     good_bin_total_length = 0
-    contamination_free_bin_total_length = 0
+    con_free_bin_total_length = 0
 
     for each_bin_quality in bin_qualities:
         each_bin_quality_split = each_bin_quality.strip().split('\t')
@@ -231,43 +231,46 @@ for each_bin_folder_2 in input_bin_folder_list:
             bin_number += 1
             total_length += bin_size_Mbp_2
 
+
             # good quality bins
-            if (completeness_2 >= 70) and (contamination_2 <= 5):
+            if (completeness_2 >= good_bin_completeness_cutoff) and (contamination_2 <= good_bin_contamination_cutoff):
                 good_bin_number += 1
                 good_bin_total_length += bin_size_Mbp_2
+                good_bin_list.append(each_bin_quality_split[0])
 
             # contamination-free bins
             if contamination_2 == 0:
-                contamination_free_bin_number += 1
-                contamination_free_bin_total_length += bin_size_Mbp_2
-                contamination_free_bin_list.append(each_bin_quality_split[0])
+                con_free_bin_number += 1
+                con_free_bin_total_length += bin_size_Mbp_2
+                con_free_bin_list.append(each_bin_quality_split[0])
 
     total_length = float("{0:.2f}".format(total_length))
     good_bin_total_length = float("{0:.2f}".format(good_bin_total_length))
-    contamination_free_bin_total_length = float("{0:.2f}".format(contamination_free_bin_total_length))
+    con_free_bin_total_length = float("{0:.2f}".format(con_free_bin_total_length))
 
     list_of_completeness_list.append(completeness_list)
     list_of_contamination_list.append(contamination_list)
     list_of_bin_size_list.append(bin_size_list)
     list_of_bin_number.append(bin_number)
     list_of_good_bin_number.append(good_bin_number)
-    list_of_contamination_free_bin_number.append(contamination_free_bin_number)
+    list_of_con_free_bin_number.append(con_free_bin_number)
     list_of_total_length.append(total_length)
     list_of_good_bin_total_length.append(good_bin_total_length)
-    list_of_contamination_free_bin_total_length.append(contamination_free_bin_total_length)
-    list_of_contamination_free_bin_list.append(contamination_free_bin_list)
+    list_of_con_free_bin_total_length.append(con_free_bin_total_length)
+    list_of_con_free_bin_list.append(con_free_bin_list)
+    list_of_good_bin_list.append(good_bin_list)
 
 
 # turn number list to array
-list_of_completeness_list_array =                   list(map(get_array, list_of_completeness_list))
-list_of_contamination_list_array =                  list(map(get_array, list_of_contamination_list))
-list_of_bin_size_list_array =                       list(map(get_array, list_of_bin_size_list))
-list_of_bin_number_array =                          list(map(get_array, list_of_bin_number))
-list_of_good_bin_number_array =                     list(map(get_array, list_of_good_bin_number))
-list_of_contamination_free_bin_number_array =       list(map(get_array, list_of_contamination_free_bin_number))
-list_of_total_length_array =                        list(map(get_array, list_of_total_length))
-list_of_good_bin_total_length_array =               list(map(get_array, list_of_good_bin_total_length))
-list_of_contamination_free_bin_total_length_array = list(map(get_array, list_of_contamination_free_bin_total_length))
+list_of_completeness_list_array =         list(map(get_array, list_of_completeness_list))
+list_of_contamination_list_array =        list(map(get_array, list_of_contamination_list))
+list_of_bin_size_list_array =             list(map(get_array, list_of_bin_size_list))
+list_of_bin_number_array =                list(map(get_array, list_of_bin_number))
+list_of_good_bin_number_array =           list(map(get_array, list_of_good_bin_number))
+list_of_con_free_bin_number_array =       list(map(get_array, list_of_con_free_bin_number))
+list_of_total_length_array =              list(map(get_array, list_of_total_length))
+list_of_good_bin_total_length_array =     list(map(get_array, list_of_good_bin_total_length))
+list_of_con_free_bin_total_length_array = list(map(get_array, list_of_con_free_bin_total_length))
 
 
 ###################################################### Plot Image ######################################################
@@ -307,19 +310,18 @@ for each_bin_set in input_bin_folder_list:
                                                 marker='o', color=color_list[n], s=30)
 
     # dot for good bins
-    plot_point_good_bin = axes[axes_num].scatter(list_of_good_bin_number_array[n],
-                                                     list_of_good_bin_total_length_array[n],
+    plot_point_good_bin = axes[axes_num].scatter(list_of_good_bin_number_array[n],  # get x axis value
+                                                     list_of_good_bin_total_length_array[n],  # get y axis value
                                                      marker='^', color=color_list[n], s=30)
 
     # dot for contamination free bins
-    plot_point_con_free_bin = axes[axes_num].scatter(list_of_contamination_free_bin_number_array[n],
-                                                     list_of_contamination_free_bin_total_length_array[n],
+    plot_point_con_free_bin = axes[axes_num].scatter(list_of_con_free_bin_number_array[n],  # get x axis value
+                                                     list_of_con_free_bin_total_length_array[n],  # get y axis value
                                                      marker='s', color=color_list[n], s=30)
     dots_all_bin.append(plot_point_all_bin)
     dots_good_bin.append(plot_point_good_bin)
     dots_con_free_bin.append(plot_point_con_free_bin)
     n += 1
-
 
 #add legend to scatter plot
 if len(input_bin_folder_list) == 3:
@@ -342,7 +344,6 @@ if len(input_bin_folder_list) == 3:
                            '%s_al' % label_name_list[1][:2],
                            '%s_al' % label_name_list[2][:2]),
                           loc='upper center', ncol=3, fontsize=11, scatterpoints=1)
-
 
 if len(input_bin_folder_list) == 4:
     axes[axes_num].legend((dots_con_free_bin[0],
@@ -371,20 +372,18 @@ if len(input_bin_folder_list) == 4:
                            '%s_al' % label_name_list[3][:2]),
                           loc='upper center', ncol=3, fontsize=11, scatterpoints=1)
 
-
 # add title and x/y axis name to scatter plot
 axes[axes_num].set_title('Bin Number and Total Length', fontsize=12)
 axes[axes_num].set_xlabel('Bin Number')
 axes[axes_num].set_ylabel('Total Length (Mbp)')
 
-
 # set x/y axis range
-x_min = min(list_of_contamination_free_bin_number_array) - min(list_of_bin_number_array) / 5
+x_min = min(list_of_con_free_bin_number_array) - min(list_of_bin_number_array) / 5
 if x_min < 0:
     x_min = 0
 
 x_max = max(list_of_bin_number_array) + min(list_of_bin_number_array) / 5
-y_min = min(list_of_contamination_free_bin_total_length_array) - min(list_of_total_length_array) / 5
+y_min = min(list_of_con_free_bin_total_length_array) - min(list_of_total_length_array) / 5
 if y_min < 0:
     y_min = 0
 
@@ -394,3 +393,24 @@ axes[axes_num].axis([x_min, x_max, y_min, y_max])
 fig.subplots_adjust(wspace=0.25)
 plt.savefig(pwd_statistics_image, dpi=300, format='png')
 
+
+# create folder to hold good/contamination-free refined bins
+refined_con_free_bin_list = list_of_con_free_bin_list[-1]
+refined_good_bin_list = list_of_good_bin_list[-1]
+
+if os.path.isdir(pwd_refined_con_free_bin_folder):
+    shutil.rmtree(pwd_refined_con_free_bin_folder)
+    shutil.rmtree(pwd_refined_good_bin_folder)
+    os.mkdir(pwd_refined_con_free_bin_folder)
+    os.mkdir(pwd_refined_good_bin_folder)
+else:
+    os.mkdir(pwd_refined_con_free_bin_folder)
+    os.mkdir(pwd_refined_good_bin_folder)
+
+for each_refined_con_free_bin in refined_con_free_bin_list:
+    pwd_each_refined_con_free_bin = '%s/outputs/Refined/%s.fasta' % (wd, each_refined_con_free_bin)
+    os.system('cp %s %s' % (pwd_each_refined_con_free_bin, pwd_refined_con_free_bin_folder))
+
+for each_refined_good_bin in refined_good_bin_list:
+    pwd_each_refined_good_bin = '%s/outputs/Refined/%s.fasta' % (wd, each_refined_good_bin)
+    os.system('cp %s %s' % (pwd_each_refined_good_bin, pwd_refined_good_bin_folder))
