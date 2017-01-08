@@ -60,7 +60,7 @@ directly under working directory.
 Output files:
 ---
 
-1. All refined bins larger than defined size cutoff
+1. All refined bins larger than defined size cutoff and their qualities
 
 1. Refined contamination-free bins (you can customize the completeness cutoff for contamination-free bins with argument "-contamination_free_bin_completeness_cutoff" from Get_statistics.py)
 
