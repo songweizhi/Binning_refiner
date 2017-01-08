@@ -2,7 +2,7 @@ Binning_refiner
 ---
 
 + Binning_refiner: Improving genome bins through the combination of different binning programs
-+ A manuscript describing how it works and its performance on mock and real metagenomic datasets can be found at doc/manual.
++ A manuscript describing how it works and its performance on mock and real metagenomic datasets can be found in folder "manual".
 + Version: 1.1
 + Last update: 2017-01-08
 + Contact: Weizhi Song (songwz03@gmail.com), Torsten Thomas(t.thomas@unsw.edu.au)
@@ -81,8 +81,8 @@ Output files:
 
 1. Cross-link (shared sequences) between input bins. Each band will be treated as a refined bin, the width is proportional to its size. We will get 9 refined bins in the illustration.
 
-    ![Sankey_plot](doc/images/sankey_plot.jpg)
+    ![Sankey_plot](images/sankey_plot.jpg)
 
 1. Statistics of input and refined bins.
 
-    ![Statistics](doc/images/statistics.png)
+    ![Statistics](images/statistics.png)
