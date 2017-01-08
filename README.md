@@ -61,12 +61,9 @@ Output files:
 
 1. Refined good bins (you can customize the completeness and contamination cutoff for good bins with argument "-good_bin_completeness_cutoff" and "-good_bin_completeness_cutoff" from Get_statistics.py)
 
-1. Cross-link (shared sequences) between input bins
+1. Cross-link (shared sequences) between input bins. Each band will be treated as a refined bin, the width is proportional to its size. We will get 9 refined bins in the illustration.
 
     ![Sankey_plot](doc/images/sankey_plot.jpg)
-
-    Each band will be treated as a refined bin, its width is proportional to the total length of shared contigs between
-    two connected bins. We will get 9 refined bins in the above illustration.
 
 1. Statistics of input and refined bins
 
