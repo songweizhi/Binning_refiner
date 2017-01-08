@@ -34,16 +34,23 @@ directly under working directory.
 
 
         # Example commands:
+
         # 1. get refined bins
+        # For two binning programs
         python3 Binning_refiner.py -1 MetaBAT -2 MyCC
+        # For three binning programs
         python3 Binning_refiner.py -1 MetaBAT -2 MyCC -3 Concoct
 
         # 2. get qualities for each of the three bin sets
+        # For two binning programs
         python3 CheckM_runner.py -1 MetaBAT -2 MyCC -r outputs/Refined -pbs -qsub
+        # For three binning programs
         python3 CheckM_runner.py -1 MetaBAT -2 MyCC -3 Concoct -r outputs/Refined -pbs -qsub
 
         # 3. get statistics
+        # For two binning programs
         python3 Get_statistics.py -1 MetaBAT -2 MyCC -r outputs/Refined
+        # For three binning programs
         python3 Get_statistics.py -1 MetaBAT -2 MyCC -3 Concoct -r outputs/Refined
 
         # Please run the following commands for more information:
