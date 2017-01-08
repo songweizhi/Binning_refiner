@@ -8,19 +8,6 @@ Binning_refiner
 + Contact: Weizhi Song (songwz03@gmail.com), Torsten Thomas(t.thomas@unsw.edu.au)
 + Affiliation: The Centre for Marine Bio-Innovation (CMB), The University of New South Wales, Sydney, Australia
 
-Change Log:
----
-Version 1.1 (2017-01-08):
-+ added support for 3 binning programs.
-+ no need to run blast, greatly reduced process time.
-+ "root" bins are excluded from consideration.
-+ users are able to customize the completeness cutoff for contamination-free bins now.
-+ added information for good-quality bins.
-+ users are able to customize the completeness and contamination cutoff for good-quality bins.
-
-Version 1.0 (2016-11-011):
-
-
 Dependencies:
 ---
 
@@ -31,6 +18,19 @@ Dependencies:
 + Python module: [Matplotlib](http://matplotlib.org)
 + Python module: [BioPython](https://github.com/biopython/biopython.github.io/)
 + [CheckM](http://ecogenomics.github.io/CheckM/)
+
+Change Log:
+---
+Version 1.1 (2017-01-08):
++ added support for 3 binning programs.
++ no need to run blast, greatly reduced process time.
++ "root" bins are excluded from consideration.
++ users are able to customize the completeness cutoff for contamination-free bins now.
++ added information for good-quality bins.
++ users are able to customize the completeness and contamination cutoff for good-quality bins.
+
+Version 1.0 (2016-11-11):
++ none
 
 How to run:
 ---
