@@ -90,7 +90,7 @@ pwd_refined_good_bin_folder = '%s/outputs/Refined_good_bins' % (wd)
 
 #################################################### Get input data ####################################################
 
-
+# read in quality files
 for each_bin_folder in input_bin_folder_list:
     pwd_each_bin_folder = '%s/%s' % (wd, each_bin_folder)
     each_bin_folder_bin_files = '%s/*.fa*' % pwd_each_bin_folder
@@ -195,7 +195,6 @@ list_of_con_free_bin_total_length = []
 list_of_con_free_bin_list = []
 list_of_good_bin_list = []
 
-
 for each_bin_folder_2 in input_bin_folder_list:
     if '/' in each_bin_folder_2:
         each_bin_folder_2_split = each_bin_folder_2.split('/')
@@ -230,7 +229,6 @@ for each_bin_folder_2 in input_bin_folder_list:
             # all bins
             bin_number += 1
             total_length += bin_size_Mbp_2
-
 
             # good quality bins
             if (completeness_2 >= good_bin_completeness_cutoff) and (contamination_2 <= good_bin_contamination_cutoff):
