@@ -46,7 +46,6 @@ directly under working directory.
         python3 Get_statistics.py -1 MetaBAT -2 MyCC -r outputs/Refined
         python3 Get_statistics.py -1 MetaBAT -2 MyCC -3 Concoct -r outputs/Refined
 
-
         # Please run the following commands for more information:
         python3 Binning_refiner.py -h
         python3 CheckM_runner.py -h
