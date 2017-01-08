@@ -1,12 +1,11 @@
 
-version 2.0.0
+version 2.0.0 (2017-01-08)
 1. Support for either 2 or 3 binning programs.
 2. No need to run blast, greatly reduced process time.
 3. "root" bins are excluded from consideration.
 4. Able to customize the completeness cutoff for contamination-free bins.
 5. Provide information for good-quality bins.
 6. Able to customize the completeness and contamination cutoff for good-quality bins.
-
 
 To-do list:
 All done
