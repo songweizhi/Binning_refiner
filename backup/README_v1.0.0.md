@@ -18,11 +18,12 @@ Dependencies:
 + Python module: [Matplotlib](http://matplotlib.org)
 + Python module: [BioPython](https://github.com/biopython/biopython.github.io/)
 + [CheckM](http://ecogenomics.github.io/CheckM/)
++ [Blast+ 2.2.31](http://www.ncbi.nlm.nih.gov/news/06-16-2015-blast-plus-update/)
 
 How to run:
 ---
 
-1. Binning_refiner takes two or three binning programs produced bin sets as inputs. You need to define a working directory to
+1. Binning_refiner takes two binning programs produced bin sets as inputs. You need to define a working directory to
 hold all input and output files. Input bin sets from different binning programs need to be placed in different folders
 directly under working directory.
 
@@ -35,31 +36,25 @@ directly under working directory.
 
         # For help:
         python3 Binning_refiner.py -h
-        python3 CheckM_runner.py -h
+        python3 CheckM_qsuber.py -h
         python3 Get_statistics.py -h
 
         # Example commands:
         # 1. get refined bins
         python3 Binning_refiner.py -1 MetaBAT -2 MyCC
-        python3 Binning_refiner.py -1 MetaBAT -2 MyCC -3 Concoct
 
         # 2. get qualities for each of the three bin sets
-        python3 CheckM_runner.py -1 MetaBAT -2 MyCC -r outputs/Refined -pbs -qsub
-        python3 CheckM_runner.py -1 MetaBAT -2 MyCC -3 Concoct -r outputs/Refined -pbs -qsub
+        python3 CheckM_qsuber.py -e your_email_address
 
         # 3. get statistics
         python3 Get_statistics.py -1 MetaBAT -2 MyCC -r outputs/Refined
-        python3 Get_statistics.py -1 MetaBAT -2 MyCC -3 Concoct -r outputs/Refined
-
 
 Output files:
 ---
 
 1. All refined bins larger than defined size cutoff
 
-1. Refined contamination-free bins
-
-1. Refined good bins (you can customize the completeness and contamination cutoff for good bin with argument "-good_bin_completeness_cutoff" and "-good_bin_completeness_cutoff" from Get_statistics.py)
+1. Contamination-free refined bins
 
 1. Cross-link (shared sequences) between input bins
 
