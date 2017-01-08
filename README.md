@@ -57,20 +57,16 @@ Output files:
 
 1. All refined bins larger than defined size cutoff
 
-1. Refined contamination-free bins
+1. Refined contamination-free bins (you can customize the completeness cutoff for contamination-free bins with argument "-contamination_free_bin_completeness_cutoff" from Get_statistics.py)
 
-1. Refined good bins (you can customize the completeness and contamination cutoff for good bin with argument "-good_bin_completeness_cutoff" and "-good_bin_completeness_cutoff" from Get_statistics.py)
+1. Refined good bins (you can customize the completeness and contamination cutoff for good bins with argument "-good_bin_completeness_cutoff" and "-good_bin_completeness_cutoff" from Get_statistics.py)
 
 1. Cross-link (shared sequences) between input bins
 
     ![Sankey_plot](doc/images/sankey_plot.jpg)
 
     Each band will be treated as a refined bin, its width is proportional to the total length of shared contigs between
-    two connected bins. We will get 9 refined bins in the above illustration:
-
-        MetaBAT_bin2___MyCC_bin5.fasta   MetaBAT_bin1___MyCC_bin5.fasta   MetaBAT_bin6___MyCC_bin1.fasta
-        MetaBAT_bin6___MyCC_bin4.fasta   MetaBAT_bin3___MyCC_bin1.fasta   MetaBAT_bin3___MyCC_bin4.fasta
-        MetaBAT_bin4___MyCC_bin2.fasta   MetaBAT_bin5___MyCC_bin3.fasta   MetaBAT_bin5___MyCC_bin6.fasta
+    two connected bins. We will get 9 refined bins in the above illustration.
 
 1. Statistics of input and refined bins
 

@@ -47,6 +47,12 @@ parser.add_argument('-good_bin_contamination_cutoff',
                     type=int,
                     help='(optional) the contamination cutoff for good bins')
 
+parser.add_argument('-contamination_free_bin_completeness_cutoff',
+                    required=False,
+                    default=30,
+                    type=int,
+                    help='(optional) the contamination cutoff for contamination-free bins')
+
 
 args = vars(parser.parse_args())
 
@@ -76,7 +82,7 @@ input_bin_folder_list.append(input_refined_bin_folder)
 bin_size_cutoff = int(args['ms'])
 good_bin_completeness_cutoff = int(args['good_bin_completeness_cutoff'])
 good_bin_contamination_cutoff = int(args['good_bin_contamination_cutoff'])
-
+contamination_free_bin_completeness_cutoff = int(args['contamination_free_bin_completeness_cutoff'])
 
 
 ########################################################################################################################
@@ -237,7 +243,7 @@ for each_bin_folder_2 in input_bin_folder_list:
                 good_bin_list.append(each_bin_quality_split[0])
 
             # contamination-free bins
-            if contamination_2 == 0:
+            if (completeness_2 >= contamination_free_bin_completeness_cutoff) and (contamination_2 == 0):
                 con_free_bin_number += 1
                 con_free_bin_total_length += bin_size_Mbp_2
                 con_free_bin_list.append(each_bin_quality_split[0])
