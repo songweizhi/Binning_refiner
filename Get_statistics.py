@@ -111,7 +111,7 @@ list_of_contamination_free_bin_total_length_array = list(map(get_array, list_of_
 fig, axes = plt.subplots(nrows=1, ncols=4, figsize=(24, 6))
 label_name_list = [bin_folders[0].split('/')[-1], bin_folders[1].split('/')[-1], bin_folders[2].split('/')[-1]]
 
-# box plot of completeness, contamination and bin size
+# plot box plot of completeness, contamination and bin size
 boxplot_inputs = [list_of_completeness_list_array, list_of_contamination_list_array, list_of_bin_size_list_array]
 title_list = ['Completeness (CheckM)', 'Contamination (CheckM)', 'Bin Size (Mbp)']
 n = 0
@@ -120,7 +120,7 @@ for each_plot in boxplot_inputs:
     axes[n].set_title(title_list[n], fontsize=12)
     n += 1
 
-# scatter plot for bin number and total length
+# plot scatter plot for bin number and total length
 dots_all_bin = []
 dots_con_free_bin = []
 n = 0
