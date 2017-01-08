@@ -11,15 +11,14 @@ Binning_refiner
 Change Log:
 ---
 Version 1.1 (2017-01-08):
-+ Support for either 2 or 3 binning programs.
-+ No need to run blast, greatly reduced process time.
++ added support for 3 binning programs.
++ no need to run blast, greatly reduced process time.
 + "root" bins are excluded from consideration.
-+ Able to customize the completeness cutoff for contamination-free bins.
-+ Provide information for good-quality bins.
-+ Able to customize the completeness and contamination cutoff for good-quality bins.
++ users are able to customize the completeness cutoff for contamination-free bins now.
++ added information for good-quality bins.
++ users are able to customize the completeness and contamination cutoff for good-quality bins.
 
 Version 1.0 (2016-11-011):
-
 
 
 Dependencies:
@@ -64,7 +63,7 @@ directly under working directory.
         # or
         python3 Get_statistics.py -1 MetaBAT -2 MyCC -3 Concoct -r outputs/Refined
 
-        # Please run the following commands for more information:
+        # For more information:
         python3 Binning_refiner.py -h
         python3 CheckM_runner.py -h
         python3 Get_statistics.py -h
