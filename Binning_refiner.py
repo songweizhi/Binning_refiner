@@ -150,6 +150,15 @@ for each_folder in input_bin_folder_list:
     os.system('rm -r %s/%s/%s_new' % (wd, output_folder, each_folder))
 os.system('cat %s/%s/combined_*_bins.fa > %s' % (wd, output_folder, combined_all_bins_file))
 
+if len(input_bin_folder_list) == 2:
+    pwd_combined_folder_1_bins = '%s/%s/combined_%s_bins.fa' % (wd, output_folder, input_bin_folder_1)
+    pwd_combined_folder_2_bins = '%s/%s/combined_%s_bins.fa' % (wd, output_folder, input_bin_folder_2)
+    os.system('cat %s %s > %s' % (pwd_combined_folder_1_bins, pwd_combined_folder_2_bins, combined_all_bins_file))
+if len(input_bin_folder_list) == 3:
+    pwd_combined_folder_1_bins = '%s/%s/combined_%s_bins.fa' % (wd, output_folder, input_bin_folder_1)
+    pwd_combined_folder_2_bins = '%s/%s/combined_%s_bins.fa' % (wd, output_folder, input_bin_folder_2)
+    pwd_combined_folder_3_bins = '%s/%s/combined_%s_bins.fa' % (wd, output_folder, input_bin_folder_3)
+    os.system('cat %s %s %s > %s' % (pwd_combined_folder_1_bins, pwd_combined_folder_2_bins, pwd_combined_folder_3_bins, combined_all_bins_file))
 
 combined_all_bins = SeqIO.parse(combined_all_bins_file, 'fasta')
 contig_bin_dict = {}
@@ -172,6 +181,9 @@ contig_assignments = open(contig_assignments_file, 'w')
 for each in contig_bin_dict:
     if len(contig_bin_dict[each]) == len(input_bin_folder_list):
         contig_assignments.write('%s\t%s\t%s\n' % ('\t'.join(contig_bin_dict[each]), each, contig_length_dict[each]))
+        print(contig_bin_dict[each])
+        print('\t'.join(contig_bin_dict[each]))
+        print('\n')
 contig_assignments.close()
 
 

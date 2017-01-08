@@ -2,7 +2,7 @@ Binning_refiner
 ---
 
 + Binning_refiner: Improving genome bins through the combination of different binning programs
-+ A manuscript describing how it works and its performance on mock and real metagenomic datasets can be found in folder "manual".
++ A manuscript describing how it works and its performance on mock and real metagenomic datasets can be found in the "manual" folder.
 + Version: 1.1
 + Last update: 2017-01-08
 + Contact: Weizhi Song (songwz03@gmail.com), Torsten Thomas(t.thomas@unsw.edu.au)
