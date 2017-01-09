@@ -21,14 +21,6 @@ import glob
 import shutil
 import argparse
 
-"""
-
-    It will:
-    1. Create a new folder for each of your input bins and copy your bin into its corresponding folder
-    2. Generate qsub file to run CheckM for each input bin
-    3. Submit generated qsub files
-
-"""
 
 #################################################### CONFIGURATION #####################################################
 

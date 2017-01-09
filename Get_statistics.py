@@ -102,7 +102,6 @@ good_bin_completeness_cutoff = int(args['good_bin_completeness_cutoff'])
 good_bin_contamination_cutoff = int(args['good_bin_contamination_cutoff'])
 contamination_free_bin_completeness_cutoff = int(args['contamination_free_bin_completeness_cutoff'])
 
-
 ########################################################################################################################
 
 # define folder/file name

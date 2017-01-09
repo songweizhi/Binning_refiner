@@ -80,7 +80,6 @@ pwd_output_folder = '%s/%s' % (wd, output_folder)
 
 ########################################################################################################################
 
-
 # get bin name list
 bin_folder_1_bins_files = '%s/%s/*.fa*' % (wd, input_bin_folder_1)
 bin_folder_2_bins_files = '%s/%s/*.fa*' % (wd, input_bin_folder_2)

@@ -69,7 +69,6 @@ directly under working directory.
         python3 Get_statistics.py -h
 
 
-
 Output files:
 ---
 
