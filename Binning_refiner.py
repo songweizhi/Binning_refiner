@@ -18,9 +18,10 @@
 
 import os
 import glob
-from time import sleep
 import shutil
 import argparse
+from time import sleep
+from sys import stdout
 from Bio import SeqIO
 from lib.GoogleVis_Sankey_plotter import GoogleVis_Sankey_plotter
 
@@ -70,7 +71,6 @@ if args['3'] == None:
 else:
     print('Specified 3 input bin sets: -1 %s -2 %s -3 %s' % (input_bin_folder_1, input_bin_folder_2, input_bin_folder_3))
     input_bin_folder_list = [input_bin_folder_1, input_bin_folder_2, input_bin_folder_3]
-
 
 ################################################ Define folder/file name ###############################################
 
@@ -132,6 +132,8 @@ else:
 combined_all_bins_file = '%s/%s/combined_all_bins.fasta' % (wd, output_folder)
 separator = '__'
 for each_folder in input_bin_folder_list:
+    sleep(1)
+    print('Add folder/bin name to contig name for %s bins' % each_folder)
     os.mkdir('%s/%s/%s_new' % (wd, output_folder, each_folder))
     # add binning program and bin id to metabat_bin's contig name
     each_folder_bins = folder_bins_dict[each_folder]
@@ -148,8 +150,10 @@ for each_folder in input_bin_folder_list:
     # Combine all new bins
     os.system('cat %s/%s/%s_new/*.fasta > %s/%s/combined_%s_bins.fa' % (wd, output_folder, each_folder, wd, output_folder, each_folder))
     os.system('rm -r %s/%s/%s_new' % (wd, output_folder, each_folder))
-os.system('cat %s/%s/combined_*_bins.fa > %s' % (wd, output_folder, combined_all_bins_file))
 
+# combine all modified bins together
+sleep(1)
+print('Combine all bins together')
 if len(input_bin_folder_list) == 2:
     pwd_combined_folder_1_bins = '%s/%s/combined_%s_bins.fa' % (wd, output_folder, input_bin_folder_1)
     pwd_combined_folder_2_bins = '%s/%s/combined_%s_bins.fa' % (wd, output_folder, input_bin_folder_2)
@@ -181,9 +185,7 @@ contig_assignments = open(contig_assignments_file, 'w')
 for each in contig_bin_dict:
     if len(contig_bin_dict[each]) == len(input_bin_folder_list):
         contig_assignments.write('%s\t%s\t%s\n' % ('\t'.join(contig_bin_dict[each]), each, contig_length_dict[each]))
-        print(contig_bin_dict[each])
-        print('\t'.join(contig_bin_dict[each]))
-        print('\n')
+
 contig_assignments.close()
 
 
@@ -222,10 +224,16 @@ for each in contig_assignments_sorted:
         current_length_total += current_length
 if current_length_total >= bin_size_cutoff:
     contig_assignments_sorted_one_line.write('Refined_%s\t%s\t%sbp\t%s\n' % (n, current_match, current_length_total,'\t'.join(current_match_contigs)))
+else:
+    n -= 1
 contig_assignments_sorted_one_line.close()
+
+refined_bin_number = n
 sleep(1)
+print('The number of refined bins: %s' % refined_bin_number)
 
 # Export refined bins and prepare input for GoogleVis
+sleep(1)
 print('Exporting refined bins and preparing input for GoogleVis sankey plot')
 separated_1 = '%s/%s/Refined_bins_sources_and_length.txt' % (wd, output_folder)
 separated_2 = '%s/%s/Refined_bins_contigs.txt' % (wd, output_folder)
@@ -249,7 +257,6 @@ for each_refined_bin in refined_bins:
         separated_1_handle.write('%s\t%sbp\t%s\n' % (each_refined_bin_name, each_refined_bin_length, '\t'.join(each_refined_bin_source)))
         separated_2_handle.write('%s\n%s\n' % (each_refined_bin_name, '\t'.join(each_refined_bin_contig)))
 
-
     if len(input_bin_folder_list) == 3:
         each_refined_bin_source = each_refined_bin_split[1:4]
         each_refined_bin_length = int(each_refined_bin_split[4][:-2])
@@ -261,6 +268,8 @@ for each_refined_bin in refined_bins:
     while m < len(each_refined_bin_source)-1:
         googlevis_input_handle.write('%s,%s,%s\n' % (each_refined_bin_source[m], each_refined_bin_source[m+1], each_refined_bin_length_mbp))
         m += 1
+
+    stdout.write('\rExtracting refined bin: %s.fasta' % each_refined_bin_name)
     refined_bin_file = '%s/%s/Refined/%s.fasta' % (wd, output_folder, each_refined_bin_name)
     refined_bin_handle = open(refined_bin_file, 'w')
     input_contigs_file = '%s/%s/combined_%s_bins.fa' % (wd, output_folder, input_bin_folder_1)
@@ -274,18 +283,20 @@ googlevis_input_handle.close()
 separated_1_handle.close()
 separated_2_handle.close()
 
-sleep(1)
+
 # get GoogleVis Sankey plot
-print('Plotting...')
 sleep(1)
+print('\nPlotting...')
 pwd_plot_html = '%s/%s/GoogleVis_Sankey_%sMbp.html' % (wd, output_folder, bin_size_cutoff_MB)
 plot_height = max(all_input_bins_number_list) * 25
 GoogleVis_Sankey_plotter(googlevis_input_file, pwd_plot_html, plot_height)
-print('Please ignore "RRuntimeWarning" if there are any above.')
 sleep(1)
+print('Please ignore "RRuntimeWarning" if there are any above.')
+
 
 
 # remove temporary files
+sleep(1)
 print('Deleting temporary files')
 os.system('rm %s' % contig_assignments_file)
 os.system('rm %s' % (combined_all_bins_file))
