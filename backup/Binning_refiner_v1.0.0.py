@@ -319,10 +319,6 @@ googlevis_input.close()
 new_bin_contigs.close()
 googlevis_input_filtered.close()
 
-# plot size distribution of all new bins
-# plot_identity_list(bin_size_list, bin_size_cutoff, 'Bin Size Distribution', pwd_output_folder)
-# plot_identity_list(bin_size_list_filtered, bin_size_cutoff, 'Bin Size Distribution (cutoff' + str(bin_size_cutoff) + 'bp)', pwd_output_folder)
-
 # plot googlevis image
 print('Plotting...')
 plot_height = max([len(bin_folder_1_bins), len(bin_folder_2_bins)]) * 25
