@@ -74,9 +74,9 @@ Output files:
 
 1. All refined bins larger than defined size cutoff and their qualities.
 
-1. Refined contamination-free bins (you can customize the completeness cutoff for contamination-free bins with argument "-contamination_free_bin_completeness_cutoff" from Get_statistics.py).
+1. Refined contamination-free bins (you can customize the completeness cutoff for contamination-free bins from Get_statistics.py).
 
-1. Refined good bins (you can customize the completeness and contamination cutoff for good bins with argument "-good_bin_completeness_cutoff" and "-good_bin_contamination_cutoff" from Get_statistics.py).
+1. Refined good-quality bins (you can customize the completeness and contamination cutoff for good-quality bins from Get_statistics.py).
 
 1. Cross-link (shared sequences) between input bins. Each band will be treated as a refined bin, the width is proportional to its size. We will get 9 refined bins in the illustration.
 
