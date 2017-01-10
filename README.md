@@ -22,15 +22,15 @@ Dependencies:
 Change Log:
 ---
 Version 1.1 (2017-01-08):
-+ added support for 3 binning programs.
++ add support for 3 binning programs.
 + no need to run blast, greatly reduced process time.
-+ "root" bins are excluded from consideration.
++ "root" bins given by CheckM are excluded from consideration.
 + users are able to customize the completeness cutoff for contamination-free bins now.
-+ added information for good-quality bins.
++ add data for good-quality bins.
 + users are able to customize the completeness and contamination cutoff for good-quality bins.
 
 Version 1.0 (2016-11-11):
-+ none
++ None
 
 How to run:
 ---
