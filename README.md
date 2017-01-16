@@ -23,7 +23,6 @@ Change Log:
 ---
 Version 1.1 (2017-01-08):
 + add support for 3 binning programs.
-+ no need to run blast, greatly reduced process time.
 + "root" bins given by CheckM are excluded from consideration.
 + users are able to customize the completeness cutoff for contamination-free bins now.
 + add data for good-quality bins.
