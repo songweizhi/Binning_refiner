@@ -57,19 +57,19 @@ parser.add_argument('-good_bin_completeness_cutoff',
                     required=False,
                     default=70,
                     type=int,
-                    help='(optional) the completeness cutoff for good bins')
+                    help='(optional) the completeness cutoff for good bins, default = 70')
 
 parser.add_argument('-good_bin_contamination_cutoff',
                     required=False,
                     default=5,
                     type=int,
-                    help='(optional) the contamination cutoff for good bins')
+                    help='(optional) the contamination cutoff for good bins, default = 5')
 
 parser.add_argument('-contamination_free_bin_completeness_cutoff',
                     required=False,
-                    default=30,
+                    default=0,
                     type=int,
-                    help='(optional) the contamination cutoff for contamination-free bins')
+                    help='(optional) the completeness cutoff for contamination-free bins, default = 0')
 
 
 args = vars(parser.parse_args())
@@ -435,3 +435,22 @@ for each_refined_con_free_bin in refined_con_free_bin_list:
 for each_refined_good_bin in refined_good_bin_list:
     pwd_each_refined_good_bin = '%s/outputs/Refined/%s.fasta' % (wd, each_refined_good_bin)
     os.system('cp %s %s' % (pwd_each_refined_good_bin, pwd_refined_good_bin_folder))
+
+# read in qualities of refined bins
+refined_bin_qualities = open('%s/outputs/Bin_qualities_Refined_qualified.txt' % wd)
+bin_qualities_good = open('%s/Bin_qualities_Refined_good.txt' % pwd_refined_good_bin_folder, 'w')
+bin_qualities_con_free = open('%s/Bin_qualities_Refined_contamination_free.txt' % pwd_refined_con_free_bin_folder, 'w')
+quality_file_first_line = 'Bin_name\tMarker_lineage\tBin_size(Mbp)\tCompleteness\tContamination\tHeterogeneity\n'
+bin_qualities_good.write(quality_file_first_line)
+bin_qualities_con_free.write(quality_file_first_line)
+for each_qualified_bin in refined_bin_qualities:
+    if not each_qualified_bin.startswith('Bin_name'):
+        each_qualified_bin_split = each_qualified_bin.strip().split('\t')
+        each_qualified_bin_completeness = float(each_qualified_bin_split[3])
+        each_qualified_bin_contamination = float(each_qualified_bin_split[4])
+        if (each_qualified_bin_completeness >= good_bin_completeness_cutoff) and (each_qualified_bin_contamination <= good_bin_contamination_cutoff):
+            bin_qualities_good.write(each_qualified_bin)
+        if (each_qualified_bin_completeness >= contamination_free_bin_completeness_cutoff) and (each_qualified_bin_contamination == 0):
+            bin_qualities_con_free.write(each_qualified_bin)
+bin_qualities_good.close()
+bin_qualities_con_free.close()
