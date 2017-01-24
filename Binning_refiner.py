@@ -276,6 +276,8 @@ for each_refined_bin in refined_bins:
     for each_input_contig in input_contigs:
         each_input_contig_id = each_input_contig.id.split(separator)[-1]
         if each_input_contig_id in each_refined_bin_contig:
+            each_input_contig.id = each_input_contig_id
+            each_input_contig.description = ''
             SeqIO.write(each_input_contig, refined_bin_handle, 'fasta')
     refined_bin_handle.close()
 googlevis_input_handle.close()
