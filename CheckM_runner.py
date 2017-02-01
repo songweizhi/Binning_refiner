@@ -64,9 +64,9 @@ parser.add_argument('-nodes',
 
 parser.add_argument('-ppn',
                     required=False,
-                    default=12,
+                    default=3,
                     type=int,
-                    help='ppn number needed (default = 12)',
+                    help='ppn number needed (default = 3)',
                     metavar='(opt)')
 
 parser.add_argument('-memory',

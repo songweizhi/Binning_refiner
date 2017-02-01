@@ -295,7 +295,6 @@ sleep(1)
 print('Please ignore "RRuntimeWarning" if there are any above.')
 
 
-
 # remove temporary files
 sleep(1)
 print('Deleting temporary files')
@@ -309,4 +308,4 @@ os.system('rm %s' % (contig_assignments_file_sorted_one_line))
 sleep(1)
 print('All done!')
 sleep(1)
-print('Please run CheckM_qsuber.py for each input/output bin set to get their qualities.')
+print('Please run CheckM_runner.py for all input/output bin set to get their qualities.')
