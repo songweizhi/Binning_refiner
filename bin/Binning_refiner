@@ -25,7 +25,7 @@ import argparse
 from time import sleep
 from sys import stdout
 from Bio import SeqIO
-from lib.GoogleVis_Sankey_plotter import GoogleVis_Sankey_plotter
+from Binning_refiner.GoogleVis_Sankey_plotter import GoogleVis_Sankey_plotter
 
 
 ##################################################### CONFIGURATION ####################################################
