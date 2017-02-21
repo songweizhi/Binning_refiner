@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # Copyright (C) 2017, Weizhi Song, Torsten Thomas.
 # songwz03@gmail.com
 # t.thomas@unsw.edu.au
@@ -23,7 +25,7 @@ import argparse
 from time import sleep
 from sys import stdout
 from Bio import SeqIO
-from lib.GoogleVis_Sankey_plotter import GoogleVis_Sankey_plotter
+from Binning_refiner.GoogleVis_Sankey_plotter import GoogleVis_Sankey_plotter
 
 
 ##################################################### CONFIGURATION ####################################################

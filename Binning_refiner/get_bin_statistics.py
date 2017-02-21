@@ -1,6 +1,6 @@
 import os
 import glob
-from lib.get_bin_size import get_bin_size
+from Binning_refiner.get_bin_size import get_bin_size
 
 def get_bin_statistics(bin_folder, checkm_wd_name, out, bin_size_cutoff):
     # get bin name list
