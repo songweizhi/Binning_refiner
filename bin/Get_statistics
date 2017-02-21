@@ -397,7 +397,7 @@ if len(input_bin_folder_list) == 4:
 
 # add title and x/y axis name to scatter plot
 axes[axes_num].set_title('Bin Number and Total Length', fontsize=12)
-axes[axes_num].set_xlabel('Bin Number')
+axes[axes_num].set_xlabel('Number of bins')
 axes[axes_num].set_ylabel('Total Length (Mbp)')
 
 # set x/y axis range

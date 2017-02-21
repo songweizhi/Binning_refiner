@@ -48,7 +48,7 @@ parser.add_argument('-ms',
                     required=False,
                     default=524288,
                     type=int,
-                    help='(optional) minimum size for refined bins, default = 524288 (0.5MB)')
+                    help='(optional) minimum size for refined bins, default = 524288 (0.5Mbp)')
 
 args = vars(parser.parse_args())
 input_bin_folder_1 = args['1']
@@ -310,4 +310,4 @@ os.system('rm %s' % (contig_assignments_file_sorted_one_line))
 sleep(1)
 print('All done!')
 sleep(1)
-print('Please run CheckM_runner.py for all input/output bin set to get their qualities.')
+print('Please run CheckM_runner.py for all input/output bin sets to get their qualities.')
