@@ -23,10 +23,12 @@ Change Log:
 ---
 Version 1.1 (2017-01-08):
 + add support for 3 binning programs.
-+ "root" bins given by CheckM are excluded from consideration.
++ no need to run blast, greatly reduced process time.
++ "root" bins given by CheckM are not included in the output plot.
 + users are able to customize the completeness cutoff for contamination-free bins now.
 + add data for good-quality bins.
 + users are able to customize the completeness and contamination cutoff for good-quality bins.
++ export customized good-quality bins to a separated folder
 
 Version 1.0 (2016-11-11):
 + None
@@ -41,6 +43,9 @@ directly under working directory.
 1. Accepted bin file extensions include 'fa', 'fas' or 'fasta'. All input bins in the same folder must have the same extension.
 
 1. Binning_refiner scripts are implemented in python3, please use python3 instead of python.
+
+1. Blast step was removed from version 1.1, Binning_refiner is now using contig id to get the shared contigs between
+different bins. which means all input bins for Binning_refiner must be derived from the same set of contigs.
 
 1. For Katana users from UNSW, a specialized manual was prepared and placed at folder "manual".
 
