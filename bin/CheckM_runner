@@ -44,13 +44,9 @@ parser.add_argument('-r',
                     required=False,
                     help='refined bin folder name')
 
-parser.add_argument('-pbs',
-                    action="store_true",
-                    help='generate PBS job scripts')
-
 parser.add_argument('-qsub',
                     action="store_true",
-                    help='submit generated PBS job scripts')
+                    help='generate PBS job scripts and submit it to the queue')
 
 parser.add_argument('-e',
                     required=False,
@@ -155,7 +151,7 @@ checkm_wd = 'checkm_wd'
 # prepare qsub file header and module lines
 header = ''
 module_lines = ''
-if args['pbs'] == True:
+if args['qsub'] == True:
     # prepare qsub file header
     line_1 = '#!/bin/bash\n'
     line_2 = '#PBS -l nodes=' + str(nodes_number) + ':ppn=' + str(ppn_number) + '\n'
@@ -227,7 +223,7 @@ for each_bin_folder in input_bin_folder_list:
         # get qsub file and submit it
         qsub_files_folder = 'qsub_files_for_checkm'
         pwd_qsub_files_folder = '%s/%s/%s/%s' % (wd, each_bin_folder, checkm_wd, qsub_files_folder)
-        if args['pbs'] == True:
+        if args['qsub'] == True:
             os.mkdir(pwd_qsub_files_folder)
 
         if '/' in each_bin_folder:
@@ -249,7 +245,7 @@ for each_bin_folder in input_bin_folder_list:
             pwd_bin = '%s/%s/%s' % (wd, each_bin_folder, each_bin)
             os.system('cp %s %s' % (pwd_bin, checkm_wd_for_current_bin))
 
-            if args['pbs'] == True:
+            if args['qsub'] == True:
                 qsub_file = '%s.sh' % bin_name
                 pwd_qsub_file = '%s/%s' % (pwd_qsub_files_folder, qsub_file)
                 qsub_file_handle = open(pwd_qsub_file, 'w')
@@ -262,9 +258,8 @@ for each_bin_folder in input_bin_folder_list:
                 checkm_cmds_file.write(cmds_non_qsub)
                 qsub_file_handle.close()
 
-                if args['qsub'] == True:
-                    os.chdir(pwd_qsub_files_folder)
-                    os.system('qsub %s' % pwd_qsub_file)
-                    os.chdir(wd)
+                os.chdir(pwd_qsub_files_folder)
+                os.system('qsub %s' % pwd_qsub_file)
+                os.chdir(wd)
 
         checkm_cmds_file.close()

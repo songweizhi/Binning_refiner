@@ -53,24 +53,24 @@ different bins. which means all input bins for Binning_refiner must be derived f
         # Example commands:
 
         # 1. get refined bins
-        python3 Binning_refiner.py -1 MetaBAT -2 MyCC
+        Binning_refiner -1 MetaBAT -2 MyCC
         # or
-        python3 Binning_refiner.py -1 MetaBAT -2 MyCC -3 Concoct
+        Binning_refiner -1 MetaBAT -2 MyCC -3 Concoct
 
-        # 2. get qualities for each of the three bin sets
-        python3 CheckM_runner.py -1 MetaBAT -2 MyCC -r outputs/Refined -pbs -qsub
+        # 2. get qualities
+        CheckM_runner -1 MetaBAT -2 MyCC -r outputs/Refined -qsub
         # or
-        python3 CheckM_runner.py -1 MetaBAT -2 MyCC -3 Concoct -r outputs/Refined -pbs -qsub
+        CheckM_runner -1 MetaBAT -2 MyCC -3 Concoct -r outputs/Refined -qsub
 
         # 3. get statistics
-        python3 Get_statistics.py -1 MetaBAT -2 MyCC -r outputs/Refined
+        Get_statistics -1 MetaBAT -2 MyCC -r outputs/Refined
         # or
-        python3 Get_statistics.py -1 MetaBAT -2 MyCC -3 Concoct -r outputs/Refined
+        Get_statistics -1 MetaBAT -2 MyCC -3 Concoct -r outputs/Refined
 
         # For more information:
-        python3 Binning_refiner.py -h
-        python3 CheckM_runner.py -h
-        python3 Get_statistics.py -h
+        Binning_refiner -h
+        CheckM_runner -h
+        Get_statistics -h
 
 
 Output files:

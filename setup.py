@@ -42,7 +42,7 @@ setup(
     ],
     keywords="metagenomics bioinformatics",
     packages=find_packages(exclude=['contrib','docs']),
-    install_requires=('rpy',
+    install_requires=('rpy2',
                       'biopython',
                       'matplotlib',
                       'numpy'),
