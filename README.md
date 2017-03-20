@@ -1,7 +1,7 @@
 Binning_refiner
 ---
 
-+ Binning_refiner: Improving genome bins through the combination of different binning programs
++ Binning_refiner: Improving genome bins through the combination of different binning programs (https://doi.org/10.1093/bioinformatics/btx086)
 + A manuscript describing how it works and its performance on mock and real metagenomic datasets can be found in the "manual" folder.
 + Version: 1.1
 + Last update: 2017-01-08
