@@ -47,6 +47,8 @@ How to install:
 
         # install R and R package googleVis
 
+        # install CheckM and all its Dependencies.
+
 How to run:
 ---
 
