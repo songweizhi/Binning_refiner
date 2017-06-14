@@ -32,6 +32,13 @@ Version 1.1 (2017-01-08):
 Version 1.0 (2016-11-11):
 + None
 
+How to install:
+---
+1. Install the latest python (version 3) on your system (https://www.python.org).
+1. Download Binning_refiner and unpackage it
+1. python setup.py install
+1. install R and R package googleVis
+
 How to run:
 ---
 

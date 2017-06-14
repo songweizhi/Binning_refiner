@@ -40,7 +40,7 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5'
     ],
-    keywords="metagenomics bioinformatics",
+    keywords="Metagenomics Binning Bioinformatics",
     packages=find_packages(exclude=['contrib','docs']),
     install_requires=('rpy2',
                       'biopython',
