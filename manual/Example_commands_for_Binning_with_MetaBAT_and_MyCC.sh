@@ -34,10 +34,10 @@ fastqc BBAY70_R2_Q30_P.fastq
 # IDBA_UD
 # http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/
 
-# combine the three first reads files (there will be 5 first reads files in your case)
+# combine the three first reads files
 cat BBAY68_R1_Q30_P.fastq BBAY69_R1_Q30_P.fastq BBAY70_R1_Q30_P.fastq > BBAY68_69_70_R1.fastq
 
-# combine the three second reads files (there will be 5 second reads files in your case)
+# combine the three second reads files
 cat BBAY68_R2_Q30_P.fastq BBAY69_R2_Q30_P.fastq BBAY70_R2_Q30_P.fastq > BBAY68_69_70_R2.fastq
 
 # convert and merge the two combined fastq files to fasta file with idba_ud. The output file will be used as input for assemble
@@ -97,8 +97,6 @@ metabat -i BBAY68_69_70_K20-100_scaffold_lt2500.fa -a BBAY68_69_70_depth.txt -p 
 # For MyCC (use ‘4mer’ for simple communities and ‘56mer’ for complex communities)
 MyCC.py BBAY68_69_70_K20-100_scaffold_lt2500.fa -a BBAY68_69_70_depth.txt 56mer
 
-# For CONCOCT
- 
 
 ################################### 5 Binning_refiner #################################### 
 
