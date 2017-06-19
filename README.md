@@ -47,7 +47,7 @@ How to install:
 
         # install R and R package googleVis
 
-        # install CheckM and all its Dependencies.
+        # install CheckM and its Dependencies.
 
 How to run:
 ---
@@ -88,6 +88,7 @@ different bins. which means all input bins for Binning_refiner must be derived f
         CheckM_runner -h
         Get_statistics -h
 
+1. Some example commands for binning with MetaBAT and MyCC can be found in the manual/Example_commands_for_Binning_with_MetaBAT_and_MyCC.sh
 
 Output files:
 ---
