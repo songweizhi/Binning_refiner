@@ -1,7 +1,7 @@
 Binning_refiner
 ---
 
-+ Binning_refiner: Improving genome bins through the combination of different binning programs (https://doi.org/10.1093/bioinformatics/btx086)
++ Song WZ; Thomas T, 2017, 'Binning-refiner: Improving genome bins through the combination of different binning programs', Bioinformatics, vol. 33, pp. 1873 - 1875, http://dx.doi.org/10.1093/bioinformatics/btx086
 + Version: 1.1
 + Last update: 2017-01-08
 + Contact: Weizhi Song (songwz03@gmail.com), Torsten Thomas(t.thomas@unsw.edu.au)
