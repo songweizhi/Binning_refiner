@@ -68,17 +68,17 @@ different bins. which means all input bins for Binning_refiner must be derived f
 
         # Example commands:
 
-        # 1. get refined bins
+        # 1. get refined bins (main step)
         Binning_refiner -1 MetaBAT -2 MyCC
         # or
         Binning_refiner -1 MetaBAT -2 MyCC -3 Concoct
 
-        # 2. get qualities
+        # 2. get qualities (optional)
         CheckM_runner -1 MetaBAT -2 MyCC -r outputs/Refined -qsub
         # or
         CheckM_runner -1 MetaBAT -2 MyCC -3 Concoct -r outputs/Refined -qsub
 
-        # 3. get statistics
+        # 3. get statistics (optional)
         Get_statistics -1 MetaBAT -2 MyCC -r outputs/Refined
         # or
         Get_statistics -1 MetaBAT -2 MyCC -3 Concoct -r outputs/Refined
