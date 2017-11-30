@@ -1,6 +1,5 @@
 # Copyright (C) 2017, Weizhi Song, Torsten Thomas.
-# songwz03@gmail.com
-# t.thomas@unsw.edu.au
+# songwz03@gmail.com or t.thomas@unsw.edu.au
 
 # Binning_refiner is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -21,7 +20,7 @@ import glob
 import shutil
 import argparse
 from time import sleep
-from sys import stdout
+#from sys import stdout
 from Bio import SeqIO
 #import rpy2.robjects as robjects
 #import rpy2.robjects.packages as rpackages
