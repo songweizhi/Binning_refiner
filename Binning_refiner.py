@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 # Copyright (C) 2017, Weizhi Song, Torsten Thomas.
 # songwz03@gmail.com
 # t.thomas@unsw.edu.au
@@ -25,7 +23,26 @@ import argparse
 from time import sleep
 from sys import stdout
 from Bio import SeqIO
-from Binning_refiner.GoogleVis_Sankey_plotter import GoogleVis_Sankey_plotter
+#import rpy2.robjects as robjects
+#import rpy2.robjects.packages as rpackages
+#
+# def GoogleVis_Sankey_plotter(input_csv, output_html, height):
+#     out = open(output_html, 'w')
+#     utils = rpackages.importr('googleVis')
+#     packages_needed = ['googleVis']
+#     for each_package in packages_needed:
+#         if not rpackages.isinstalled(each_package):
+#             utils.install_packages(each_package)
+#
+#     df = robjects.DataFrame.from_csvfile(input_csv)
+#     sankey_plot = robjects.r['gvisSankey'](df,
+#                                            option=robjects.r['list'](
+#                                                sankey="{node : {colorMode: 'unique', labelPadding: 10}, link:{colorMode: 'source'}}",
+#                                                height=height,
+#                                                width=600))
+#     out.write(str(sankey_plot))
+#     out.close()
+
 
 
 ##################################################### CONFIGURATION ####################################################
@@ -48,7 +65,7 @@ parser.add_argument('-ms',
                     required=False,
                     default=524288,
                     type=int,
-                    help='(optional) minimum size for refined bins, default = 524288 (0.5Mbp)')
+                    help='(optional) minimum size for refined genome bins, default = 524288 (0.5Mbp)')
 
 args = vars(parser.parse_args())
 input_bin_folder_1 = args['1']
@@ -288,14 +305,14 @@ separated_2_handle.close()
 
 
 # get GoogleVis Sankey plot
-sleep(1)
-print('\nPlotting...')
-pwd_plot_html = '%s/%s/GoogleVis_Sankey_%sMbp.html' % (wd, output_folder, bin_size_cutoff_MB)
-plot_height = max(all_input_bins_number_list) * 25
-GoogleVis_Sankey_plotter(googlevis_input_file, pwd_plot_html, plot_height)
-sleep(1)
-print('Please ignore "RRuntimeWarning" if there are any above.')
-
+# sleep(1)
+# print('\nPlotting...')
+# pwd_plot_html = '%s/%s/GoogleVis_Sankey_%sMbp.html' % (wd, output_folder, bin_size_cutoff_MB)
+# plot_height = max(all_input_bins_number_list) * 25
+# GoogleVis_Sankey_plotter(googlevis_input_file, pwd_plot_html, plot_height)
+# sleep(1)
+# print('Please ignore "RRuntimeWarning" if there are any above.')
+#
 
 # remove temporary files
 sleep(1)
@@ -309,5 +326,4 @@ os.system('rm %s' % (contig_assignments_file_sorted_one_line))
 
 sleep(1)
 print('All done!')
-sleep(1)
-print('Please run CheckM_runner.py for all input/output bin sets to get their qualities.')
+print('You may need CheckM to get the quality of your input and refined genome bins')
