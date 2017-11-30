@@ -1,0 +1,1 @@
+python Binning_refiner.py -1 MetaBAT -2 MyCC -3 CONCOCT
