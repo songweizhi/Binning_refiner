@@ -1,5 +1,5 @@
-Binning_refiner
----
+![logo](images/Binning_refiner_logo.jpg)
+
 
 Publication
 ---
@@ -22,8 +22,7 @@ Version 1.2 (2017-11-30):
 How to install:
 ---
 
-The only thing you need to do is to install the latest version of Python3 and Biopython.
-
+The only thing you need to do is to install the latest version of Python and Biopython.
 
 How to run:
 ---
@@ -34,13 +33,13 @@ directly under working directory.
 
 1. Accepted bin file extensions include 'fa', 'fas' or 'fasta'. All input bins in the same folder must have the same extension.
 
-1. Binning_refiner scripts are implemented in python3, please use python3 instead of python.
+1. Binning_refiner now compatible with both python2 and python3.
 
         # For two binning programs (e.g. MetaBAT and MyCC)
-        python3 Binning_refiner.py -1 MetaBAT_bins -2 MyCC_bins
+        python Binning_refiner.py -1 MetaBAT_bins -2 MyCC_bins
 
         # For two binning programs (e.g. MetaBAT, MyCC and CONCOCT)
-        python3 Binning_refiner.py -1 MetaBAT_bins -2 MyCC_bins -3 CONCOCT_bins
+        python Binning_refiner.py -1 MetaBAT_bins -2 MyCC_bins -3 CONCOCT_bins
 
 Output files:
 ---
@@ -48,4 +47,3 @@ Output files:
 1. All refined bins larger than defined bin size cutoff.
 1. The id of the contigs in the refined bins.
 1. The size of refined bins and where its contigs come from.
-

@@ -252,7 +252,7 @@ print('The number of refined bins: %s' % refined_bin_number)
 
 # Export refined bins and prepare input for GoogleVis
 sleep(1)
-print('Exporting refined bins and preparing input for GoogleVis sankey plot')
+print('Exporting refined bins')
 separated_1 = '%s/%s/Refined_bins_sources_and_length.txt' % (wd, output_folder)
 separated_2 = '%s/%s/Refined_bins_contigs.txt' % (wd, output_folder)
 googlevis_input_file = '%s/%s/GoogleVis_Sankey_%sMbp.csv' % (wd, output_folder, bin_size_cutoff_MB)
@@ -287,7 +287,7 @@ for each_refined_bin in refined_bins:
         googlevis_input_handle.write('%s,%s,%s\n' % (each_refined_bin_source[m], each_refined_bin_source[m+1], each_refined_bin_length_mbp))
         m += 1
 
-    stdout.write('\rExtracting refined bin: %s.fasta' % each_refined_bin_name)
+    print('Extracting refined bin: %s.fasta' % each_refined_bin_name)
     refined_bin_file = '%s/%s/Refined/%s.fasta' % (wd, output_folder, each_refined_bin_name)
     refined_bin_handle = open(refined_bin_file, 'w')
     input_contigs_file = '%s/%s/combined_%s_bins.fa' % (wd, output_folder, input_bin_folder_1)
