@@ -1,2 +1,4 @@
-build
-Binning_refiner.egg-info
+.idea/Binning_refiner.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml

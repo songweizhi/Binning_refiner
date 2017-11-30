@@ -35,10 +35,10 @@ directly under working directory.
 1. Binning_refiner now compatible with both python2 and python3.
 
         # For two binning programs (e.g. MetaBAT and MyCC)
-        python Binning_refiner.py -1 MetaBAT_bins -2 MyCC_bins
+        python Binning_refiner.py -1 MetaBAT -2 MyCC
 
         # For two binning programs (e.g. MetaBAT, MyCC and CONCOCT)
-        python Binning_refiner.py -1 MetaBAT_bins -2 MyCC_bins -3 CONCOCT_bins
+        python Binning_refiner.py -1 MetaBAT -2 MyCC -3 CONCOCT
 
 Output files:
 ---
