@@ -1,4 +1,4 @@
-![logo](images/Binning_refiner_logo.jpg)
+![logo](images/logo.jpg)
 
 Publication
 ---
@@ -8,24 +8,19 @@ Publication
 
 Dependencies:
 ---
-
 + [BioPython](https://github.com/biopython/biopython.github.io/)
 
 Change Log:
 ---
 Version 1.2 (2017-11-30):
-+  Binning_refiner was simplified to keep only the core functions, which made it much easier to install and use, hope you enjoy it :)
-
-
++  Binning_refiner has been simplified to keep only the core functions, which made it much easier to install and use, hope you enjoy it :)
 
 How to install:
 ---
-
 The only thing you need to do is to install the latest version of Python and Biopython.
 
 How to run:
 ---
-
 1. Binning_refiner takes two or three binning programs produced bin sets as inputs. You need to define a working directory to
 hold all input and output files. Input bin sets from different binning programs need to be placed in different folders
 directly under working directory.
@@ -42,7 +37,6 @@ directly under working directory.
 
 Output files:
 ---
-
 1. All refined bins larger than defined bin size cutoff.
 1. The id of the contigs in the refined bins.
 1. The size of refined bins and where its contigs come from.
