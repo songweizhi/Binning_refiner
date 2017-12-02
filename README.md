@@ -35,6 +35,11 @@ directly under working directory.
         # For two binning programs (e.g. MetaBAT, MyCC and CONCOCT)
         python Binning_refiner.py -1 MetaBAT -2 MyCC -3 CONCOCT
 
+Output files:
+---
+1. All refined bins larger than defined bin size cutoff.
+1. The id of the contigs in the refined bins.
+1. The size of refined bins and where its contigs come from.
 1. You may want to run get_sankey_plot.R to visualize the correlations between your input bin sets (Figure below). To run it,
 you need to have R and its following three packages installed: [tools](https://www.rdocumentation.org/packages/tools),
 [optparse](https://cran.r-project.org/web/packages/optparse/index.html) and [googleVis](https://cran.r-project.org/web/packages/googleVis/index.html).
@@ -42,10 +47,4 @@ you need to have R and its following three packages installed: [tools](https://w
         # Example command
         Rscript get_sankey_plot.R -f GoogleVis_Sankey_0.5Mbp.csv -x 800 -y 1000
 
-    ![Sankey_plot](images/sankey_plot.jpg)
-
-Output files:
----
-1. All refined bins larger than defined bin size cutoff.
-1. The id of the contigs in the refined bins.
-1. The size of refined bins and where its contigs come from.
+    ![Sankey_plot](images/sankey.jpg)
