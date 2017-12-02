@@ -64,7 +64,7 @@ parser.add_argument('-ms',
                     required=False,
                     default=524288,
                     type=int,
-                    help='(optional) minimum size for refined genome bins, default = 524288 (0.5Mbp)')
+                    help='(optional) minimal size for refined bins, default = 524288 (0.5Mbp)')
 
 args = vars(parser.parse_args())
 input_bin_folder_1 = args['1']
@@ -89,6 +89,9 @@ if args['3'] == None:
 else:
     print('Specified 3 input bin sets: -1 %s -2 %s -3 %s' % (input_bin_folder_1, input_bin_folder_2, input_bin_folder_3))
     input_bin_folder_list = [input_bin_folder_1, input_bin_folder_2, input_bin_folder_3]
+
+print('The minimal size for refined bins was set to %s bp, which is %s in Mbp' % (bin_size_cutoff, bin_size_cutoff_MB))
+sleep(1)
 
 ################################################ Define folder/file name ###############################################
 
@@ -251,7 +254,6 @@ print('The number of refined bins: %s' % refined_bin_number)
 
 # Export refined bins and prepare input for GoogleVis
 sleep(1)
-print('Exporting refined bins')
 separated_1 = '%s/%s/Refined_bins_sources_and_length.txt' % (wd, output_folder)
 separated_2 = '%s/%s/Refined_bins_contigs.txt' % (wd, output_folder)
 googlevis_input_file = '%s/%s/GoogleVis_Sankey_%sMbp.csv' % (wd, output_folder, bin_size_cutoff_MB)
@@ -261,7 +263,7 @@ googlevis_input_handle = open(googlevis_input_file, 'w')
 separated_1_handle = open(separated_1, 'w')
 separated_2_handle = open(separated_2, 'w')
 
-googlevis_input_handle.write('C1,C2,Length (Mbp)\n')
+googlevis_input_handle.write('C1,C2,Length_Mbp\n')
 for each_refined_bin in refined_bins:
     each_refined_bin_split = each_refined_bin.strip().split('\t')
     each_refined_bin_name = each_refined_bin_split[0]
@@ -286,7 +288,7 @@ for each_refined_bin in refined_bins:
         googlevis_input_handle.write('%s,%s,%s\n' % (each_refined_bin_source[m], each_refined_bin_source[m+1], each_refined_bin_length_mbp))
         m += 1
 
-    print('Extracting refined bin: %s.fasta' % each_refined_bin_name)
+    print('Exporting %s.fasta' % each_refined_bin_name)
     refined_bin_file = '%s/%s/Refined/%s.fasta' % (wd, output_folder, each_refined_bin_name)
     refined_bin_handle = open(refined_bin_file, 'w')
     input_contigs_file = '%s/%s/combined_%s_bins.fa' % (wd, output_folder, input_bin_folder_1)
@@ -302,17 +304,6 @@ googlevis_input_handle.close()
 separated_1_handle.close()
 separated_2_handle.close()
 
-
-# get GoogleVis Sankey plot
-# sleep(1)
-# print('\nPlotting...')
-# pwd_plot_html = '%s/%s/GoogleVis_Sankey_%sMbp.html' % (wd, output_folder, bin_size_cutoff_MB)
-# plot_height = max(all_input_bins_number_list) * 25
-# GoogleVis_Sankey_plotter(googlevis_input_file, pwd_plot_html, plot_height)
-# sleep(1)
-# print('Please ignore "RRuntimeWarning" if there are any above.')
-#
-
 # remove temporary files
 sleep(1)
 print('Deleting temporary files')
@@ -320,9 +311,16 @@ os.system('rm %s' % contig_assignments_file)
 os.system('rm %s' % (combined_all_bins_file))
 os.system('rm %s/%s/*.fa' % (wd, output_folder))
 os.system('rm %s' % (contig_assignments_file_sorted))
-os.system('rm %s' % (googlevis_input_file))
 os.system('rm %s' % (contig_assignments_file_sorted_one_line))
 
 sleep(1)
-print('All done!')
-print('You may need CheckM to get the quality of your input and refined genome bins')
+print('All done!\n')
+sleep(1)
+print('Things you may want to do:')
+print('1. Run get_sankey_plot.R to visualize the correlations between your input bin sets.')
+plot_width = 500
+if len(input_bin_folder_list) == 3:
+    plot_width = 700
+plot_height = max(all_input_bins_number_list) * 30
+print('   Command: Rscript path/to/get_sankey_plot.R -f GoogleVis_Sankey_%sMbp.csv -x %s -y %s' % (bin_size_cutoff_MB, plot_width, plot_height))
+print('2. Run CheckM to get the quality of your input and refined bins.')
