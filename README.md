@@ -32,7 +32,7 @@ directly under working directory.
         # For two binning programs (e.g. MetaBAT and MyCC)
         python Binning_refiner.py -1 MetaBAT -2 MyCC
 
-        # For two binning programs (e.g. MetaBAT, MyCC and CONCOCT)
+        # For three binning programs (e.g. MetaBAT, MyCC and CONCOCT)
         python Binning_refiner.py -1 MetaBAT -2 MyCC -3 CONCOCT
 
 Output files:
