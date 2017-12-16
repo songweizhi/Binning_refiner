@@ -15,6 +15,14 @@ Change Log:
 Version 1.2 (2017-11-30):
 +  Binning_refiner has been simplified to keep only the core functions, which made it much easier to install and use, hope you enjoy it :)
 
+Important notification !!!
+
++  In the original version of Binning_refiner, the blast approach (as described in its [publication](http://dx.doi.org/10.1093/bioinformatics/btx086))
+was used to identify the same contig among input bin sets. As Binning_refiner was designed to refine bins derived from the same set of assemblies
+and the blast step is time-consuming (especially for big dataset), the same assembly among different bin sets was identified by its ID rather than
+blastn, which made Binning_refiner much faster to run and more easier to install.
+
+
 How to install:
 ---
 The only thing you need to do is to install the latest version of Python and Biopython.
