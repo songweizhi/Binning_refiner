@@ -109,15 +109,9 @@ print(datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' The minimal size for refi
 
 ################################################ Define folder/file name ###############################################
 
-wd = os.getcwd()
-
 pwd_output_folder = '%s_outputs' % prefix
 refined_bin_folder = 'Refined_bins'
 pwd_refined_bin_folder = '%s/%s' % (pwd_output_folder, refined_bin_folder)
-
-
-
-
 
 ########################################################################################################################
 
