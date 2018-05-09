@@ -27,26 +27,39 @@ How to install:
 ---
 The only thing you need to do is to install the latest version of Python and Biopython.
 
+Help information:
+---
+        python Binning_refiner.py -h
+          -h, --help      show this help message and exit
+          -1              first bin folder name
+          -2              second bin folder name
+          -3              third bin folder name
+          -x1             file extension for bin set 1, default: fasta
+          -x2             file extension for bin set 2, default: fasta
+          -x3             file extension for bin set 3, default: fasta
+          -prefix         prefix of refined bins, default: Refined
+          -ms             (optional) minimal size for refined bins, default: 524288 (0.5Mbp)
+
+
+
+
 How to run:
 ---
-1. Binning_refiner takes two or three binning programs produced bin sets as inputs. You need to define a working directory to
-hold all input and output files. Input bin sets from different binning programs need to be placed in different folders
-directly under working directory.
 
-1. Accepted bin file extensions include 'fa', 'fas' or 'fasta'. All input bins in the same folder must have the same extension.
+1. All bins in one folder must have same file extension.
 
 1. Binning_refiner now compatible with both python2 and python3.
 
         # For two binning programs (e.g. MetaBAT and MyCC)
-        python Binning_refiner.py -1 MetaBAT -2 MyCC
+        python Binning_refiner.py -1 MetaBAT -2 MyCC -x1 fa -prefix Refined
 
         # For three binning programs (e.g. MetaBAT, MyCC and CONCOCT)
-        python Binning_refiner.py -1 MetaBAT -2 MyCC -3 CONCOCT
+        python Binning_refiner.py -1 MetaBAT -2 MyCC -3 CONCOCT -x1 fa -x3 fa -prefix Refined
 
 Output files:
 ---
 1. All refined bins larger than defined bin size cutoff.
-1. The id of the contigs in the refined bins.
+1. The id of the contigs in each refined bin.
 1. The size of refined bins and where its contigs come from.
 1. You may want to run get_sankey_plot.R to visualize the correlations between your input bin sets (Figure below). To run it,
 you need to have R and its following three packages installed: [tools](https://www.rdocumentation.org/packages/tools),
