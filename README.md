@@ -38,7 +38,7 @@ Help information:
           -x2             file extension for bin set 2, default: fasta
           -x3             file extension for bin set 3, default: fasta
           -prefix         prefix of refined bins, default: Refined
-          -ms             (optional) minimal size for refined bins, default: 524288 (0.5Mbp)
+          -ms             minimal size for refined bins, default: 524288 (0.5Mbp)
 
 
 

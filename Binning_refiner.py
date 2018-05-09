@@ -64,7 +64,7 @@ parser.add_argument('-ms',
                     required=False,
                     default=524288,
                     type=int,
-                    help='(optional) minimal size for refined bins, default = 524288 (0.5Mbp)')
+                    help='minimal size for refined bins, default = 524288 (0.5Mbp)')
 
 args = vars(parser.parse_args())
 input_bin_folder_1 = args['1']
