@@ -336,4 +336,3 @@ if len(input_bin_folder_list) == 3:
 plot_height = max(all_input_bins_number_list) * 30
 print('                       Rscript get_sankey_plot.R -f GoogleVis_Sankey_%sMbp.csv -x %s -y %s' % (bin_size_cutoff_MB, plot_width, plot_height))
 print('                    2. Run CheckM to get the quality of your input and refined bins.')
-
