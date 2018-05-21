@@ -14,7 +14,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
 import os
 import glob
 import shutil
@@ -22,7 +21,6 @@ import argparse
 from Bio import SeqIO
 from time import sleep
 from datetime import datetime
-
 
 ##################################################### CONFIGURATION ####################################################
 
@@ -338,3 +336,4 @@ if len(input_bin_folder_list) == 3:
 plot_height = max(all_input_bins_number_list) * 30
 print('                       Rscript get_sankey_plot.R -f GoogleVis_Sankey_%sMbp.csv -x %s -y %s' % (bin_size_cutoff_MB, plot_width, plot_height))
 print('                    2. Run CheckM to get the quality of your input and refined bins.')
+

@@ -69,3 +69,4 @@ you need to have R and its following three packages installed: [tools](https://w
         Rscript get_sankey_plot.R -f GoogleVis_Sankey_0.5Mbp.csv -x 800 -y 1000
 
     ![Sankey_plot](images/sankey.jpg)
+
