@@ -25,7 +25,18 @@ blastn, which made Binning_refiner much faster to run and more easier to install
 
 How to install:
 ---
-The only thing you need to do is to install the latest version of Python and Biopython.
+1. Install Python and Biopython.
+
+        # for Katana users from UNSW, simply run
+        $ module load python/3.5.2
+
+1. Download Binning_refiner.py to the place your want, it is ready to run now
+
+        $ python path/to/Binning_refiner.py -h
+
+1. In case you want to see the correlations between your input bin sets (figure below), you need to have R and its following three packages installed: [tools](https://www.rdocumentation.org/packages/tools),
+[optparse](https://cran.r-project.org/web/packages/optparse/index.html) and [googleVis](https://cran.r-project.org/web/packages/googleVis/index.html)
+
 
 Help information:
 ---
