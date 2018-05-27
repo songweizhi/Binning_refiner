@@ -16,9 +16,11 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-library(tools)
-library(optparse)
-suppressPackageStartupMessages(library(googleVis))
+
+suppressMessages(suppressWarnings(library(tools)))
+suppressMessages(suppressWarnings(library(optparse)))
+suppressMessages(suppressWarnings(library(googleVis)))
+
 
 option_list = list(
   
@@ -58,3 +60,6 @@ output_file = paste(file_path_sans_ext(opt$file), "html", sep=".")
 sink(file = output_file, append = FALSE, type = c("output", "message"), split = FALSE)
 print(Sankey_plot_my_data)
 sink()
+
+report_message = paste('Sankey plot exported to: ', output_file, sep = '', row.names=F)
+print(noquote(report_message))

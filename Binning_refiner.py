@@ -338,5 +338,5 @@ plot_width = 500
 if len(input_bin_folder_list) == 3:
     plot_width = 700
 plot_height = max(all_input_bins_number_list) * 30
-print('   Rscript %s/get_sankey_plot.R -f %s/GoogleVis_Sankey_%sbp.csv -x %s -y %s' % (binning_refiner_script_path, pwd_output_folder, bin_size_cutoff, plot_width, plot_height))
-print('2. Run CheckM to get the quality of your input and refined bins.')
+print('Rscript %s/get_sankey_plot.R -f %s/GoogleVis_Sankey_%sbp.csv -x %s -y %s' % (binning_refiner_script_path, pwd_output_folder, bin_size_cutoff, plot_width, plot_height))
+print('2. Run CheckM to get the quality of your refined bins.')
