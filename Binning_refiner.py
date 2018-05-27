@@ -327,10 +327,10 @@ sleep(1)
 print(datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' All done!')
 sleep(1)
 print(datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Things you may want to do:')
-print('                    1. Run get_sankey_plot.R to visualize the correlations between your input bin sets with:')
+print('1. Run get_sankey_plot.R to visualize the correlations between your input bin sets with:')
 plot_width = 500
 if len(input_bin_folder_list) == 3:
     plot_width = 700
 plot_height = max(all_input_bins_number_list) * 30
-print('                       Rscript get_sankey_plot.R -f GoogleVis_Sankey_%sbp.csv -x %s -y %s' % (bin_size_cutoff, plot_width, plot_height))
-print('                    2. Run CheckM to get the quality of your input and refined bins.')
+print('   Rscript get_sankey_plot.R -f GoogleVis_Sankey_%sbp.csv -x %s -y %s' % (bin_size_cutoff, plot_width, plot_height))
+print('2. Run CheckM to get the quality of your input and refined bins.')
