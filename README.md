@@ -34,8 +34,9 @@ How to install:
 
         $ python path/to/Binning_refiner.py -h
 
-1. In case you want to see the correlations between your input bin sets (figure below), you need to have R and its following three packages installed: [tools](https://www.rdocumentation.org/packages/tools),
-[optparse](https://cran.r-project.org/web/packages/optparse/index.html) and [googleVis](https://cran.r-project.org/web/packages/googleVis/index.html)
+1. In case you want to see the correlations between your input bin sets (figure below), you need to have R and its following two packages installed:
+[optparse](https://cran.r-project.org/web/packages/optparse/index.html) and
+[googleVis](https://cran.r-project.org/web/packages/googleVis/index.html)
 
 
 Help information:
@@ -50,8 +51,6 @@ Help information:
           -x3             file extension for bin set 3, default: fasta
           -prefix         prefix of refined bins, default: Refined
           -ms             minimal size for refined bins, default: 524288 (0.5Mbp)
-
-
 
 
 How to run:
@@ -73,8 +72,7 @@ Output files:
 1. The id of the contigs in each refined bin.
 1. The size of refined bins and where its contigs come from.
 1. You may want to run get_sankey_plot.R to visualize the correlations between your input bin sets (Figure below). To run it,
-you need to have R and its following three packages installed: [tools](https://www.rdocumentation.org/packages/tools),
-[optparse](https://cran.r-project.org/web/packages/optparse/index.html) and [googleVis](https://cran.r-project.org/web/packages/googleVis/index.html).
+you need to have R and its following two packages installed: [optparse](https://cran.r-project.org/web/packages/optparse/index.html) and [googleVis](https://cran.r-project.org/web/packages/googleVis/index.html).
 
         # Example command
         Rscript get_sankey_plot.R -f GoogleVis_Sankey_0.5Mbp.csv -x 800 -y 1000

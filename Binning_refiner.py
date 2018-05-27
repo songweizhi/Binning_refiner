@@ -81,7 +81,6 @@ bin_extension_2 = args['x2']
 bin_extension_3 = args['x3']
 prefix = args['prefix']
 bin_size_cutoff = args['ms']
-bin_size_cutoff_MB = float("{0:.2f}".format(bin_size_cutoff / (1024 * 1024)))
 
 # get input bin folder list
 input_bin_folder_list = []
@@ -270,13 +269,13 @@ print(datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' The number of refined bin
 sleep(1)
 separated_1 = '%s/Refined_bins_sources_and_length.txt' % (pwd_output_folder)
 separated_2 = '%s/Refined_bins_contigs.txt' % (pwd_output_folder)
-googlevis_input_file = '%s/GoogleVis_Sankey_%sMbp.csv' % (pwd_output_folder, bin_size_cutoff_MB)
+googlevis_input_file = '%s/GoogleVis_Sankey_%sbp.csv' % (pwd_output_folder, bin_size_cutoff)
 refined_bins = open(contig_assignments_file_sorted_one_line)
 googlevis_input_handle = open(googlevis_input_file, 'w')
 separated_1_handle = open(separated_1, 'w')
 separated_2_handle = open(separated_2, 'w')
 
-googlevis_input_handle.write('C1,C2,Length_Mbp\n')
+googlevis_input_handle.write('C1,C2,Length_bp\n')
 for each_refined_bin in refined_bins:
     each_refined_bin_split = each_refined_bin.strip().split('\t')
     each_refined_bin_name = each_refined_bin_split[0]
@@ -295,10 +294,9 @@ for each_refined_bin in refined_bins:
         each_refined_bin_contig = each_refined_bin_split[5:]
         separated_1_handle.write('%s\t%sbp\t%s\n' % (each_refined_bin_name, each_refined_bin_length, '\t'.join(each_refined_bin_source)))
         separated_2_handle.write('%s\n%s\n' % (each_refined_bin_name, '\t'.join(each_refined_bin_contig)))
-    each_refined_bin_length_mbp = float("{0:.2f}".format(each_refined_bin_length / (1024 * 1024)))
     m = 0
     while m < len(each_refined_bin_source)-1:
-        googlevis_input_handle.write('%s,%s,%s\n' % (each_refined_bin_source[m], each_refined_bin_source[m+1], each_refined_bin_length_mbp))
+        googlevis_input_handle.write('%s,%s,%s\n' % (each_refined_bin_source[m], each_refined_bin_source[m+1], each_refined_bin_length))
         m += 1
 
     print(datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Extracting %s.fasta' % each_refined_bin_name)
@@ -334,5 +332,5 @@ plot_width = 500
 if len(input_bin_folder_list) == 3:
     plot_width = 700
 plot_height = max(all_input_bins_number_list) * 30
-print('                       Rscript get_sankey_plot.R -f GoogleVis_Sankey_%sMbp.csv -x %s -y %s' % (bin_size_cutoff_MB, plot_width, plot_height))
+print('                       Rscript get_sankey_plot.R -f GoogleVis_Sankey_%sbp.csv -x %s -y %s' % (bin_size_cutoff, plot_width, plot_height))
 print('                    2. Run CheckM to get the quality of your input and refined bins.')
