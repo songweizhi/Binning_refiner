@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import sys
 import glob
 import shutil
 import argparse
@@ -109,6 +110,11 @@ print(datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' The minimal size for refi
 pwd_output_folder = '%s_outputs' % prefix
 refined_bin_folder = 'Refined_bins'
 pwd_refined_bin_folder = '%s/%s' % (pwd_output_folder, refined_bin_folder)
+
+# get path to current script
+pwd_binning_refiner_script = sys.argv[0]
+binning_refiner_script_path, file_name = os.path.split(pwd_binning_refiner_script)
+
 
 ########################################################################################################################
 
@@ -332,5 +338,5 @@ plot_width = 500
 if len(input_bin_folder_list) == 3:
     plot_width = 700
 plot_height = max(all_input_bins_number_list) * 30
-print('   Rscript get_sankey_plot.R -f GoogleVis_Sankey_%sbp.csv -x %s -y %s' % (bin_size_cutoff, plot_width, plot_height))
+print('   Rscript %s/get_sankey_plot.R -f %s/GoogleVis_Sankey_%sbp.csv -x %s -y %s' % (binning_refiner_script_path, pwd_output_folder, bin_size_cutoff, plot_width, plot_height))
 print('2. Run CheckM to get the quality of your input and refined bins.')
