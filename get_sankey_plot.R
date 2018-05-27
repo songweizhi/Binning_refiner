@@ -61,5 +61,5 @@ sink(file = output_file, append = FALSE, type = c("output", "message"), split = 
 print(Sankey_plot_my_data)
 sink()
 
-report_message = paste('Sankey plot exported to: ', output_file, sep = '')
-print(noquote(report_message))
+report_message = paste('Done! Sankey plot exported to: ', output_file, sep = '')
+message(report_message)
