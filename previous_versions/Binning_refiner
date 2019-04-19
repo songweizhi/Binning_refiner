@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # Copyright (C) 2017, Weizhi Song, Torsten Thomas.
 # songwz03@gmail.com or t.thomas@unsw.edu.au
 
@@ -27,43 +29,15 @@ from datetime import datetime
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('-1',
-                    required=True,
-                    help='first bin folder name')
+parser.add_argument('-1',      required=True,  help='first bin folder name')
+parser.add_argument('-2',      required=True,  help='second bin folder name')
+parser.add_argument('-3',      required=False, help='third bin folder name')
+parser.add_argument('-x1',     required=False, default='fasta', help='file extension for bin set 1, default: fasta')
+parser.add_argument('-x2',     required=False, default='fasta', help='file extension for bin set 2, default: fasta')
+parser.add_argument('-x3',     required=False, default='fasta', help='file extension for bin set 3, default: fasta')
+parser.add_argument('-prefix', required=False, default='Refined', help='prefix of refined bins, default: Refined')
+parser.add_argument('-ms',     required=False, default=524288, type=int, help='minimal size for refined bins, default = 524288 (0.5Mbp)')
 
-parser.add_argument('-2',
-                    required=True,
-                    help='second bin folder name')
-
-parser.add_argument('-3',
-                    required=False,
-                    help='third bin folder name')
-
-parser.add_argument('-x1',
-                    required=False,
-                    default='fasta',
-                    help='file extension for bin set 1, default: fasta')
-
-parser.add_argument('-x2',
-                    required=False,
-                    default='fasta',
-                    help='file extension for bin set 2, default: fasta')
-
-parser.add_argument('-x3',
-                    required=False,
-                    default='fasta',
-                    help='file extension for bin set 3, default: fasta')
-
-parser.add_argument('-prefix',
-                    required=False,
-                    default='Refined',
-                    help='prefix of refined bins, default: Refined')
-
-parser.add_argument('-ms',
-                    required=False,
-                    default=524288,
-                    type=int,
-                    help='minimal size for refined bins, default = 524288 (0.5Mbp)')
 
 args = vars(parser.parse_args())
 input_bin_folder_1 = args['1']
@@ -80,8 +54,9 @@ if args['3'] != None:
 bin_extension_1 = args['x1']
 bin_extension_2 = args['x2']
 bin_extension_3 = args['x3']
-prefix = args['prefix']
+prefix =          args['prefix']
 bin_size_cutoff = args['ms']
+
 
 # get input bin folder list
 input_bin_folder_list = []
@@ -340,3 +315,4 @@ if len(input_bin_folder_list) == 3:
 plot_height = max(all_input_bins_number_list) * 30
 print('Rscript %s/get_sankey_plot.R -f %s/GoogleVis_Sankey_%sbp.csv -x %s -y %s' % (binning_refiner_script_path, pwd_output_folder, bin_size_cutoff, plot_width, plot_height))
 print('2. Run CheckM to get the quality of your refined bins.')
+

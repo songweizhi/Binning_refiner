@@ -52,7 +52,7 @@ if (is.null(opt$file)){
 
 
 my_data = read.csv(opt$file, header = TRUE)
-Sankey_plot_my_data <- gvisSankey(my_data, options = list(sankey = "{node:{colorMode:'unique', labelPadding: 10 },link:{colorMode:'source'}}",
+Sankey_plot_my_data <- gvisSankey(my_data, options = list(sankey = "{node:{colorMode:'unique', labelPadding: 20, nodePadding: 8},link:{colorMode:'source'}}",
                                                        height = opt$height, 
                                                        width = opt$width))
 
@@ -60,6 +60,3 @@ output_file = paste(file_path_sans_ext(opt$file), "html", sep=".")
 sink(file = output_file, append = FALSE, type = c("output", "message"), split = FALSE)
 print(Sankey_plot_my_data)
 sink()
-
-report_message = paste('Done! Sankey plot exported to: ', output_file, sep = '')
-message(report_message)
