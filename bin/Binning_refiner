@@ -284,4 +284,3 @@ if plot_sankey is True:
 # progress report
 if keep_quiet is False:
     print('%s %s' % ((datetime.now().strftime(time_format)), 'Done!'))
-

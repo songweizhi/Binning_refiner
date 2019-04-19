@@ -36,3 +36,4 @@ setup(name="Binning_refiner",
       include_package_data=True,
       install_requires=['biopython'],
       scripts=['bin/Binning_refiner'])
+

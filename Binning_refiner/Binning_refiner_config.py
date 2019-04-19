@@ -1,5 +1,6 @@
 import os
 
+
 # extract path to the config file
 pwd_config_file = os.path.realpath(__file__)
 config_file_path = '/'.join(pwd_config_file.split('/')[:-1])

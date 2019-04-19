@@ -60,3 +60,4 @@ output_file = paste(file_path_sans_ext(opt$file), "html", sep=".")
 sink(file = output_file, append = FALSE, type = c("output", "message"), split = FALSE)
 print(Sankey_plot_my_data)
 sink()
+
