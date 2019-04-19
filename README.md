@@ -94,7 +94,6 @@ Here is an example of the [input_bin_folder](https://github.com/songweizhi/Binni
         Rscript path/to/Binning_refiner.R -i input_bin_folder -p Human
         
 
-
 Output files:
 ---
 1. All refined bins larger than defined bin size cutoff.
