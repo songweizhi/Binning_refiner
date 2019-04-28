@@ -54,7 +54,7 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument('-i',       required=True,  help='input bin folder')
 parser.add_argument('-p',       required=False, default='Refined',      help='output prefix, default: Refined')
-parser.add_argument('-m',       required=False, default=512,            help='minimal size (Kbp) of refined bin, default: 512')
+parser.add_argument('-m',       required=False, default=512,  type=int, help='minimal size (Kbp) of refined bin, default: 512')
 parser.add_argument('-plot',    required=False, default=False,          action="store_true", help='visualize refinement with Sankey plot')
 parser.add_argument('-x',       required=False, default=False,          help='the width of sankey plot')
 parser.add_argument('-y',       required=False, default=False,          help='the height of sankey plot')
