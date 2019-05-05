@@ -1,4 +1,11 @@
+
 ![logo](images/logo.jpg)
+
+[![pypi  licence  ](https://img.shields.io/pypi/l/Binning_refiner.svg)](https://opensource.org/licenses/gpl-3.0.html)
+[![pypi  version  ](https://img.shields.io/pypi/v/Binning_refiner.svg)](https://pypi.python.org/pypi/Binning_refiner) 
+[![pypi  download ](https://img.shields.io/pypi/dm/Binning_refiner.svg)](https://pypi.python.org/pypi/Binning_refiner)
+[![DOI            ](https://img.shields.io/static/v1.svg?label=DOI&message=10.1093/bioinformatics/btx086&color=orange)](https://doi.org/10.1093/bioinformatics/btx086)
+
 
 Publication
 ---
