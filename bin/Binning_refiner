@@ -27,13 +27,9 @@ from Binning_refiner.Binning_refiner_config import config_dict
 def force_create_folder(folder_to_create):
     if os.path.isdir(folder_to_create):
         shutil.rmtree(folder_to_create, ignore_errors=True)
-        if os.path.isdir(folder_to_create):
-            shutil.rmtree(folder_to_create, ignore_errors=True)
-            if os.path.isdir(folder_to_create):
-                shutil.rmtree(folder_to_create, ignore_errors=True)
-                if os.path.isdir(folder_to_create):
-                    shutil.rmtree(folder_to_create, ignore_errors=True)
+
     os.mkdir(folder_to_create)
+
 
 
 def get_no_hidden_folder_list(wd):
@@ -70,7 +66,6 @@ sankey_plot_width =     args['x']
 sankey_plot_height =    args['y']
 keep_quiet =            args['q']
 
-
 if input_bin_folder[-1] == '/':
     input_bin_folder = input_bin_folder[:-1]
 
@@ -79,12 +74,14 @@ pwd_plot_sankey_R = config_dict['get_sankey_plot_R']
 
 ################################### define output filename ###################################
 
-Binning_refiner_wd =                  '%s_Binning_refiner_outputs'      % output_bin_prefix
-pwd_report_file_sources_and_length =  '%s/%s_sources_and_length.txt'    % (Binning_refiner_wd, output_bin_prefix)
-pwd_report_file_contigs =             '%s/%s_contigs.txt'               % (Binning_refiner_wd, output_bin_prefix)
-pwd_report_file_for_sankey =          '%s/%s_sankey.csv'                % (Binning_refiner_wd, output_bin_prefix)
-pwd_plot_file_for_sankey =            '%s/%s_sankey.html'               % (Binning_refiner_wd, output_bin_prefix)
-pwd_output_bin_folder =               '%s/%s_refined_bins'              % (Binning_refiner_wd, output_bin_prefix)
+Binning_refiner_wd =                    '%s_Binning_refiner_outputs'      % output_bin_prefix
+
+
+pwd_report_file_sources_and_length =  '%s_sources_and_length.txt'    % (Binning_refiner_wd)
+pwd_report_file_contigs =             '%s_contigs.txt'               % (Binning_refiner_wd)
+pwd_report_file_for_sankey =          '%s_sankey.csv'                % (Binning_refiner_wd)
+pwd_plot_file_for_sankey =            '%s_sankey.html'               % (Binning_refiner_wd)
+pwd_output_bin_folder =               '%s_refined_bins'              % (Binning_refiner_wd)
 
 force_create_folder(Binning_refiner_wd)
 force_create_folder(pwd_output_bin_folder)
@@ -235,7 +232,7 @@ for refined_bin in concatenated_bins_list_sorted:
     refined_bin_source = refined_bin_split[1:]
     refined_bin_ctgs = concatenated_bins_to_ctg_dict['___'.join(refined_bin_split[1:])]
     refined_bin_id = '%s_%s' % (output_bin_prefix, refined_bin_index)
-    pwd_refined_bin = '%s/%s_%s.fasta' % (pwd_output_bin_folder, output_bin_prefix, refined_bin_index)
+    pwd_refined_bin = '%s_%s.fasta' % (output_bin_prefix, refined_bin_index)
     pwd_ctg_source = '%s/%s/%s' % (input_bin_folder,input_bin_subfolders[0], refined_bin_split[1])
 
     # write out sources_and_length file
